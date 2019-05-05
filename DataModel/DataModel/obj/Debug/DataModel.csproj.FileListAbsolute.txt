@@ -1,0 +1,7 @@
+D:\Pobrane\Przewidywanie-Pogody-Testing\Przewidywanie-Pogody-Testing\DataModel\DataModel\bin\Debug\DataModel.exe.config
+D:\Pobrane\Przewidywanie-Pogody-Testing\Przewidywanie-Pogody-Testing\DataModel\DataModel\bin\Debug\DataModel.exe
+D:\Pobrane\Przewidywanie-Pogody-Testing\Przewidywanie-Pogody-Testing\DataModel\DataModel\bin\Debug\DataModel.pdb
+D:\Pobrane\Przewidywanie-Pogody-Testing\Przewidywanie-Pogody-Testing\DataModel\DataModel\obj\Debug\DataModel.csprojAssemblyReference.cache
+D:\Pobrane\Przewidywanie-Pogody-Testing\Przewidywanie-Pogody-Testing\DataModel\DataModel\obj\Debug\DataModel.csproj.CoreCompileInputs.cache
+D:\Pobrane\Przewidywanie-Pogody-Testing\Przewidywanie-Pogody-Testing\DataModel\DataModel\obj\Debug\DataModel.exe
+D:\Pobrane\Przewidywanie-Pogody-Testing\Przewidywanie-Pogody-Testing\DataModel\DataModel\obj\Debug\DataModel.pdb
