@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork", "NeuralNetwork\NeuralNetwork.csproj", "{E1E12330-3E51-4037-ACA4-ABC71E2A06BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherForecast", "WeatherForecast\WeatherForecast.csproj", "{6751AD81-BC85-4E2E-8321-87DE16794BAA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E1E12330-3E51-4037-ACA4-ABC71E2A06BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1E12330-3E51-4037-ACA4-ABC71E2A06BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1E12330-3E51-4037-ACA4-ABC71E2A06BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1E12330-3E51-4037-ACA4-ABC71E2A06BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6751AD81-BC85-4E2E-8321-87DE16794BAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6751AD81-BC85-4E2E-8321-87DE16794BAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6751AD81-BC85-4E2E-8321-87DE16794BAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6751AD81-BC85-4E2E-8321-87DE16794BAA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2F00F0DE-E362-4BF0-8A96-2AEE3B4F0FD3}
+	EndGlobalSection
+EndGlobal
