@@ -1,0 +1,32 @@
+
+A Kod stacji                                                              9
+B Nazwa stacji                                                           30
+C Rok                                                                     4
+D Miesi¹c                                                                 2
+E Dzieñ                                                                   2
+F Godzina                                                                 2
+G Temperatura powietrza [°C]                                              6/1
+ Status pomiaru TEMP                                                     1
+ Temperatura termometru zwil¿onego [°C]                                  6/1
+ Status pomiaru TTZW                                                     1
+ WskaŸnik lodu [L/W]                                                     1
+ WskaŸnik wentylacji [W/N]                                               1
+M Wilgotnoœæ wzglêdna [%]                                                 5
+ Status pomiaru WLGW                                                     1
+O Kod kierunku wiatru [kod]                                               3
+ Status pomiaru DKDK                                                     1
+Q Prêdkoœæ wiatru [m/s]                                                   5
+ Status pomiaru FWR                                                      1
+S Zachmurzenie ogólne [0-10 do dn.31.12.1988/oktanty od dn.01.01.1989]    5
+ Status pomiaru ZOGK                                                     1
+U Widzialnoœæ [kod]                                                       5
+ Status pomiaru WID                                                      1
+
+Status "8" brak pomiaru
+
+BORUCINO - pó³noc  
+BIA£OWIE¯A - wchód 
+SKIERNIEWICE - centrum 
+PORONIN - po³udnie 
+RADZIECHOWY - zachód 
+

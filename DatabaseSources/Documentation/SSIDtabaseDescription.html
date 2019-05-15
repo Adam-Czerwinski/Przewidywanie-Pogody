@@ -1,0 +1,324 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
+<style>
+      .table {
+        background-color:#F5F5FF;
+        border-left:4px solid gray;
+        border-bottom:4px solid gray;
+        border-top:4px solid gray;
+        border-right:4px solid gray;
+        margin-bottom:3em;
+        margin-left:2em;
+        margin-right:2em;
+        padding:1em;
+      }
+      .tableNameHeading h1 {
+          display: inline;
+        font-family: Segoe UI, Arial, sans-serif;
+        font-size:125%;
+        font-weight:bold;
+      }
+        
+      .tableNameHeading h2 {
+        display: inline;
+        font-family: Segoe UI, Arial, sans-serif;
+        font-size:115%;
+        font-weight:normal;
+      }
+      
+      .tableComment { 
+        background-color:#e4efff; margin-bottom:20px;
+      }
+      
+      .tableDefinition { 
+        padding:2px;
+        border-collapse:collapse;
+        margin-top:1em;
+      }
+
+      .tdTableDefinition {
+        padding-right:10px;
+        vertical-align:top;
+        border-top:1px solid #C0C0C0;
+      }
+
+      .tdLogicalColName {
+        width:20em;
+      }
+      
+      .tdPhysicalColName {
+        width:20em;
+      }
+      
+      .tdDataType {
+        width:10em;
+      }
+
+      .tdPkFlag {
+        width:4em;
+      }
+
+      .tdNullFlag {
+        width:9em;
+      }
+
+      .tdTableHeading {
+        padding:2px;
+        font-family: Segoe UI, Arial, sans-serif;
+        font-weight: bold;
+        vertical-align:top;
+        border-bottom: 1px solid #C0C0C0;
+        background-color: rgb(240,240,240);
+      }
+      
+      .subTitle {
+        font-family: Segoe UI, Arial, sans-serif;
+        font-weight: bold;
+      }
+
+      .references {
+      }
+      .comment {
+        color:#666666;
+        margin-left:3em;
+        padding:0.25em;
+      }
+    </style>
+<title>SSIDtabase</title>
+</head>
+<body>
+<center>
+<h2>SSIDtabase</h2>
+</center>
+<h3>List of tables</h3>
+<ul>
+<li>
+<a href="#Cities">Cities</a>
+</li>
+<li>
+<a href="#Generations">Generations</a>
+</li>
+<li>
+<a href="#Learning_process">Learning_process</a>
+</li>
+<li>
+<a href="#Weather_data">Weather_data</a>
+</li>
+<li>
+<a href="#Weight">Weight</a>
+</li>
+</ul>
+<div class="tableNameHeading">
+<h1>Cities<a name="Cities"></a>
+</h1>
+<h2>
+      (Physical Name: Cities)
+      </h2>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Id_cities (PK)</td><td class="tdTableDefinition">Id_cities</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Name</td><td class="tdTableDefinition">Name</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Region</td><td class="tdTableDefinition">Region</td><td class="tdTableDefinition">[1111]</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Enum type (N, E, S, W, C)</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Is_station</td><td class="tdTableDefinition">Is_station</td><td class="tdTableDefinition">BOOLEAN</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">Referenced By</p>
+<ul>
+<li>
+<a href="#Weather_data">Weather_data</a> referencing (Id_cities)</li>
+</ul>
+</div>
+</div>
+<div class="tableNameHeading">
+<h1>Generations<a name="Generations"></a>
+</h1>
+<h2>
+      (Physical Name: Generations)
+      </h2>
+<p class="comment">B&#281;d&#261; tu zawarte informacje na temat konfiguracji sieci (sposobie uczenia)</p>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Id_generations (PK)</td><td class="tdTableDefinition">Id_generations</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Neurons_in</td><td class="tdTableDefinition">Neurons_in</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Neurons_hidden</td><td class="tdTableDefinition">Neurons_hidden</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Neurons_out</td><td class="tdTableDefinition">Neurons_out</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">Referenced By</p>
+<ul>
+<li>
+<a href="#Learning_process">Learning_process</a> referencing (Id_generations)</li>
+</ul>
+</div>
+</div>
+<div class="tableNameHeading">
+<h1>Learning_process<a name="Learning_process"></a>
+</h1>
+<h2>
+      (Physical Name: Learning_process)
+      </h2>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Id_learning_process (PK)</td><td class="tdTableDefinition">Id_learning_process</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Generation
+                &nbsp;(<a href="#Generations">FK</a>)
+              </td><td class="tdTableDefinition">Generation</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Weight
+                &nbsp;(<a href="#Weight">FK</a>)
+              </td><td class="tdTableDefinition">Weight</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Learning_time</td><td class="tdTableDefinition">Learning_time</td><td class="tdTableDefinition">TIME</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Total_error</td><td class="tdTableDefinition">Total_error</td><td class="tdTableDefinition">DOUBLE</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Is_learned</td><td class="tdTableDefinition">Is_learned</td><td class="tdTableDefinition">BOOLEAN</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">References</p>
+<ul>
+<li>
+<a href="#Generations">Generations</a> through (Generation)</li>
+<li>
+<a href="#Weight">Weight</a> through (Weight)</li>
+</ul>
+</div>
+</div>
+<div class="tableNameHeading">
+<h1>Weather_data<a name="Weather_data"></a>
+</h1>
+<h2>
+      (Physical Name: Weather_data)
+      </h2>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Id_weather_data (PK)</td><td class="tdTableDefinition">Id_weather_data</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">City
+                &nbsp;(<a href="#Cities">FK</a>)
+              </td><td class="tdTableDefinition">City</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Date</td><td class="tdTableDefinition">Date</td><td class="tdTableDefinition">DATE</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Hour</td><td class="tdTableDefinition">Hour</td><td class="tdTableDefinition">TIME</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Temperature</td><td class="tdTableDefinition">Temperature</td><td class="tdTableDefinition">DOUBLE</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Humidity</td><td class="tdTableDefinition">Humidity</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Wind_direction</td><td class="tdTableDefinition">Wind_direction</td><td class="tdTableDefinition">[1111]</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Enum type ( C, E, N, S, W, NE, NW, SE, SW, ENE, ESE, NNE, NNW, SSE, SSW, WNW, WSW )</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Wind_speed</td><td class="tdTableDefinition">Wind_speed</td><td class="tdTableDefinition">DECIMAL(0,0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Cloudy</td><td class="tdTableDefinition">Cloudy</td><td class="tdTableDefinition">DECIMAL(0,0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Visibility</td><td class="tdTableDefinition">Visibility</td><td class="tdTableDefinition">DECIMAL(0,0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Data_type</td><td class="tdTableDefinition">Data_type</td><td class="tdTableDefinition">[1111]</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Enum typ (Learning_data, Testing_data, User_input_data, Recursive_data)</div>
+</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">References</p>
+<ul>
+<li>
+<a href="#Cities">Cities</a> through (City)</li>
+</ul>
+</div>
+</div>
+<div class="tableNameHeading">
+<h1>Weight<a name="Weight"></a>
+</h1>
+<h2>
+      (Physical Name: Weight)
+      </h2>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Id_weight (PK)</td><td class="tdTableDefinition">Id_weight</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Weight_value</td><td class="tdTableDefinition">Weight_value</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">Referenced By</p>
+<ul>
+<li>
+<a href="#Learning_process">Learning_process</a> referencing (Id_weight)</li>
+</ul>
+</div>
+</div>
+</body>
+</html>
