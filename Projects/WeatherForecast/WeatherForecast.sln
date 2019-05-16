@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork", "NeuralNetw
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherForecast", "WeatherForecast\WeatherForecast.csproj", "{6751AD81-BC85-4E2E-8321-87DE16794BAA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataInsert", "DataInsert\DataInsert.csproj", "{672A60AD-4C96-43C0-9069-15CE04A122E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6751AD81-BC85-4E2E-8321-87DE16794BAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6751AD81-BC85-4E2E-8321-87DE16794BAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6751AD81-BC85-4E2E-8321-87DE16794BAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{672A60AD-4C96-43C0-9069-15CE04A122E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{672A60AD-4C96-43C0-9069-15CE04A122E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{672A60AD-4C96-43C0-9069-15CE04A122E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{672A60AD-4C96-43C0-9069-15CE04A122E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
