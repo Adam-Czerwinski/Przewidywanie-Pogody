@@ -27,12 +27,12 @@ namespace DataInsert
                     using (MySqlCommand commamnd = new MySqlCommand(insertCommand, connection))
                     {
                         commamnd.ExecuteReader();
-                        Console.WriteLine("Dodano: " + c.ToString());
+                        //Console.WriteLine("Dodano: " + c.ToString());
                     }
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Error: " + e + "\n");
+                    Console.WriteLine("Error: " + e.Message + "\n");
                 }
 
             }

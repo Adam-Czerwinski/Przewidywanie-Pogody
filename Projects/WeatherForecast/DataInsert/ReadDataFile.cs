@@ -21,7 +21,7 @@ namespace DataInsert
 
             try
             {
-                file = new StreamReader("..\\..\\..\\..\\..\\DatabaseSources\\Data\\LearningAndTestingData.txt");
+                file = new StreamReader("..\\..\\..\\..\\..\\DatabaseSources\\Data\\LearningAndTestingData.txt", Encoding.UTF8);
             }
             catch (Exception e)
             {
@@ -106,7 +106,8 @@ namespace DataInsert
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("Error: " + e + "\n");
+                        Console.WriteLine("Error: " + e.Message + "\n");
+                        Console.ReadKey();
                     }
                 }
             }
