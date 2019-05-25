@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DataAccessLayer;
+using DataInsert;
+using System;
 
-namespace DataInsert
+namespace DataIsnert
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            DBConnection dbConnection = DBConnection.Instance;
 
             ReadDataFile datas = new ReadDataFile();
 
@@ -30,8 +27,8 @@ namespace DataInsert
             Console.WriteLine("Trwa dodawanie...");
 
             //wrzucanie danych do bazy
-            InsertCities.Insert(datas.Cities);
-            InsertWeatherData.Insert(datas.WeatherDatas);
+            CityRepository.Save(datas.Cities);
+            WeatherDataRepository.Save(datas.WeatherDatas);
 
             Console.WriteLine("Dodano!");
             Console.ReadKey();

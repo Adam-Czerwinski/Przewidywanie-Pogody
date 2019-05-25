@@ -1,13 +1,11 @@
-﻿using System;
+﻿using BusinessObject;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataInsert;
 
 namespace NeuralNetwork
 {
-    class Normalization
+    public class Normalization
     {
         //dla niektórych pól są dwie listy na wejście i wyjście
         //z powodu różnych typów danych 

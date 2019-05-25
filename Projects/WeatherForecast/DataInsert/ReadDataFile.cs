@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.IO;
+using BusinessObject;
 
 namespace DataInsert
 {
-    class ReadDataFile
+    public class ReadDataFile
     {
-
         public List<WeatherData> WeatherDatas { get; }
         public List<City> Cities { get; }
 

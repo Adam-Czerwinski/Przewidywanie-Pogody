@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataInsert
+﻿
+namespace BusinessObject
 {
     public enum Regions { C, N, E, S, W }
     public class City
     {
-
         public int IdCity { get; }
         public string Name { get; }
         public Regions Region { get; }

@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DataInsert
+namespace BusinessObject
 {
     public enum WindDirections { C, E, N, S, W, NE, NW, SE, SW, ENE, ESE, NNE, NNW, SSE, SSW, WNW, WSW }
 

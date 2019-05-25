@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
-namespace DataInsert
+namespace Database
 {
-    class DBConnection
+    public class DBConnection
     {
 
-        private static DBConnection instance = null;
         public MySqlConnection Connection { get; private set; }
 
+        private static DBConnection instance = null;
         public static DBConnection Instance
         {
             get
