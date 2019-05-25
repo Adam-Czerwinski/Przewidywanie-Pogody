@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace DataInsert
 {
-    enum Regions { C, N, E, S, W }
-    class City
+    public enum Regions { C, N, E, S, W }
+    public class City
     {
 
         public int IdCity { get; }

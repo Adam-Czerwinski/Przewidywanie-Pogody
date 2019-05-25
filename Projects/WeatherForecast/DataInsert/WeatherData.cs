@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace DataInsert
 {
-    enum WindDirections { C, E, N, S, W, NE, NW, SE, SW, ENE, ESE, NNE, NNW, SSE, SSW, WNW, WSW }
+    public enum WindDirections { C, E, N, S, W, NE, NW, SE, SW, ENE, ESE, NNE, NNW, SSE, SSW, WNW, WSW }
 
-    enum DataTypes { Learning_data, Testing_data, User_input_data, Recursive_data }
+    public enum DataTypes { Learning_data, Testing_data, User_input_data, Recursive_data }
 
-    class WeatherData
+    public class WeatherData
     {
 
         public int IdWeatherData { get; }
