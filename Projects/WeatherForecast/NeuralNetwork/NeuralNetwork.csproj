@@ -43,7 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivationFunctionClient.cs" />
+    <Compile Include="ActivationFunctions\IActivationFunction.cs" />
+    <Compile Include="ActivationFunctions\ReluActivationFunction.cs" />
+    <Compile Include="ActivationFunctions\SigmoidActivationFunction.cs" />
+    <Compile Include="ActivationFunctions\SwishActivationFunction.cs" />
+    <Compile Include="ActivationFunctions\TanHActivationFunction.cs" />
     <Compile Include="Denormalization.cs" />
+    <Compile Include="Layer.cs" />
+    <Compile Include="Network.cs" />
     <Compile Include="Normalization.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
