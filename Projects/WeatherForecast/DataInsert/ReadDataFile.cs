@@ -8,15 +8,14 @@ namespace DataInsert
 {
     public class ReadDataFile
     {
-        public List<WeatherData> WeatherDatas { get; }
-        public List<City> Cities { get; }
+        public WeatherData[] WeatherDatas { get; private set; }
+        public City[] Cities { get; private set; }
 
-        public ReadDataFile()
+        public ReadDataFile() { }
+
+        public void LoadData()
         {
-            WeatherDatas = new List<WeatherData>();
-            Cities = new List<City>();
             StreamReader file = null;
-
             try
             {
                 file = new StreamReader("..\\..\\..\\..\\..\\DatabaseSources\\Data\\LearningAndTestingData.txt", Encoding.UTF8);
@@ -31,6 +30,9 @@ namespace DataInsert
             int idWeatherData = 1;
             int idCity = 1;
 
+            List<City> _cities = new List<City>();
+            List<WeatherData> _weatherDatas = new List<WeatherData>();
+
             if (file != null)
             {
                 while ((data = file.ReadLine()) != null && data != "")
@@ -39,9 +41,8 @@ namespace DataInsert
                     {
                         var = data.Split('\t');
 
-                        // Dodawanie miast do Cities
-
-                        City city = Cities.Find(x => x.Name == var[0]);
+                        // Dodawanie miast do _cities
+                        City city = _cities.Find(x => x.Name == var[0]);
 
                         if (city == null)
                         {
@@ -67,11 +68,11 @@ namespace DataInsert
                             }
 
                             city = new City(idCity, var[0], region, true);
-                            Cities.Add(city);
+                            _cities.Add(city);
                             idCity++;
                         }
 
-                        // Dodawanie danych pogodowych do WeatherData
+                        // Dodawanie danych pogodowych do _weatherDatas
 
                         DataTypes dataType;
 
@@ -87,7 +88,7 @@ namespace DataInsert
 
                         #endregion
 
-                        WeatherDatas.Add(new WeatherData(
+                        _weatherDatas.Add(new WeatherData(
                             idWeatherData,
                             city.IdCity,
                             new DateTime(int.Parse(var[1]), int.Parse(var[2]), int.Parse(var[3])),
@@ -97,8 +98,7 @@ namespace DataInsert
                             (WindDirections)Enum.Parse(typeof(WindDirections), var[7]),
                             int.Parse(var[8]), // Prędkość wiatru
                             int.Parse(var[9]), // Zachmurzenie 
-                            int.Parse(var[10]), // Widzialność
-                            dataType));
+                            int.Parse(var[10]), dataType)); // Widzialność
 
                         idWeatherData++;
                     }
@@ -109,7 +109,9 @@ namespace DataInsert
                     }
                 }
             }
-        }
 
+            Cities = _cities.ToArray();
+            WeatherDatas = _weatherDatas.ToArray();
+        }
     }
 }

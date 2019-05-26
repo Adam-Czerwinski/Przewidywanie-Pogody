@@ -14,7 +14,7 @@ namespace DataAccessLayer
         /// Dodaj wiele miast do bazy danych
         /// </summary>
         /// <param name="cities">Lista miast</param>
-        public static void Save(List<City> cities)
+        public static void Save(IReadOnlyList<City> cities)
         {
             string insertCommand;
 
