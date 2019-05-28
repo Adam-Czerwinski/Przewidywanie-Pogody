@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using BusinessObject;
-using MySql.Data.MySqlClient;
 using Database;
+using MySql.Data.MySqlClient;
 
 namespace DataAccessLayer
 {
