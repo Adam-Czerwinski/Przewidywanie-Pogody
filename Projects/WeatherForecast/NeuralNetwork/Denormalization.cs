@@ -60,7 +60,7 @@ namespace NeuralNetwork
                 id = weatherDataNormalizeds[i].IdWeatherDataNormalized;
                 region = DenormalizeRegionAndCity(weatherDataNormalizeds, Cities, regionN, regionE, regionC, regionW, regionS, ref cityId, i);
                 year = weatherDataNormalizeds[i].Year;
-                double tempMonth = Convert.ToDouble(weatherDataNormalizeds[i].Month);
+                double tempMonth = weatherDataNormalizeds[i].Month;
                 month = Convert.ToInt32(weatherDataNormalizeds[i].Month);
 
                 if (month == 0)

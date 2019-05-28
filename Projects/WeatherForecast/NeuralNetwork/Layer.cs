@@ -50,6 +50,11 @@ namespace NeuralNetwork
         /// </summary>
         public static Random random = new Random();
 
+        //testy
+        public static float maximumWeight = 0.3f;
+        public static float minimumWeight = 0.02f;
+
+
         /// <summary>
         /// Aktualny Total Error (MSE)
         /// </summary>
@@ -82,11 +87,25 @@ namespace NeuralNetwork
         /// </summary>
         public void InitilizeWeights()
         {
+            //pierwotny kod
+            //for (int i = 0; i < numberOfOuputs; i++)
+            //{
+            //    for (int j = 0; j < numberOfInputs; j++)
+            //    {
+            //        weights[i, j] = (float)random.NextDouble() - 0.5f;
+            //    }
+            //}
+
+
+
+            
+            //TEST
+            //Modyfikowalny zakres
             for (int i = 0; i < numberOfOuputs; i++)
             {
                 for (int j = 0; j < numberOfInputs; j++)
                 {
-                    weights[i, j] = (float)random.NextDouble() - 0.5f;
+                    weights[i, j] = (float)random.NextDouble() * (maximumWeight - minimumWeight) + minimumWeight;
                 }
             }
         }
