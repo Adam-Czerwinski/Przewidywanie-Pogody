@@ -8,17 +8,56 @@ namespace DataInsert
 {
     public class ReadDataFile
     {
-        public WeatherData[] WeatherDatas { get; private set; }
+        public WeatherData[] WeatherLearningDatas { get; private set; }
+        public WeatherData[] WeatherTestingDatas { get; private set; }
         public City[] Cities { get; private set; }
+        public string[] ActivationFunctions { get; private set; }
 
         public ReadDataFile() { }
 
-        public void LoadData()
+        /// <summary>
+        /// Pobiera listę funkcji aktywacyjnych i zapisuje do ActivationFunctions
+        /// </summary>
+        public void LoadActivationFunctions()
+        {
+            string[] listOfFunction = null;
+            try
+            {
+                listOfFunction = Directory.GetFiles("..\\..\\..\\NeuralNetwork\\ActivationFunctions");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("\nError: " + e + '\n');
+            }
+
+            ActivationFunctions = new string[listOfFunction.Length - 1];
+
+            // zapis nazw funkcji do ActivationFunctions
+            int n = 0; // index tablicy 
+            foreach(var s in listOfFunction)
+            {
+                listOfFunction[n] = s.Remove(s.Length - 3);
+                listOfFunction[n] = listOfFunction[n].Remove(0, "..\\..\\..\\NeuralNetwork\\ActivationFunctions".Length + 1);
+                if ( n > 0)
+                {
+                    ActivationFunctions[n - 1] = listOfFunction[n];
+                }
+                n++;
+            }
+        }
+
+        /// <summary>
+        /// Pobiera dane ze sciezki path i zapisuje je z okreslonym typem dataType do tablic obiktow WeatherData
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="weatherDatas"></param>
+        /// <param name="dataType"></param>
+        public void LoadData(string path, DataTypes dataType)
         {
             StreamReader file = null;
             try
             {
-                file = new StreamReader("..\\..\\..\\..\\..\\DatabaseSources\\Data\\LearningAndTestingData.txt", Encoding.UTF8);
+                file = new StreamReader(path, Encoding.UTF8);
             }
             catch (Exception e)
             {
@@ -28,10 +67,20 @@ namespace DataInsert
             string data;
             string[] var;
             int idWeatherData = 1;
-            int idCity = 1;
+            int idCity;
 
             List<City> _cities = new List<City>();
             List<WeatherData> _weatherDatas = new List<WeatherData>();
+
+            if (Cities == null)
+            {
+                idCity = 1;
+            }
+            else
+            {
+                idCity = Cities.Length - 1;
+                _cities.AddRange(Cities);
+            }
 
             if (file != null)
             {
@@ -74,13 +123,6 @@ namespace DataInsert
 
                         // Dodawanie danych pogodowych do _weatherDatas
 
-                        DataTypes dataType;
-
-                        if (var[1] == "2018" || var[1] == "2019")
-                            dataType = DataTypes.Testing_data;
-                        else
-                            dataType = DataTypes.Learning_data;
-
                         #region Exception braku pomiaru wiatru
 
                         if (var[7] == "")
@@ -111,7 +153,11 @@ namespace DataInsert
             }
 
             Cities = _cities.ToArray();
-            WeatherDatas = _weatherDatas.ToArray();
+
+            if(dataType == DataTypes.Learning_data)
+                WeatherLearningDatas = _weatherDatas.ToArray();
+            if (dataType == DataTypes.Testing_data)
+                WeatherTestingDatas = _weatherDatas.ToArray();
         }
     }
 }

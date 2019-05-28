@@ -24,7 +24,7 @@ namespace DataAccessLayer
             {
                 try
                 {
-                    insertCommand = "INSERT INTO `cities` VALUES ( " + c.IdCity + ", \"" + c.Name + "\", \"" + c.Region + "\", " + c.IsStation + " )";
+                    insertCommand = "INSERT INTO `cities` VALUES ( " + "null" + ", \"" + c.Name + "\", \"" + c.Region + "\", " + c.IsStation + " )";
 
                     using (MySqlCommand commamnd = new MySqlCommand(insertCommand, connection))
                     {
@@ -54,12 +54,12 @@ namespace DataAccessLayer
 
                 try
                 {
-                    insertCommand = "INSERT INTO `cities` VALUES ( " + city.IdCity + ", \"" + city.Name + "\", \"" + city.Region + "\", " + city.IsStation + " )";
+                    insertCommand = "INSERT INTO `cities` VALUES ( " + "null" + ", \"" + city.Name + "\", \"" + city.Region + "\", " + city.IsStation + " )";
 
                     using (MySqlCommand commamnd = new MySqlCommand(insertCommand, connection))
                     {
                         commamnd.ExecuteReader();
-                        //Console.WriteLine("Dodano: " + c.ToString());
+                        Console.WriteLine("Dodano: " + city);
                     }
                 }
                 catch (Exception e)

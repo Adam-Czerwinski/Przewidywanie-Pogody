@@ -16,6 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `activation_functions`
+--
+
+DROP TABLE IF EXISTS `activation_functions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `activation_functions` (
+  `id_activation_functions` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name_activation_functions` char(60) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id_activation_functions`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `activation_functions`
+--
+
+LOCK TABLES `activation_functions` WRITE;
+/*!40000 ALTER TABLE `activation_functions` DISABLE KEYS */;
+INSERT INTO `activation_functions` VALUES (1,'ReluActivationFunction'),(2,'SigmoidActivationFunction'),(3,'SwishActivationFunction'),(4,'TanHActivationFunction');
+/*!40000 ALTER TABLE `activation_functions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `cities`
 --
 
@@ -37,7 +61,7 @@ CREATE TABLE `cities` (
 
 LOCK TABLES `cities` WRITE;
 /*!40000 ALTER TABLE `cities` DISABLE KEYS */;
-INSERT INTO `cities` VALUES (1,'RADZIECHOWY','W',1),(2,'PORONIN','S',1),(3,'SKIERNIEWICE','C',1),(4,'BIA?OWIE?A','C',1),(5,'BORUCINO','N',1);
+INSERT INTO `cities` VALUES (1,'RADZIECHOWY','W',1),(2,'PORONIN','S',1),(3,'SKIERNIEWICE','C',1),(4,'BIALOWIEZA','E',1),(5,'BORUCINO','N',1);
 /*!40000 ALTER TABLE `cities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -53,7 +77,11 @@ CREATE TABLE `generations` (
   `neurons_in` int(11) NOT NULL,
   `neurons_hidden` int(11) NOT NULL,
   `neurons_out` int(11) NOT NULL,
-  PRIMARY KEY (`id_generations`)
+  `learning_rate` double NOT NULL,
+  `activation_function` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id_generations`),
+  KEY `activation_function` (`activation_function`),
+  CONSTRAINT `generations_ibfk_1` FOREIGN KEY (`activation_function`) REFERENCES `activation_functions` (`id_activation_functions`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -78,6 +106,7 @@ CREATE TABLE `learning_process` (
   `generation` int(10) unsigned NOT NULL,
   `weight` int(10) unsigned NOT NULL,
   `learning_time` time NOT NULL,
+  `epoch` int(11) NOT NULL,
   `total_error` double NOT NULL,
   `is_learned` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_learning_process`),
@@ -165,4 +194,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-16 15:48:39
+-- Dump completed on 2019-05-28 20:26:57

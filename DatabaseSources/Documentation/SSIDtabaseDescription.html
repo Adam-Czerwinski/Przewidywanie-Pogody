@@ -95,6 +95,9 @@
 <h3>List of tables</h3>
 <ul>
 <li>
+<a href="#Activation_functions">Activation_functions</a>
+</li>
+<li>
 <a href="#Cities">Cities</a>
 </li>
 <li>
@@ -110,6 +113,33 @@
 <a href="#Weight">Weight</a>
 </li>
 </ul>
+<div class="tableNameHeading">
+<h1>Activation_functions<a name="Activation_functions"></a>
+</h1>
+<h2>
+      (Physical Name: Activation_functions)
+      </h2>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Id_activation_functions (PK)</td><td class="tdTableDefinition">Id_activation_functions</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Name_activation_functions</td><td class="tdTableDefinition">Name_activation_functions</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">Referenced By</p>
+<ul>
+<li>
+<a href="#Generations">Generations</a> referencing (Id_activation_functions)</li>
+</ul>
+</div>
+</div>
 <div class="tableNameHeading">
 <h1>Cities<a name="Cities"></a>
 </h1>
@@ -173,8 +203,21 @@
 <tr valign="top">
 <td class="tdTableDefinition">Neurons_out</td><td class="tdTableDefinition">Neurons_out</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
 </tr>
+<tr valign="top">
+<td class="tdTableDefinition">Learning_rate</td><td class="tdTableDefinition">Learning_rate</td><td class="tdTableDefinition">DOUBLE</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Activation_function
+                &nbsp;(<a href="#Activation_functions">FK</a>)
+              </td><td class="tdTableDefinition">Activation_function</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
 </table>
 <div class="references">
+<p class="subTitle">References</p>
+<ul>
+<li>
+<a href="#Activation_functions">Activation_functions</a> through (Activation_function)</li>
+</ul>
 <p class="subTitle">Referenced By</p>
 <ul>
 <li>
@@ -209,6 +252,9 @@
 </tr>
 <tr valign="top">
 <td class="tdTableDefinition">Learning_time</td><td class="tdTableDefinition">Learning_time</td><td class="tdTableDefinition">TIME</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">Epoch</td><td class="tdTableDefinition">Epoch</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
 </tr>
 <tr valign="top">
 <td class="tdTableDefinition">Total_error</td><td class="tdTableDefinition">Total_error</td><td class="tdTableDefinition">DOUBLE</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>

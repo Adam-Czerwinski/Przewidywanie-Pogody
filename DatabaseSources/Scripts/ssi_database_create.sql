@@ -46,13 +46,25 @@ create table weather_data
     engine=innodb
     default character set utf8 collate utf8_unicode_ci;
 	
+create table activation_functions
+(
+	id_activation_functions int unsigned not null auto_increment,
+		primary key(id_activation_functions),
+	name_activation_functions char(60) not null
+)
+	engine=innodb
+    default character set utf8 collate utf8_unicode_ci;
+	
 create table generations
 (
     id_generations int unsigned not null auto_increment,
 		primary key(id_generations),
     neurons_in int not null,
 	neurons_hidden int not null,
-	neurons_out int not null
+	neurons_out int not null,
+	learning_rate double not null,
+	activation_function int unsigned not null,
+		foreign key(activation_function) references activation_functions(id_activation_functions)
 )
     engine=innodb
     default character set utf8 collate utf8_unicode_ci;
@@ -75,6 +87,7 @@ create table learning_process
 	weight int unsigned not null,
 		foreign key(weight) references weight(id_weight),
 	learning_time time not null,
+	epoch int not null,
 	total_error double not null,
 	is_learned boolean not null
 )

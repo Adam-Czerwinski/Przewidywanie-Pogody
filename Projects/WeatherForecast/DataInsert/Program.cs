@@ -26,9 +26,16 @@ namespace DataIsnert
 
             Console.WriteLine("Trwa dodawanie...");
 
+            // ladowanie danych z plikow
+            datas.LoadActivationFunctions();
+            datas.LoadData("..\\..\\..\\..\\..\\DatabaseSources\\Data\\LearningData.txt", BusinessObject.DataTypes.Learning_data);
+            datas.LoadData("..\\..\\..\\..\\..\\DatabaseSources\\Data\\TestingData.txt", BusinessObject.DataTypes.Testing_data);
+
             //wrzucanie danych do bazy
+            ActivationFunctionRepository.Save(datas.ActivationFunctions);
             CityRepository.Save(datas.Cities);
-            WeatherDataRepository.Save(datas.WeatherDatas);
+            WeatherDataRepository.Save(datas.WeatherLearningDatas);
+            WeatherDataRepository.Save(datas.WeatherTestingDatas);
 
             Console.WriteLine("Dodano!");
             Console.ReadKey();

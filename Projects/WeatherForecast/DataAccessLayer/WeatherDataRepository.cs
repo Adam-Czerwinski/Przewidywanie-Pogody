@@ -25,7 +25,7 @@ namespace DataAccessLayer
                 try
                 {
                     insertCommand = "INSERT INTO `weather_data` VALUES ( "
-                    + d.IdWeatherData + ", "
+                    + "null" + ", "
                     + d.CityId + ", \""
                     + d.Date.Year + "." + d.Date.Month + "." + d.Date.Day + "\", \""
                     + d.Hour + ":00:00\", "
@@ -40,7 +40,7 @@ namespace DataAccessLayer
                     using (MySqlCommand commamnd = new MySqlCommand(insertCommand, connection))
                     {
                         commamnd.ExecuteReader();
-                        //Console.WriteLine("Dodano: " + d.ToString());
+                        Console.WriteLine("Dodano: " + d.ToString());
                     }
                 }
                 catch (Exception e)
@@ -65,7 +65,7 @@ namespace DataAccessLayer
                 try
                 {
                     insertCommand = "INSERT INTO `weather_data` VALUES ( "
-                    + data.IdWeatherData + ", "
+                    + "null" + ", "
                     + data.CityId + ", \""
                     + data.Date.Year + "." + data.Date.Month + "." + data.Date.Day + "\", \""
                     + data.Hour + ":00:00\", "
