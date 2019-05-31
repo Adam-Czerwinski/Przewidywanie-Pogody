@@ -25,11 +25,10 @@ namespace NeuralNetwork
             int[] region = new int[5];
             int[] yearDays = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
             int[] LeapyearDays = new int[] { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-            int id, year, month;
+            int year, month;
 
             double date, hour, temperature, humidity, cloudy, visibility, windSpeed;
             double[] windDirection = new double[4];
-            DataTypes dataType;
             #endregion
 
             for (int i = 0; i < WeatherDatas.Count; i++)
@@ -48,15 +47,6 @@ namespace NeuralNetwork
                     tempMonth = 0;
 
                 date = NormalizeDate(a, yearDays, LeapyearDays, year, month, tempMonth, tempDay);
-                // 0  będzie potrzebne do denormalizacji
-                //month = Convert.ToInt32(tempMonth);
-
-                //double tempDate = Convert.ToDouble(WeatherDatas[i].Date.DayOfYear)+22;
-                //if (tempDate >= 376)
-                //{
-                //    tempDate -= 376;
-                //}
-                //date = ((tempDate - 1) / (366 - 1));
 
                 hour = NormalizeHour(WeatherDatas, i);
                 temperature = NormalizeTemperature(WeatherDatas, min, max, i);
@@ -66,11 +56,8 @@ namespace NeuralNetwork
                 cloudy = NormalizeCloudy(WeatherDatas, min, max, i);
                 visibility = NormalizeVisibility(WeatherDatas, min, max, i);
 
-                dataType = WeatherDatas[i].DataType;
-                id = WeatherDatas[i].IdWeatherData;
-
-                weatherDataNormalized.Add(new WeatherDataNormalized(id, region, date, /*month, year,*/ hour,
-                    temperature, humidity, windDirection, windSpeed, cloudy, visibility, dataType));
+                weatherDataNormalized.Add(new WeatherDataNormalized(region, date, hour,
+                    temperature, humidity, windDirection, windSpeed, cloudy, visibility));
             }
 
             return weatherDataNormalized;

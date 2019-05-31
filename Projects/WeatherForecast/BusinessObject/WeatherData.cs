@@ -2,13 +2,8 @@
 
 namespace BusinessObject
 {
-    public enum WindDirections { C, E, N, S, W, NE, NW, SE, SW, ENE, ESE, NNE, NNW, SSE, SSW, WNW, WSW }
-
-    public enum DataTypes { Learning_data, Testing_data, User_input_data, Recursive_data }
-
     public class WeatherData
     {
-
         public int IdWeatherData { get; }
         public int CityId { get; }
         public DateTime Date { get; }
@@ -21,11 +16,8 @@ namespace BusinessObject
         public int Visibility { get; }
         public DataTypes DataType { get; }
 
-        public WeatherData
-            (
-            int id, int cityId, DateTime date, int hour, 
-            double temperature, int humidity, WindDirections windDirection, int windSpeed, int cloudy, int visibility, DataTypes dataType
-            )
+        public WeatherData(int id, int cityId, DateTime date, int hour,
+            double temperature, int humidity, WindDirections windDirection, int windSpeed, int cloudy, int visibility, DataTypes dataType)
         {
             IdWeatherData = id;
             CityId = cityId;
@@ -100,26 +92,6 @@ namespace BusinessObject
             }
 
             DataType = dataType;
-        }
-
-
-        public override string ToString()
-        {
-            return
-                "Id: " + IdWeatherData
-                + " City Id: " + CityId
-                + " Date: " + Date.ToShortDateString()
-                + " Hour: " + Hour
-                + '\n'
-                + "Temperature: " + Temperature
-                + " Humidity: " + Humidity
-                + " Wind direction: " + WindDirection
-                + " Wind speed: " + WindSpeed
-                + " Cloudy: " + Cloudy
-                + " Visibility: " + Visibility
-                + " Data type: " + DataType
-                + "\n--------------------------------------------"
-                + "--------------------------------------------\n";
         }
 
     }

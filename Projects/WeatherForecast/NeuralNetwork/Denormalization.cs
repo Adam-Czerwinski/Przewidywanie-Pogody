@@ -83,7 +83,7 @@ namespace NeuralNetwork
                 windSpeed = DenormalizeWindSpeed(weatherDataNormalizeds, min, max, i);
                 cloudy = DenormalizeCloudy(weatherDataNormalizeds, min, max, i);
                 visibility = DenormalizeVisibility(weatherDataNormalizeds, min, max, i);
-                dataTypes = weatherDataNormalizeds[i].DataType;
+                dataTypes = weatherDataNormalizeds[i].DataType;z
 
                 weatherDatas.Add(new WeatherData(id, cityId, date, hour, temperature,
                     humidity, windDirection, windSpeed, cloudy, visibility, dataTypes));

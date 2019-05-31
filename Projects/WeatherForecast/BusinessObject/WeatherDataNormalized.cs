@@ -7,13 +7,8 @@ namespace NeuralNetwork
 {
     public class WeatherDataNormalized
     {
-
-        public int IdWeatherDataNormalized { get; }
         public int[] Region { get; }
         public double Date { get; }
-
-        //public int Month { get; }
-        //public int Year { get; }
         public double Hour { get; }
         public double Temperature { get; }
         public double Humidity { get; }
@@ -21,28 +16,24 @@ namespace NeuralNetwork
         public double WindSpeed { get; }
         public double Cloudy { get; }
         public double Visibility { get; }
-        public DataTypes DataType { get; }
 
-
-
-        public WeatherDataNormalized(int id, int[] region, double date, /*int month, int year,*/ double hour,
-            double temperature, double humidity, double[] windDirection,
-            double windSpeed, double cloudy, double visibility, DataTypes dataType)
+        public WeatherDataNormalized(int[] region, double date, double hour, double temperature, double humidity, double[] windDirection, double windSpeed, 
+            double cloudy, double visibility)
         {
-            IdWeatherDataNormalized = id;
-            Region = region;
+            Region = new int[4];
+            region.CopyTo(Region, 0);
+
             Date = date;
-            //Month = month;
-            //Year = year;
             Hour = hour;
             Temperature = temperature;
             Humidity = humidity;
-            WindDirection = windDirection;
+
+            WindDirection = new double[4];
+            windDirection.CopyTo(WindDirection, 0);
+
             WindSpeed = windSpeed;
             Cloudy = cloudy;
             Visibility = visibility;
-            DataType = dataType;
-
         }
     }
 }

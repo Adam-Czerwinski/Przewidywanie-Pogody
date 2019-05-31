@@ -1,8 +1,8 @@
-﻿using DataInsert;
-using NeuralNetwork.ActivationFunctions;
-using System.Diagnostics;
-using System;
+﻿
 using BusinessObject;
+using DataInsert;
+using NeuralNetwork.ActivationFunctions;
+using System;
 using System.IO;
 
 namespace NeuralNetwork
@@ -46,48 +46,112 @@ namespace NeuralNetwork
         /// <summary>
         /// Grupuje dane, [i][0] to warstwa wejściowa, a [i][1] to wartwa wyjściowa
         /// </summary>
-        /// <param name="weatherDataLearningNormalized">Dane uczące, znormalizowane, przed grupowaniem</param>
-        /// <param name="weatherDataLearning">Dane uczące, znormalizowane, w nich będą pogrupowane dane</param>
-        private static void GrupujDane(WeatherDataNormalized[] weatherDataLearningNormalized, WeatherDataNormalized[][] weatherDataLearning)
+        /// <param name="weatherDataBGN">Które dane grupuje, Before Grouping Normalization</param>
+        /// <param name="weatherDataGN">Do czego pogrupować, Grouped Normalization</param>
+        private static void GrupujDane(WeatherDataNormalized[] weatherDataBGN, WeatherDataNormalized[][] weatherDataGN)
         {
-            for (int i = 0; i < weatherDataLearning.Length; i++)
+            for (int i = 0; i < weatherDataGN.Length; i++)
             {
-                weatherDataLearning[i] = new WeatherDataNormalized[2];
+                weatherDataGN[i] = new WeatherDataNormalized[2];
 
-                weatherDataLearning[i][0] = weatherDataLearningNormalized[i];
-                weatherDataLearning[i][1] = weatherDataLearningNormalized[i + 1];
+                weatherDataGN[i][0] = weatherDataBGN[i];
+                weatherDataGN[i][1] = weatherDataBGN[i + 1];
+            }
+        }
+
+        /// <summary>
+        /// Grupuje dane, [i][0] to warstwa wejściowa, a [i][1] to wartwa wyjściowa
+        /// </summary>
+        /// <param name="weatherDataBG">Które dane grupuje, Before Grouping</param>
+        /// <param name="weatherDataG">Do czego pogrupować, Grouped</param>
+        private static void GrupujDane(WeatherData[] weatherDataBG, WeatherData[][] weatherDataG)
+        {
+            for (int i = 0; i < weatherDataG.Length; i++)
+            {
+                weatherDataG[i] = new WeatherData[2];
+
+                weatherDataG[i][0] = weatherDataBG[i];
+                weatherDataG[i][1] = weatherDataBG[i + 1];
             }
         }
 
         static void Main(string[] args)
         {
-
             ReadDataFile rd = new ReadDataFile();
+            Normalization normalization = new Normalization();
+            Denormalization denormalization = new Denormalization();
+            Network network = new Network(new int[] { neuronsInput, neuronsHidden, neuronsOutput });
+
+            #region Krok 1 - Uczenie sieci
+
             rd.LoadData("..\\..\\..\\..\\..\\DatabaseSources\\Data\\LearningData.txt",
                 BusinessObject.DataTypes.Learning_data);
 
-            Normalization normalization = new Normalization();
-            WeatherDataNormalized[] weatherDataLearningNormalized = normalization.Normalize(rd.WeatherLearningDatas, rd.Cities).ToArray();
+            WeatherData[] weatherDataL = rd.WeatherLearningDatas;
+            WeatherData[][] weatherDataLG = new WeatherData[weatherDataL.Length - 1][];
+            GrupujDane(weatherDataL, weatherDataLG);
 
-            WeatherDataNormalized[][] weatherDataLearning = new WeatherDataNormalized[rd.WeatherLearningDatas.Length - 1][];
-            GrupujDane(weatherDataLearningNormalized, weatherDataLearning);
+            WeatherDataNormalized[] weatherDataLN = normalization.Normalize(weatherDataL, rd.Cities).ToArray();
 
-            Tasuj(weatherDataLearning);
+            WeatherDataNormalized[][] weatherDataLGN = new WeatherDataNormalized[weatherDataLN.Length - 1][];
+            GrupujDane(weatherDataLN, weatherDataLGN);
+            Tasuj(weatherDataLGN);
 
-            //Network network = new Network(new int[] { neuronsInput, neuronsHidden, neuronsOutput });
-            //UczSiec(weatherDataLearning, network);
+            UczSiec(weatherDataLGN, network);
+
+            #endregion
+
+
+
+            //W.I.P. ----------------------------------
+
+            //#region Krok 2 - Testowanie sieci
+
+            //rd.LoadData("..\\..\\..\\..\\..\\DatabaseSources\\Data\\TestingData.txt",
+            //    BusinessObject.DataTypes.Testing_data);
+
+            //WeatherData[] weatherDataT = rd.WeatherTestingDatas;
+            //WeatherData[][] weatherDataTG = new WeatherData[weatherDataT.Length - 1][];
+            //GrupujDane(weatherDataT, weatherDataTG);
+
+            //WeatherDataNormalized[] weatherDataTN = normalization.Normalize(weatherDataT, rd.Cities).ToArray();
+
+            //WeatherDataNormalized[][] weatherDataTGN = new WeatherDataNormalized[rd.WeatherTestingDatas.Length - 1][];
+            //GrupujDane(weatherDataTN, weatherDataTGN);
+
+
+            //for (int i = 0; i < weatherDataTGN.Length; i++)
+            //{
+            //    float[] PredictedNeuronsN = network.FeedForward(new float[neuronsInput] {weatherDataTGN[i][0].Region[0], weatherDataTGN[i][0].Region[1], weatherDataTGN[i][0].Region[2], weatherDataTGN[i][0].Region[3], weatherDataTGN[i][0].Region[4],
+            //            (float)weatherDataTGN[i][0].WindDirection[0], (float)weatherDataTGN[i][0].WindDirection[1], (float)weatherDataTGN[i][0].WindDirection[2], (float)weatherDataTGN[i][0].WindDirection[3],
+            //             (float)weatherDataTGN[i][0].Date,(float)weatherDataTGN[i][0].Hour,(float)weatherDataTGN[i][0].Temperature,(float)weatherDataTGN[i][0].Humidity,(float)weatherDataTGN[i][0].WindSpeed,(float)weatherDataTGN[i][0].Cloudy,(float)weatherDataTGN[i][0].Visibility});
+
+            //    WeatherDataNormalized expectedWeatherDataN = weatherDataTGN[i][1];
+            //    WeatherData expectedWeatherData = weatherDataTG[i][1];
+
+            //}
+
+
+            //#endregion
+
+
+
 
             //Wybieranie najlepszych wag dla punktu startowego
             const int ileSieci = 10;
             Network[] networks = new Network[ileSieci];
             float[] totalErrors = new float[ileSieci];
-            int indeksMin = ZnajdzIndeksSieciNajmniejszyTotalError(weatherDataLearning, networks, totalErrors);
+            int indeksMin = ZnajdzIndeksSieciNajmniejszyTotalError(weatherDataLGN, networks, totalErrors);
 
             float[][,] weights = networks[indeksMin].GetWeights();
             string weightsAsString = PobierzWagi(weights);
 
             //zapisuje wagi do pliku
-            //File.WriteAllText("..\\..\\..\\..\\..\\DatabaseSources\\Data\\WeightsTemp.txt", weightsAsString);
+            File.WriteAllText("..\\..\\..\\..\\..\\DatabaseSources\\Data\\WeightsTemp.txt", weightsAsString);
+
+
+
+
 
             Console.ReadKey();
         }
@@ -191,7 +255,7 @@ namespace NeuralNetwork
                         (float)weatherDataLearning[j][0].WindDirection[0], (float)weatherDataLearning[j][0].WindDirection[1], (float)weatherDataLearning[j][0].WindDirection[2], (float)weatherDataLearning[j][0].WindDirection[3],
                          (float)weatherDataLearning[j][0].Date,(float)weatherDataLearning[j][0].Hour,(float)weatherDataLearning[j][0].Temperature,(float)weatherDataLearning[j][0].Humidity,(float)weatherDataLearning[j][0].WindSpeed,(float)weatherDataLearning[j][0].Cloudy,(float)weatherDataLearning[j][0].Visibility
                     });
-                    network.BackProp(new float[neuronsOutput] {(float)weatherDataLearning[j][1].WindDirection[1], (float)weatherDataLearning[j][1].WindDirection[1], (float)weatherDataLearning[j][1].WindDirection[2], (float)weatherDataLearning[j][1].WindDirection[3],
+                    network.BackProp(new float[neuronsOutput] {(float)weatherDataLearning[j][1].WindDirection[0], (float)weatherDataLearning[j][1].WindDirection[1], (float)weatherDataLearning[j][1].WindDirection[2], (float)weatherDataLearning[j][1].WindDirection[3],
                          (float)weatherDataLearning[j][1].Temperature,(float)weatherDataLearning[j][1].Humidity,(float)weatherDataLearning[j][1].WindSpeed,(float)weatherDataLearning[j][1].Cloudy,(float)weatherDataLearning[j][1].Visibility
                     });
                 }
@@ -211,3 +275,11 @@ namespace NeuralNetwork
 
     }
 }
+
+
+/* 
+ * L - dane uczące
+ * T - dane testowe
+ * G - dane pogrupowane
+ * N - dane znormalizowane
+*/

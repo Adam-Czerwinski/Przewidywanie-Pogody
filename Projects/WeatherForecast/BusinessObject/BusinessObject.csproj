@@ -43,9 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="City.cs" />
+    <Compile Include="DataTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WeatherData.cs" />
     <Compile Include="WeatherDataNormalized.cs" />
+    <Compile Include="WindDirections.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
