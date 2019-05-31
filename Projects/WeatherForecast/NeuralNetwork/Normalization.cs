@@ -9,6 +9,12 @@ namespace NeuralNetwork
     {
         public Normalization() { }
 
+        /// <summary>
+        /// Normalizuje dane, czyli odzwierciedla wartości neuronów wejściowych/wyjściowych
+        /// </summary>
+        /// <param name="WeatherDatas">Dane pogodowe do znormalizowania</param>
+        /// <param name="Cities">Miasta</param>
+        /// <returns></returns>
         public List<WeatherDataNormalized> Normalize(IReadOnlyList<WeatherData> WeatherDatas, IReadOnlyList<City> Cities, double a = 0.01)
         {
             #region Dane pomocnicze
