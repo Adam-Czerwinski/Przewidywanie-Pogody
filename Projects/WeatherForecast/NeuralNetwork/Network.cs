@@ -6,6 +6,7 @@
         /// Warstwy w sieci. Nie przechowuje warstwy wejściowej.
         /// </summary>
         private Layer[] layers;
+        public float TotalError { get; private set; }
 
         /// <summary>
         /// Konstrukcja sieci neuronowej
@@ -51,19 +52,9 @@
         /// Total error wykorzystując ostatnią warstwę (warstwa wyjściowa)
         /// </summary>
         /// <returns>MSE</returns>
-        public string GetTotalError()
+        public float GetTotalError()
         {
-            return layers[layers.Length - 1].totalError.ToString();
-        }
-
-        public string GetMinTotalError()
-        {
-            return layers[layers.Length - 1].minError.ToString();
-        }
-
-        public string GetMaxTotalError()
-        {
-            return layers[layers.Length - 1].maxError.ToString();
+            return layers[layers.Length - 1].TotalError;
         }
 
         /// <summary>
@@ -120,5 +111,15 @@
             }
         }
 
+        public float[][,] GetWeights()
+        {
+            float[][,] weights = new float[layers.Length][,];
+            for (int i = 0; i < layers.Length;i++)
+            {
+                weights[i] = layers[i].weights;
+            }
+
+            return weights;
+        }
     }
 }

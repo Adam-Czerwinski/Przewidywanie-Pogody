@@ -3,18 +3,28 @@ using NeuralNetwork.ActivationFunctions;
 using System.Diagnostics;
 using System;
 using BusinessObject;
-using System.Collections.Generic;
+
+//do sprawdzenia funkcje: Swish, Relu
 
 namespace NeuralNetwork
 {
     public class Program
     {
-        public static float LearningRate = 0.035f;
-        //Patrzcie jaki fajny strategy pattern
+        #region Ustawienia sieci
+        public const float LearningRate = 0.1f;
+        //tanh lub sigmoid
         public static ActivationFunctionClient ActivactionFunction = new ActivationFunctionClient(new TanHActivationFunction());
+        private const int iterations = 300;
 
-        //tasuje weatherDataNormalized
-        public static void Tasuj(WeatherDataNormalized[][] wdn)
+        //region*5, windDirection*4, date, hour, temp, humidity, windSpeed, cloudy, visibility
+        private const int neuronsInput = 16;
+        private const int neuronsHidden = 35;
+        //windDirection*4, temp, humidity, windSpeed, cloudy, visibility
+        private const int neuronsOutput = 9;
+        #endregion
+
+        //tasuje weatherDataLearningNormalized
+        private static void Tasuj(WeatherDataNormalized[][] wdn)
         {
             Random random = new Random();
             int zakres = wdn.Length;                         //wielkość listy
@@ -31,7 +41,6 @@ namespace NeuralNetwork
 
         }
 
-
         static void Main(string[] args)
         {
 
@@ -41,57 +50,102 @@ namespace NeuralNetwork
                 BusinessObject.DataTypes.Learning_data);
 
             Normalization normalization = new Normalization();
-            //Normalizuj dane
-            WeatherDataNormalized[] weatherDataNormalized = normalization.Normalize(rd.WeatherLearningDatas, rd.Cities).ToArray();
+            //Normalizuj dane, czyli odzwierciedlaj wartości neuronów!!!!
+            WeatherDataNormalized[] weatherDataLearningNormalized = normalization.Normalize(rd.WeatherLearningDatas, rd.Cities).ToArray();
 
-            //jeżeli dziele przed 2 i wychodzi int to zaokrągla w dól.
-            //zamysł jest taki, że [i][0] to wejście, a [i][1] to wyjście
-            WeatherDataNormalized[][] weatherDataLearning = new WeatherDataNormalized[rd.WeatherLearningDatas.Length / 2][];
-
-            //zaokrąglanie w dól pozwala na brak żadnych if'ów, żeby sprawdzac czy obiekt wskazuje na null np. przy i+1
+            //zamysł jest taki, że [i][0] to warstwa wejściowa, a [i][1] to wartwa wyjściowa
+            WeatherDataNormalized[][] weatherDataLearning = new WeatherDataNormalized[rd.WeatherLearningDatas.Length - 1][];
             for (int i = 0; i < weatherDataLearning.Length; i++)
             {
                 weatherDataLearning[i] = new WeatherDataNormalized[2];
 
-                weatherDataLearning[i][0] = weatherDataNormalized[i];
-                weatherDataLearning[i][1] = weatherDataNormalized[i + 1];
+                weatherDataLearning[i][0] = weatherDataLearningNormalized[i];
+                weatherDataLearning[i][1] = weatherDataLearningNormalized[i + 1];
             }
             //przetasuj tablice
             Tasuj(weatherDataLearning);
 
-            //region*5, windDirection*4, date, hour, temp, humidity, windDirection, windSpeed, cloudy, visibility
-            const int neuronsInput = 16;
-            const int neuronsHidden = 25;
-            //windDirection*4, date, hour, temp, humidity, windDirection, windSpeed, cloudy, visibility
-            const int neuronsOutput = 11;
             Network network = new Network(new int[] { neuronsInput, neuronsHidden, neuronsOutput });
-
-            const int iterations = 1000;
-            int procent = 0;
+            int percent = 0;
             for (int i = 0; i < iterations; i++)
             {
+
                 for (int j = 0; j < weatherDataLearning.Length; j++)
                 {
-                    network.FeedForward(new float[] {weatherDataLearning[j][0].Region[0], weatherDataLearning[j][0].Region[1], weatherDataLearning[j][0].Region[2], weatherDataLearning[j][0].Region[3], weatherDataLearning[j][0].Region[4],
+                    network.FeedForward(new float[neuronsInput] {weatherDataLearning[j][0].Region[0], weatherDataLearning[j][0].Region[1], weatherDataLearning[j][0].Region[2], weatherDataLearning[j][0].Region[3], weatherDataLearning[j][0].Region[4],
                         (float)weatherDataLearning[j][0].WindDirection[0], (float)weatherDataLearning[j][0].WindDirection[1], (float)weatherDataLearning[j][0].WindDirection[2], (float)weatherDataLearning[j][0].WindDirection[3],
                          (float)weatherDataLearning[j][0].Date,(float)weatherDataLearning[j][0].Hour,(float)weatherDataLearning[j][0].Temperature,(float)weatherDataLearning[j][0].Humidity,(float)weatherDataLearning[j][0].WindSpeed,(float)weatherDataLearning[j][0].Cloudy,(float)weatherDataLearning[j][0].Visibility
                     });
-                    network.BackProp(new float[] {(float)weatherDataLearning[j][1].WindDirection[1], (float)weatherDataLearning[j][1].WindDirection[1], (float)weatherDataLearning[j][1].WindDirection[2], (float)weatherDataLearning[j][1].WindDirection[3],
-                         (float)weatherDataLearning[j][1].Date,(float)weatherDataLearning[j][1].Hour,(float)weatherDataLearning[j][1].Temperature,(float)weatherDataLearning[j][1].Humidity,(float)weatherDataLearning[j][1].WindSpeed,(float)weatherDataLearning[j][1].Cloudy,(float)weatherDataLearning[j][1].Visibility
+                    network.BackProp(new float[neuronsOutput] {(float)weatherDataLearning[j][1].WindDirection[1], (float)weatherDataLearning[j][1].WindDirection[1], (float)weatherDataLearning[j][1].WindDirection[2], (float)weatherDataLearning[j][1].WindDirection[3],
+                         (float)weatherDataLearning[j][1].Temperature,(float)weatherDataLearning[j][1].Humidity,(float)weatherDataLearning[j][1].WindSpeed,(float)weatherDataLearning[j][1].Cloudy,(float)weatherDataLearning[j][1].Visibility
                     });
                 }
 
-                //wyświetlanie co jeden procent
-                if (((float)i / iterations) * 100 > procent)
+
+                if (((float)i / iterations) * 100 > percent)
                 {
+
                     Console.Clear();
-                    Console.WriteLine($"{procent.ToString()}%\nTotal Error: {network.GetTotalError()}\n Max Error: {network.GetMaxTotalError()}\tMin Error: {network.GetMinTotalError()}");
-                    procent++;
+                    Console.WriteLine(percent + "%");
+                    Console.WriteLine("Total Error: " + network.GetTotalError());
+                    percent++;
                 }
 
             }
 
 
+
+            //Wybieranie najlepszych wag dla punktu startowego
+            //Network[] networks = new Network[100];
+            //float[] totalErrors = new float[100];
+            //int percent = 0;
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    networks[i] = new Network(new int[] { neuronsInput, neuronsHidden, neuronsOutput });
+            //    totalErrors[i] = 0.0f;
+
+            //    for (int k = 0; k < iterations; k++)
+            //    {
+
+            //        for (int j = 0; j < weatherDataLearning.Length; j++)
+            //        {
+            //            networks[i].FeedForward(new float[neuronsInput] {weatherDataLearning[j][0].Region[0], weatherDataLearning[j][0].Region[1], weatherDataLearning[j][0].Region[2], weatherDataLearning[j][0].Region[3], weatherDataLearning[j][0].Region[4],
+            //                (float)weatherDataLearning[j][0].WindDirection[0], (float)weatherDataLearning[j][0].WindDirection[1], (float)weatherDataLearning[j][0].WindDirection[2], (float)weatherDataLearning[j][0].WindDirection[3],
+            //                 (float)weatherDataLearning[j][0].Date,(float)weatherDataLearning[j][0].Hour,(float)weatherDataLearning[j][0].Temperature,(float)weatherDataLearning[j][0].Humidity,(float)weatherDataLearning[j][0].WindSpeed,(float)weatherDataLearning[j][0].Cloudy,(float)weatherDataLearning[j][0].Visibility
+            //            });
+            //            networks[i].BackProp(new float[neuronsOutput] {(float)weatherDataLearning[j][1].WindDirection[1], (float)weatherDataLearning[j][1].WindDirection[1], (float)weatherDataLearning[j][1].WindDirection[2], (float)weatherDataLearning[j][1].WindDirection[3],
+            //                 (float)weatherDataLearning[j][1].Temperature,(float)weatherDataLearning[j][1].Humidity,(float)weatherDataLearning[j][1].WindSpeed,(float)weatherDataLearning[j][1].Cloudy,(float)weatherDataLearning[j][1].Visibility
+            //            });
+            //        }
+
+            //        if (((float)k / iterations) * 100 > percent)
+            //            percent++;
+
+
+            //        if (percent == 10)
+            //        {
+            //            totalErrors[i] = networks[i].GetTotalError();
+            //            Console.WriteLine(i + ": " + totalErrors[i]);
+            //            percent = 0;
+            //            break;
+            //        }
+            //    }
+            //}
+
+            ////znalezienie która sieć ma najmniejszy błąd
+            //int indeksMin = 0;
+            //float totalMin = 10000.0f;
+            //for (int i = 0; i < totalErrors.Length; i++)
+            //{
+            //    if (totalErrors[i] < totalMin)
+            //    {
+            //        totalMin = totalErrors[i];
+            //        indeksMin = i;
+            //    }
+            //}
+
+            //Console.WriteLine("Najmniejszy total Error: " + totalErrors[indeksMin] + "ma sieć nieuronowa o indeksie: " + indeksMin);
+            Console.ReadKey();
         }
     }
 }

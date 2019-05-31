@@ -9,7 +9,7 @@ namespace NeuralNetwork
     {
         public Denormalization() { }
 
-        public List<WeatherData> Denormalize(IReadOnlyList<WeatherDataNormalized> weatherDataNormalizeds, IReadOnlyList<City> Cities, double a = 0.01)
+        public List<WeatherData> Denormalize(IReadOnlyList<WeatherDataNormalized> weatherDataNormalizeds, IReadOnlyList<City> Cities, IReadOnlyList<WeatherData> weathersIn, double a = 0.01)
         {
             #region dane pomocnicze
 
@@ -39,7 +39,7 @@ namespace NeuralNetwork
             double[] wdNNW = new double[] { 0.25, 0, 0, 0.75 };
             double[] wdC = new double[] { 0, 0, 0, 0 };
 
-            Regions region;
+            //Regions region;
             double temperature;
             WindDirections windDirection = WindDirections.C;
             //musiałem zainicjować windDirection i cityId z powodu błędów przy wywołaniu 
@@ -47,9 +47,9 @@ namespace NeuralNetwork
             DateTime date;
             DataTypes dataTypes;
 
-            int id, cityId = 0, hour, month, humidity, windSpeed, cloudy, visibility, year;
+            int id, cityId = 0, hour, /*month, year,*/ humidity, windSpeed, cloudy, visibility;
 
-            int day;
+            //int day;
             int[] yearDays = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
             int[] LeapyearDays = new int[] { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
@@ -58,22 +58,24 @@ namespace NeuralNetwork
             for (int i = 0; i < weatherDataNormalizeds.Count; i++)
             {
                 id = weatherDataNormalizeds[i].IdWeatherDataNormalized;
-                region = DenormalizeRegionAndCity(weatherDataNormalizeds, Cities, regionN, regionE, regionC, regionW, regionS, ref cityId, i);
-                year = weatherDataNormalizeds[i].Year;
-                double tempMonth = weatherDataNormalizeds[i].Month;
-                month = Convert.ToInt32(weatherDataNormalizeds[i].Month);
+                //region = DenormalizeRegionAndCity(weatherDataNormalizeds, Cities, regionN, regionE, regionC, regionW, regionS, ref cityId, i);
+                cityId = weathersIn[i].CityId;
+                //year = weatherDataNormalizeds[i].Year;
+                //double tempMonth = weatherDataNormalizeds[i].Month;
+                //month = Convert.ToInt32(weatherDataNormalizeds[i].Month);
 
-                if (month == 0)
-                    month = 12;
+                //if (month == 0)
+                //    month = 12;
 
-                double temp = 0;
-                if (year % 4 == 0)
-                    DenormalizeDayLeapYear(weatherDataNormalizeds, a, month, i, tempMonth, out day, LeapyearDays, out temp);
-                else
-                    DenormalizeDay(weatherDataNormalizeds, a, month, i, tempMonth, out day, yearDays, out temp);
+                //double temp = 0;
+                //if (year % 4 == 0)
+                //    DenormalizeDayLeapYear(weatherDataNormalizeds, a, month, i, tempMonth, out day, LeapyearDays, out temp);
+                //else
+                //    DenormalizeDay(weatherDataNormalizeds, a, month, i, tempMonth, out day, yearDays, out temp);
 
 
-                date = new DateTime(year, month, day);
+                //date = new DateTime(year, month, day);
+                date = weathersIn[i].Date;
                 hour = DenormalizeHour(weatherDataNormalizeds, i);
                 temperature = DenormalizeTemperature(weatherDataNormalizeds, min, max, i);
                 humidity = DenormalizeHumidity(weatherDataNormalizeds, min, max, i);
@@ -175,52 +177,52 @@ namespace NeuralNetwork
             return windDirection;
         }
 
-        private Regions DenormalizeRegionAndCity(IReadOnlyList<WeatherDataNormalized> weatherDataNormalizeds, IReadOnlyList<City> Cities, int[] regionN, int[] regionE, int[] regionC, int[] regionW, int[] regionS, ref int cityId, int i)
-        {
-            //inicjalizacja, obojetnie co zeby nie wywalalo errora
-            Regions region = Regions.C;
-            if (weatherDataNormalizeds[i].Region.SequenceEqual(regionN))
-            {
-                region = Regions.N;
-                cityId = CheckCityId(region, Cities);
-            }
+        //private Regions DenormalizeRegionAndCity(IReadOnlyList<WeatherDataNormalized> weatherDataNormalizeds, IReadOnlyList<City> Cities, int[] regionN, int[] regionE, int[] regionC, int[] regionW, int[] regionS, ref int cityId, int i)
+        //{
+        //    //inicjalizacja, obojetnie co zeby nie wywalalo errora
+        //    Regions region = Regions.C;
+        //    if (weatherDataNormalizeds[i].Region.SequenceEqual(regionN))
+        //    {
+        //        region = Regions.N;
+        //        cityId = CheckCityId(region, Cities);
+        //    }
 
-            if (weatherDataNormalizeds[i].Region.SequenceEqual(regionE))
-            {
-                region = Regions.E;
-                cityId = CheckCityId(region, Cities);
-            }
-            if (weatherDataNormalizeds[i].Region.SequenceEqual(regionC))
-            {
-                region = Regions.C;
-                cityId = CheckCityId(region, Cities);
-            }
-            if (weatherDataNormalizeds[i].Region.SequenceEqual(regionW))
-            {
-                region = Regions.W;
-                cityId = CheckCityId(region, Cities);
-            }
-            if (weatherDataNormalizeds[i].Region.SequenceEqual(regionS))
-            {
-                region = Regions.S;
-                cityId = CheckCityId(region, Cities);
-            }
+        //    if (weatherDataNormalizeds[i].Region.SequenceEqual(regionE))
+        //    {
+        //        region = Regions.E;
+        //        cityId = CheckCityId(region, Cities);
+        //    }
+        //    if (weatherDataNormalizeds[i].Region.SequenceEqual(regionC))
+        //    {
+        //        region = Regions.C;
+        //        cityId = CheckCityId(region, Cities);
+        //    }
+        //    if (weatherDataNormalizeds[i].Region.SequenceEqual(regionW))
+        //    {
+        //        region = Regions.W;
+        //        cityId = CheckCityId(region, Cities);
+        //    }
+        //    if (weatherDataNormalizeds[i].Region.SequenceEqual(regionS))
+        //    {
+        //        region = Regions.S;
+        //        cityId = CheckCityId(region, Cities);
+        //    }
 
-            return region;
-        }
+        //    return region;
+        //}
 
-        private int CheckCityId(Regions regions, IReadOnlyList<City> Cities)
-        {
-            int id = 0;
-            for (int j = 0; j < Cities.Count; j++)
-            {
+        //private int CheckCityId(Regions regions, IReadOnlyList<City> Cities)
+        //{
+        //    int id = 0;
+        //    for (int j = 0; j < Cities.Count; j++)
+        //    {
 
-                if (regions == Cities[j].Region)
-                {
-                    id = Cities[j].IdCity;
-                }
-            }
-            return id;
-        }
+        //        if (regions == Cities[j].Region)
+        //        {
+        //            id = Cities[j].IdCity;
+        //        }
+        //    }
+        //    return id;
+        //}
     }
 }

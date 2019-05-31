@@ -7,11 +7,12 @@ namespace NeuralNetwork
         /// <summary>
         /// Ilość neuronów w poprzedniej warstwie
         /// </summary>
-        int numberOfInputs;
+        readonly int numberOfInputs;
+
         /// <summary>
         /// Ilość neuronów w aktualnej warstwie
         /// </summary>
-        int numberOfOuputs;
+        readonly int numberOfOuputs;
 
         /// <summary>
         /// Wartości neuronów w aktualnej warstwie
@@ -51,16 +52,14 @@ namespace NeuralNetwork
         public static Random random = new Random();
 
         //testy
-        public static float maximumWeight = 0.3f;
-        public static float minimumWeight = 0.02f;
+        public static float maximumWeight = 0.5f;
+        public static float minimumWeight = -0.5f;
 
 
         /// <summary>
         /// Aktualny Total Error (MSE)
         /// </summary>
-        public float totalError { get; private set; }
-        public float maxError { get; private set; } = -1000;
-        public float minError { get; private set; } = 1000;
+        public float TotalError { get; set; }
 
         /// <summary>
         /// Konstrukcja warstwy
@@ -88,26 +87,26 @@ namespace NeuralNetwork
         public void InitilizeWeights()
         {
             //pierwotny kod
-            //for (int i = 0; i < numberOfOuputs; i++)
-            //{
-            //    for (int j = 0; j < numberOfInputs; j++)
-            //    {
-            //        weights[i, j] = (float)random.NextDouble() - 0.5f;
-            //    }
-            //}
-
-
-
-            
-            //TEST
-            //Modyfikowalny zakres
             for (int i = 0; i < numberOfOuputs; i++)
             {
                 for (int j = 0; j < numberOfInputs; j++)
                 {
-                    weights[i, j] = (float)random.NextDouble() * (maximumWeight - minimumWeight) + minimumWeight;
+                    weights[i, j] = (float)random.NextDouble() - 0.5f;
                 }
             }
+
+
+
+
+            ////TEST
+            ////Modyfikowalny zakres
+            //for (int i = 0; i < numberOfOuputs; i++)
+            //{
+            //    for (int j = 0; j < numberOfInputs; j++)
+            //    {
+            //        weights[i, j] = (float)random.NextDouble() * (maximumWeight - minimumWeight) + minimumWeight;
+            //    }
+            //}
         }
 
         /// <summary>
@@ -147,19 +146,10 @@ namespace NeuralNetwork
         /// <param name="expected">Oczekiwana wartość w warstwie wyjściowej</param>
         public void BackPropOutput(float[] expected)
         {
-            #region TAKI ZBĘDNY DODATEK KTÓRY RÓŻNIE DZIAŁA
-            totalError = 0.0f;
-            //Oblicza MSE
-            for (int i = 0; i < numberOfOuputs; i++)
-            {
-                totalError += ((expected[i] - outputs[i]) * (expected[i] - outputs[i]));
-            }
-            totalError = (1.0f / 2.0f) * totalError;
-
-            if (totalError > maxError)
-                maxError = totalError;
-            if (totalError < minError && totalError > 0.0000001f)
-                minError = totalError;
+            #region OBLICZ MSE
+            TotalError = 0.0f;
+            for (int i = 0; i < expected.Length; i++)
+                TotalError += (1.0f / expected.Length)*((expected[i] - outputs[i]) * (expected[i] - outputs[i]));
             #endregion
 
             /* Nasza delta (patrz załączone wzory)

@@ -12,8 +12,8 @@ namespace NeuralNetwork
         public int[] Region { get; }
         public double Date { get; }
 
-        public int Month { get; }
-        public int Year { get; }
+        //public int Month { get; }
+        //public int Year { get; }
         public double Hour { get; }
         public double Temperature { get; }
         public double Humidity { get; }
@@ -25,15 +25,15 @@ namespace NeuralNetwork
 
 
 
-        public WeatherDataNormalized(int id, int[] region, double date, int month, int year, double hour,
+        public WeatherDataNormalized(int id, int[] region, double date, /*int month, int year,*/ double hour,
             double temperature, double humidity, double[] windDirection,
             double windSpeed, double cloudy, double visibility, DataTypes dataType)
         {
             IdWeatherDataNormalized = id;
             Region = region;
             Date = date;
-            Month = month;
-            Year = year;
+            //Month = month;
+            //Year = year;
             Hour = hour;
             Temperature = temperature;
             Humidity = humidity;

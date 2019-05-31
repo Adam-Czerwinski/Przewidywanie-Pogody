@@ -43,7 +43,7 @@ namespace NeuralNetwork
 
                 date = NormalizeDate(a, yearDays, LeapyearDays, year, month, tempMonth, tempDay);
                 // 0  będzie potrzebne do denormalizacji
-                month = Convert.ToInt32(tempMonth);
+                //month = Convert.ToInt32(tempMonth);
 
                 //double tempDate = Convert.ToDouble(WeatherDatas[i].Date.DayOfYear)+22;
                 //if (tempDate >= 376)
@@ -63,7 +63,7 @@ namespace NeuralNetwork
                 dataType = WeatherDatas[i].DataType;
                 id = WeatherDatas[i].IdWeatherData;
 
-                weatherDataNormalized.Add(new WeatherDataNormalized(id, region, date, month, year, hour,
+                weatherDataNormalized.Add(new WeatherDataNormalized(id, region, date, /*month, year,*/ hour,
                     temperature, humidity, windDirection, windSpeed, cloudy, visibility, dataType));
             }
 

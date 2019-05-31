@@ -11,8 +11,8 @@ namespace NeuralNetwork.ActivationFunctions
 
         public float CalculateDerivative(float value)
         {
-            var val = sigmoid.Calculate(value);
-            return value * val * (1 - val) + val;
+            var swish = Calculate(value);
+            return swish + sigmoid.Calculate(value) * (1 - swish);
         }
     }
 }

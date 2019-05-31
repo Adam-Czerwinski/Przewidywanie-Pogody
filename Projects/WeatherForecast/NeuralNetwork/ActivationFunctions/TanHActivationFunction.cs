@@ -11,7 +11,7 @@ namespace NeuralNetwork.ActivationFunctions
 
         public float CalculateDerivative(float value)
         {
-            return 1 - (value * value);
+            return 1.0f - (value * value);
         }
     }
 }
