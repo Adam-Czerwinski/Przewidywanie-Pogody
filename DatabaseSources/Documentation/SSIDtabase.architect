@@ -44,7 +44,7 @@
      <remarks></remarks>
     </column>
     <column id="COL12" populated="true" UUID="d5629d29-43fa-42b3-9e80-cc651c4913d7" autoIncrement="false" autoIncrementSequenceName="Weather_data_Data_type_seq" defaultValue="" name="Data_type" nullable="0" physicalName="Data_type" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1111" userDefinedTypeUUID="d9e42a14-4d15-4b55-b176-ecbba383bbdd" >
-     <remarks>Enum typ (Learning_data, Testing_data, User_input_data, Recursive_data)</remarks>
+     <remarks>Enum typ (Learning_data, Testing_data, User_input_data, Predicted_data)</remarks>
     </column>
     </folder>
     <folder id="FOLTAB13" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
@@ -95,8 +95,8 @@
     <column id="COL25" populated="true" UUID="0fe19d4a-4d55-4346-9c14-1af658c0a72d" autoIncrement="false" autoIncrementSequenceName="Learning_process_Weight_seq" defaultValue="" name="Weight" nullable="0" physicalName="Weight" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL26" populated="true" UUID="790ec830-371c-4610-a608-600a6ea7a38a" autoIncrement="false" autoIncrementSequenceName="Learning_process_Learning_time_seq" defaultValue="" name="Learning_time" nullable="0" physicalName="Learning_time" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="92" userDefinedTypeUUID="10d6960f-169d-47c2-860a-37341342b1d5" >
-     <remarks></remarks>
+    <column id="COL26" populated="true" UUID="790ec830-371c-4610-a608-600a6ea7a38a" autoIncrement="false" autoIncrementSequenceName="Learning_process_Iteration_seq" defaultValue="" name="Iteration" nullable="0" physicalName="Iteration" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>unsigned int</remarks>
     </column>
     <column id="COL27" populated="true" UUID="cf698ada-6189-4ff8-a328-cbaa45f928a9" autoIncrement="false" autoIncrementSequenceName="Learning_process_Epoch_seq" defaultValue="" name="Epoch" nullable="0" physicalName="Epoch" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
@@ -156,8 +156,8 @@
     <column id="COL42" populated="true" UUID="4df2745e-73a9-4bb4-80e8-3c352bb8ab10" autoIncrement="true" autoIncrementSequenceName="Weight_Id_weight_seq" defaultValue="" name="Id_weight" nullable="0" physicalName="Id_weight" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL43" populated="true" UUID="3c3dac51-dd63-4782-bdf1-fadaea63b57e" autoIncrement="false" autoIncrementSequenceName="Weight_Weight_value_seq" defaultValue="" name="Weight_value" nullable="0" physicalName="Weight_value" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
-     <remarks></remarks>
+    <column id="COL43" populated="true" UUID="3c3dac51-dd63-4782-bdf1-fadaea63b57e" autoIncrement="false" autoIncrementSequenceName="Weight_Weight_value_seq" defaultValue="" name="Weight_value" nullable="0" physicalName="Weight_value" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1111" userDefinedTypeUUID="d9e42a14-4d15-4b55-b176-ecbba383bbdd" >
+     <remarks>TEXT type</remarks>
     </column>
     </folder>
     <folder id="FOLTAB413" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">

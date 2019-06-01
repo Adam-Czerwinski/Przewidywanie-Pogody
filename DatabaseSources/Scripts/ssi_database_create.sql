@@ -40,7 +40,7 @@ create table weather_data
 	visibility decimal not null,
 	data_type enum
 		(
-		"Learning_data", "Testing_data", "User_input_data", "Recursive_data"
+		"Learning_data", "Testing_data", "User_input_data", "Predicted_data"
 		) not null
 )
     engine=innodb
@@ -86,7 +86,7 @@ create table learning_process
 		foreign key(generation) references generations(id_generations),
 	weight int unsigned not null,
 		foreign key(weight) references weight(id_weight),
-	learning_time time not null,
+	iteration int unsigned not null,
 	epoch int not null,
 	total_error double not null,
 	is_learned boolean not null

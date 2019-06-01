@@ -20,7 +20,7 @@ namespace NeuralNetwork
         public WeatherDataNormalized(int[] region, double date, double hour, double temperature, double humidity, double[] windDirection, double windSpeed, 
             double cloudy, double visibility)
         {
-            Region = new int[4];
+            Region = new int[5];
             region.CopyTo(Region, 0);
 
             Date = date;

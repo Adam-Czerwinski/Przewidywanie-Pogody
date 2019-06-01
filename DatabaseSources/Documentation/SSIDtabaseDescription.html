@@ -251,7 +251,12 @@
               </td><td class="tdTableDefinition">Weight</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
 </tr>
 <tr valign="top">
-<td class="tdTableDefinition">Learning_time</td><td class="tdTableDefinition">Learning_time</td><td class="tdTableDefinition">TIME</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+<td class="tdTableDefinition">Iteration</td><td class="tdTableDefinition">Iteration</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">unsigned int</div>
+</td>
 </tr>
 <tr valign="top">
 <td class="tdTableDefinition">Epoch</td><td class="tdTableDefinition">Epoch</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
@@ -327,7 +332,7 @@
 </tr>
 <tr>
 <td colspan="4">
-<div class="comment">Enum typ (Learning_data, Testing_data, User_input_data, Recursive_data)</div>
+<div class="comment">Enum typ (Learning_data, Testing_data, User_input_data, Predicted_data)</div>
 </td>
 </tr>
 </table>
@@ -355,7 +360,12 @@
 <td class="tdTableDefinition">Id_weight (PK)</td><td class="tdTableDefinition">Id_weight</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
 </tr>
 <tr valign="top">
-<td class="tdTableDefinition">Weight_value</td><td class="tdTableDefinition">Weight_value</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+<td class="tdTableDefinition">Weight_value</td><td class="tdTableDefinition">Weight_value</td><td class="tdTableDefinition">[1111]</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">TEXT type</div>
+</td>
 </tr>
 </table>
 <div class="references">

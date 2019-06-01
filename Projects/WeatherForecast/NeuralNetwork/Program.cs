@@ -1,9 +1,11 @@
 ﻿
 using BusinessObject;
+using Database;
 using DataInsert;
 using NeuralNetwork.ActivationFunctions;
 using System;
 using System.IO;
+using DataAccessLayer;
 
 namespace NeuralNetwork
 {
@@ -77,9 +79,34 @@ namespace NeuralNetwork
 
         static void Main(string[] args)
         {
+            #region Testy wprowadzania danych dotyczących konfiguracji i peocesu uczenia sieci do bazy
+
+            //// Test metody zwracającej ostatni index danej tabeli
+            //Console.WriteLine(TableName.activation_functions.ToString() + " : " + Database.Database.GetLastIndex(TableName.activation_functions));
+            //Console.WriteLine(TableName.cities.ToString() + " : " + Database.Database.GetLastIndex(TableName.cities));
+            //Console.WriteLine(TableName.generations.ToString() + " : " + Database.Database.GetLastIndex(TableName.generations));
+            //Console.WriteLine(TableName.learning_process.ToString() + " : " + Database.Database.GetLastIndex(TableName.learning_process));
+            //Console.WriteLine(TableName.weather_data.ToString() + " : " + Database.Database.GetLastIndex(TableName.weather_data));
+            //Console.WriteLine(TableName.weight.ToString() + " : " + Database.Database.GetLastIndex(TableName.weight));
+
+            //// Test wprowadzania danych do tabeli generations
+            //Generation.AddGeneration(16, 30, 6, 0.34, 2);
+            //Generation.AddGeneration(12, 59, 6, 0.12, "reluactivationfunction");
+            //Generation.AddGeneration(12, 59, 6, 0.12, "nowaNieznanafuncja");
+
+            //// Test dodawania wag
+            //Weight.AddWeight("0.2332 0.221 0.1232 0.123; 0.32 0.234 0.23432"); // tu najlepiej używać funkcji PobierzWagi 
+
+            //// Test dodawanie learning procesu
+            //LearningProcess.AddLearningProcess(0, 1, 0.23, false); // Rozważnie używać - myslec jakiej generacji i wag bd dotyczyc proces
+
+            //Console.ReadKey();
+
+            #endregion
+
             ReadDataFile rd = new ReadDataFile();
             Normalization normalization = new Normalization();
-            Denormalization denormalization = new Denormalization();
+            //Denormalization denormalization = new Denormalization();
             Network network = new Network(new int[] { neuronsInput, neuronsHidden, neuronsOutput });
 
             #region Krok 1 - Uczenie sieci

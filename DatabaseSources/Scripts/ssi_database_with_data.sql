@@ -105,7 +105,7 @@ CREATE TABLE `learning_process` (
   `id_learning_process` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `generation` int(10) unsigned NOT NULL,
   `weight` int(10) unsigned NOT NULL,
-  `learning_time` time NOT NULL,
+  `iteration` int(10) unsigned NOT NULL,
   `epoch` int(11) NOT NULL,
   `total_error` double NOT NULL,
   `is_learned` tinyint(1) NOT NULL,
@@ -144,7 +144,7 @@ CREATE TABLE `weather_data` (
   `wind_speed` decimal(10,0) NOT NULL,
   `cludy` decimal(10,0) NOT NULL,
   `visibility` decimal(10,0) NOT NULL,
-  `data_type` enum('Learning_data','Testing_data','User_input_data','Recursive_data') COLLATE utf8_unicode_ci NOT NULL,
+  `data_type` enum('Learning_data','Testing_data','User_input_data','Predicted_data') COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id_weather_data`),
   KEY `city` (`city`),
   CONSTRAINT `weather_data_ibfk_1` FOREIGN KEY (`city`) REFERENCES `cities` (`id_cities`)
@@ -194,4 +194,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-28 20:26:57
+-- Dump completed on 2019-06-01 17:31:47

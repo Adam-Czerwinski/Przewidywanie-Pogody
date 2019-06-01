@@ -64,6 +64,14 @@
       <Project>{7e3a6c52-a537-434d-a965-3a7e4452e548}</Project>
       <Name>BusinessObject</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
+      <Project>{8088021a-7531-4ef2-a05a-0cf7f0b329d9}</Project>
+      <Name>DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Database\Database.csproj">
+      <Project>{135E0A58-DB38-467C-9C9B-19FDF7E72C21}</Project>
+      <Name>Database</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataInsert\DataInsert.csproj">
       <Project>{672a60ad-4c96-43c0-9069-15ce04a122e2}</Project>
       <Name>DataInsert</Name>
