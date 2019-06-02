@@ -10,6 +10,8 @@ namespace DataInsert
     {
         public WeatherData[] WeatherLearningDatas { get; private set; }
         public WeatherData[] WeatherTestingDatas { get; private set; }
+        public WeatherData[][] WeatherLearningGroupedDatas { get; private set; }
+        public WeatherData[][] WeatherTestingGroupedDatas { get; private set; }
         public City[] Cities { get; private set; }
         public string[] ActivationFunctions { get; private set; }
 
@@ -154,10 +156,55 @@ namespace DataInsert
 
             Cities = _cities.ToArray();
 
-            if(dataType == DataTypes.Learning_data)
+            // Grupowanie danych 
+
+            List<WeatherData> w1 = new List<WeatherData>();
+            List<WeatherData> w2 = new List<WeatherData>();
+            List<WeatherData> w3 = new List<WeatherData>();
+            List<WeatherData> w4 = new List<WeatherData>();
+            List<WeatherData> w5 = new List<WeatherData>();
+
+            foreach (WeatherData w in _weatherDatas)
+            {
+                switch (w.CityId)
+                {
+                    case 1: w1.Add(w);
+                        break;
+                    case 2:
+                        w2.Add(w);
+                        break;
+                    case 3:
+                        w3.Add(w);
+                        break;
+                    case 4:
+                        w4.Add(w);
+                        break;
+                    case 5:
+                        w5.Add(w);
+                        break;
+                }
+            }
+
+            if (dataType == DataTypes.Learning_data)
+            {
                 WeatherLearningDatas = _weatherDatas.ToArray();
+                WeatherLearningGroupedDatas = new WeatherData[5][];
+                WeatherLearningGroupedDatas[0] = w1.ToArray();
+                WeatherLearningGroupedDatas[1] = w2.ToArray();
+                WeatherLearningGroupedDatas[2] = w3.ToArray();
+                WeatherLearningGroupedDatas[3] = w4.ToArray();
+                WeatherLearningGroupedDatas[4] = w5.ToArray();
+            }
             if (dataType == DataTypes.Testing_data)
+            {
                 WeatherTestingDatas = _weatherDatas.ToArray();
+                WeatherTestingGroupedDatas = new WeatherData[5][];
+                WeatherTestingGroupedDatas[0] = w1.ToArray();
+                WeatherTestingGroupedDatas[1] = w2.ToArray();
+                WeatherTestingGroupedDatas[2] = w3.ToArray();
+                WeatherTestingGroupedDatas[3] = w4.ToArray();
+                WeatherTestingGroupedDatas[4] = w5.ToArray();
+            }
         }
     }
 }
