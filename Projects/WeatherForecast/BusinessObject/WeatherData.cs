@@ -4,17 +4,17 @@ namespace BusinessObject
 {
     public class WeatherData
     {
-        public int IdWeatherData { get; }
-        public int CityId { get; }
-        public DateTime Date { get; }
-        public int Hour { get; }
+        public int IdWeatherData { get; set; }
+        public int CityId { get; set; }
+        public DateTime Date { get; set; }
+        public int Hour { get; set; }
         public double Temperature { get; }
         public int Humidity { get; }
         public WindDirections WindDirection { get; }
         public int WindSpeed { get; }
         public int Cloudy { get; }
         public int Visibility { get; }
-        public DataTypes DataType { get; }
+        public DataTypes DataType { get; set; }
 
         public WeatherData(int id, int cityId, DateTime date, int hour,
             double temperature, int humidity, WindDirections windDirection, int windSpeed, int cloudy, int visibility, DataTypes dataType)
@@ -93,6 +93,29 @@ namespace BusinessObject
 
             DataType = dataType;
         }
+        public WeatherData(double temperature, int humidity, WindDirections windDirection,
+            int windSpeed, int cloudy, int visibility)
+        {
+            WindDirection = windDirection;
+            Temperature = temperature;
+            Humidity = humidity;
+            WindSpeed = windSpeed;
+            Cloudy = cloudy;
+            Visibility = visibility;
+        }
 
+        public override string ToString()
+        {
+            return $"Date: {Date}\n"
+                + $"Hour: {Hour}\n"
+                + $"Temperature: {Temperature}\n"
+                + $"Humidity: {Humidity}\n"
+                + $"WindDirection: {WindDirection}\n"
+                + $"WindSpeed: {WindSpeed}\n"
+                + $"Cloudy: {Cloudy}\n"
+                + $"Visibility: {Visibility}\n"
+                + $"Type: {DataType}";
+                
+        }
     }
 }

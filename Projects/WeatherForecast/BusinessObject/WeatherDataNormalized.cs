@@ -17,14 +17,27 @@ namespace NeuralNetwork
         public double Cloudy { get; }
         public double Visibility { get; }
 
-        public WeatherDataNormalized(int[] region, double date, double hour, double temperature, double humidity, double[] windDirection, double windSpeed, 
+        public WeatherDataNormalized(int[] region, double date, double hour, double temperature, double humidity, double[] windDirection, double windSpeed,
             double cloudy, double visibility)
         {
             Region = new int[5];
             region.CopyTo(Region, 0);
-
+                
             Date = date;
             Hour = hour;
+            Temperature = temperature;
+            Humidity = humidity;
+
+            WindDirection = new double[4];
+            windDirection.CopyTo(WindDirection, 0);
+
+            WindSpeed = windSpeed;
+            Cloudy = cloudy;
+            Visibility = visibility;
+        }
+        public WeatherDataNormalized(double[] windDirection, double temperature, double humidity, double windSpeed, double cloudy, double visibility)
+        {
+
             Temperature = temperature;
             Humidity = humidity;
 

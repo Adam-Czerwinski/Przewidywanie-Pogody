@@ -106,7 +106,7 @@ namespace NeuralNetwork
 
             ReadDataFile rd = new ReadDataFile();
             Normalization normalization = new Normalization();
-            //Denormalization denormalization = new Denormalization();
+            Denormalization denormalization = new Denormalization();
             Network network = new Network(new int[] { neuronsInput, neuronsHidden, neuronsOutput });
 
             #region Krok 1 - Uczenie sieci
@@ -119,7 +119,6 @@ namespace NeuralNetwork
             GrupujDane(weatherDataL, weatherDataLG);
 
             WeatherDataNormalized[] weatherDataLN = normalization.Normalize(weatherDataL, rd.Cities).ToArray();
-
             WeatherDataNormalized[][] weatherDataLGN = new WeatherDataNormalized[weatherDataLN.Length - 1][];
             GrupujDane(weatherDataLN, weatherDataLGN);
             Tasuj(weatherDataLGN);
@@ -129,52 +128,115 @@ namespace NeuralNetwork
             #endregion
 
 
+            #region Krok 2 - Testowanie sieci
 
-            //W.I.P. ----------------------------------
+            rd.LoadData("..\\..\\..\\..\\..\\DatabaseSources\\Data\\TestingData.txt",
+                BusinessObject.DataTypes.Testing_data);
 
-            //#region Krok 2 - Testowanie sieci
+            WeatherData[] weatherDataT = rd.WeatherTestingDatas;
+            WeatherData[][] weatherDataTG = new WeatherData[weatherDataT.Length - 1][];
+            GrupujDane(weatherDataT, weatherDataTG);
 
-            //rd.LoadData("..\\..\\..\\..\\..\\DatabaseSources\\Data\\TestingData.txt",
-            //    BusinessObject.DataTypes.Testing_data);
+            WeatherDataNormalized[] weatherDataTN = normalization.Normalize(weatherDataT, rd.Cities).ToArray();
+            WeatherDataNormalized[][] weatherDataTGN = new WeatherDataNormalized[rd.WeatherTestingDatas.Length - 1][];
+            GrupujDane(weatherDataTN, weatherDataTGN);
 
-            //WeatherData[] weatherDataT = rd.WeatherTestingDatas;
-            //WeatherData[][] weatherDataTG = new WeatherData[weatherDataT.Length - 1][];
-            //GrupujDane(weatherDataT, weatherDataTG);
+            for (int i = 0; i < weatherDataTGN.Length; i++)
+            {
+                float[] PredictedNeuronsN = network.FeedForward(new float[neuronsInput] {weatherDataTGN[i][0].Region[0], weatherDataTGN[i][0].Region[1], weatherDataTGN[i][0].Region[2], weatherDataTGN[i][0].Region[3], weatherDataTGN[i][0].Region[4],
+                        (float)weatherDataTGN[i][0].WindDirection[0], (float)weatherDataTGN[i][0].WindDirection[1], (float)weatherDataTGN[i][0].WindDirection[2], (float)weatherDataTGN[i][0].WindDirection[3],
+                         (float)weatherDataTGN[i][0].Date,(float)weatherDataTGN[i][0].Hour,(float)weatherDataTGN[i][0].Temperature,(float)weatherDataTGN[i][0].Humidity,(float)weatherDataTGN[i][0].WindSpeed,(float)weatherDataTGN[i][0].Cloudy,(float)weatherDataTGN[i][0].Visibility});
 
-            //WeatherDataNormalized[] weatherDataTN = normalization.Normalize(weatherDataT, rd.Cities).ToArray();
+                WeatherData expectedWeatherData = weatherDataTG[i][1];
 
-            //WeatherDataNormalized[][] weatherDataTGN = new WeatherDataNormalized[rd.WeatherTestingDatas.Length - 1][];
-            //GrupujDane(weatherDataTN, weatherDataTGN);
+                //windDirection*4, temp, humidity, windSpeed, cloudy, visibility
+                WeatherDataNormalized predictedWeatherDataN = new WeatherDataNormalized(new double[] { PredictedNeuronsN[0], PredictedNeuronsN[1], PredictedNeuronsN[2], PredictedNeuronsN[3] },
+                    PredictedNeuronsN[4], PredictedNeuronsN[5], PredictedNeuronsN[6], PredictedNeuronsN[7], PredictedNeuronsN[8]);
+                WeatherData predictedWeatherData = denormalization.Denormalize(new WeatherDataNormalized[] { predictedWeatherDataN })[0];
+
+                predictedWeatherData.DataType = DataTypes.Predicted_data;
+                predictedWeatherData.CityId = expectedWeatherData.CityId;
+
+                if (weatherDataTG[i][0].Hour == 6)
+                    predictedWeatherData.Hour = 12;
+                else if (weatherDataTG[i][0].Hour == 12)
+                    predictedWeatherData.Hour = 18;
+                else
+                    predictedWeatherData.Hour = 6;
 
 
-            //for (int i = 0; i < weatherDataTGN.Length; i++)
-            //{
-            //    float[] PredictedNeuronsN = network.FeedForward(new float[neuronsInput] {weatherDataTGN[i][0].Region[0], weatherDataTGN[i][0].Region[1], weatherDataTGN[i][0].Region[2], weatherDataTGN[i][0].Region[3], weatherDataTGN[i][0].Region[4],
-            //            (float)weatherDataTGN[i][0].WindDirection[0], (float)weatherDataTGN[i][0].WindDirection[1], (float)weatherDataTGN[i][0].WindDirection[2], (float)weatherDataTGN[i][0].WindDirection[3],
-            //             (float)weatherDataTGN[i][0].Date,(float)weatherDataTGN[i][0].Hour,(float)weatherDataTGN[i][0].Temperature,(float)weatherDataTGN[i][0].Humidity,(float)weatherDataTGN[i][0].WindSpeed,(float)weatherDataTGN[i][0].Cloudy,(float)weatherDataTGN[i][0].Visibility});
+                int rok = weatherDataTG[i][0].Date.Year;
+                int miesiac = weatherDataTG[i][0].Date.Month;
+                //juz tutaj dajemy nastepny dzien
+                int dzien = weatherDataTG[i][0].Date.Day;
 
-            //    WeatherDataNormalized expectedWeatherDataN = weatherDataTGN[i][1];
-            //    WeatherData expectedWeatherData = weatherDataTG[i][1];
+                //jezeli kolejny dzien
+                if (predictedWeatherData.Hour == 6)
+                {
+                    dzien++;
 
-            //}
+                    int[] Days = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+                    int[] LeapYearDays = new int[] { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
 
-            //#endregion
+                    //jezeli nieprzestępny
+                    if (rok % 4 != 0)
+                    {
+                        //To znaczy ze przekroczyl zakres dni w danym miesiacy, czyli kolejny miesiac
+                        if (dzien - Days[miesiac - 1] > 0)
+                        {
+                            miesiac++;
+                            dzien = 1;
+                            if (miesiac == 12)
+                            {
+                                miesiac = 1;
+                                rok += 1;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (dzien - LeapYearDays[miesiac - 1] > 0)
+                        {
+                            dzien = 1;
+                            miesiac++;
+                            if (miesiac == 12)
+                            {
+                                miesiac = 1;
+                                rok += 1;
+                            }
+                        }
+                    }
+
+                    
+                }
+
+                predictedWeatherData.Date = new DateTime(rok, miesiac, dzien);
+
+                Console.WriteLine("Przewidziane: ");
+                Console.WriteLine(predictedWeatherData.ToString() + Environment.NewLine);
+                Console.WriteLine("Oczekiwane: ");
+                Console.WriteLine(expectedWeatherData.ToString() + Environment.NewLine);
+                Console.ReadKey();
+            }
+
+
+            #endregion
 
 
 
 
             //Wybieranie najlepszych wag dla punktu startowego
-            const int ileSieci = 10;
-            Network[] networks = new Network[ileSieci];
-            float[] totalErrors = new float[ileSieci];
-            int indeksMin = ZnajdzIndeksSieciNajmniejszyTotalError(weatherDataLGN, networks, totalErrors);
+            //const int ileSieci = 10;
+            //Network[] networks = new Network[ileSieci];
+            //float[] totalErrors = new float[ileSieci];
+            //int indeksMin = ZnajdzIndeksSieciNajmniejszyTotalError(weatherDataLGN, networks, totalErrors);
 
-            float[][,] weights = networks[indeksMin].GetWeights();
-            string weightsAsString = PobierzWagi(weights);
+            //float[][,] weights = networks[indeksMin].GetWeights();
+            //string weightsAsString = PobierzWagi(weights);
 
-            //zapisuje wagi do pliku
-            File.WriteAllText("..\\..\\..\\..\\..\\DatabaseSources\\Data\\WeightsTemp.txt", weightsAsString);
+            ////zapisuje wagi do pliku
+            //File.WriteAllText("..\\..\\..\\..\\..\\DatabaseSources\\Data\\WeightsTemp.txt", weightsAsString);
 
 
 
@@ -294,7 +356,7 @@ namespace NeuralNetwork
                     Console.Clear();
                     Console.WriteLine(percent + "%");
                     Console.WriteLine("Total Error: " + network.GetTotalError());
-                    percent++;
+                    percent = (int)(((float)i / iterations) * 100);
                 }
 
             }
