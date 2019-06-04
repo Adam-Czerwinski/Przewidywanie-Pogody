@@ -1,4 +1,6 @@
-﻿namespace NeuralNetwork
+﻿using System;
+
+namespace NeuralNetwork
 {
     public class Network
     {
@@ -111,6 +113,10 @@
             }
         }
 
+        /// <summary>
+        /// Pobiera wagi ze wszystkich warstw
+        /// </summary>
+        /// <returns>Wagi</returns>
         public float[][,] GetWeights()
         {
             float[][,] weights = new float[layers.Length][,];
@@ -120,6 +126,18 @@
             }
 
             return weights;
+        }
+
+        /// <summary>
+        /// Ustawia wagi w warstwach
+        /// </summary>
+        /// <param name="weights">Wagi</param>
+        public void SetWeights(float[][,] weights)
+        {
+            for (int i = 0; i < layers.Length; i++)
+            {
+                layers[i].weights = weights[i];
+            }
         }
     }
 }

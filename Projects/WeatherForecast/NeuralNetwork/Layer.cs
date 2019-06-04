@@ -41,20 +41,16 @@ namespace NeuralNetwork
         /// <summary>
         /// Gamma w aktualnej warstwie (patrz wzory)
         /// </summary>
-        public float[] gamma; //gamma of this layer
+        public float[] gamma;
         /// <summary>
         /// Delta dla każdego neuronu wyjściowego (pochodna z MSE) 
         /// </summary>
         public float[] error;
         /// <summary>
-        /// Używana do inicjalizowania wag
+        /// Zakres wag. Żeby to działało musisz zmienić metodę InitializeWeights
         /// </summary>
-        public static Random random = new Random();
-
-        //testy
         public static float maximumWeight = 0.5f;
         public static float minimumWeight = -0.5f;
-
 
         /// <summary>
         /// Aktualny Total Error (MSE)
@@ -86,6 +82,9 @@ namespace NeuralNetwork
         /// </summary>
         public void InitilizeWeights()
         {
+            //Guid to seed dla random
+            Random random = new Random(Guid.NewGuid().GetHashCode());
+
             //pierwotny kod
             for (int i = 0; i < numberOfOuputs; i++)
             {
@@ -95,10 +94,6 @@ namespace NeuralNetwork
                 }
             }
 
-
-
-
-            ////TEST
             ////Modyfikowalny zakres
             //for (int i = 0; i < numberOfOuputs; i++)
             //{
@@ -149,7 +144,8 @@ namespace NeuralNetwork
             #region OBLICZ MSE
             TotalError = 0.0f;
             for (int i = 0; i < expected.Length; i++)
-                TotalError += (1.0f / expected.Length)*((expected[i] - outputs[i]) * (expected[i] - outputs[i]));
+                TotalError += (1.0f / expected.Length) * ((expected[i] - outputs[i])* (expected[i] - outputs[i]));
+
             #endregion
 
             /* Nasza delta (patrz załączone wzory)
