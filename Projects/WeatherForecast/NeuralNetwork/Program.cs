@@ -17,7 +17,7 @@ namespace NeuralNetwork
         public static ActivationFunctionClient ActivactionFunction = new ActivationFunctionClient(new TanHActivationFunction());
         //ilość iteracji dla sieci
         private const int iterations = 4000;
-
+        private const int iterationsForStartupSettings = 30;
         //region*5, windDirection*4, date, hour, temp, humidity, windSpeed, cloudy, visibility
         private const int neuronsInput = 16;
         private const int neuronsHidden = 25;
@@ -141,7 +141,8 @@ namespace NeuralNetwork
             Network bestNetwork = null;
             WeatherDataNormalized[][] bestDataset = null;
             int bestIndex = ZnajdzNajlepszeUstawienia(ileSieci, ref weatherDataLGN, ref bestNetwork, ref bestDataset);
-            Console.WriteLine(Environment.NewLine + $"Sieć o indeksie {bestIndex} ma najlepsze ustawienia początkowe, a jej błąd MSE wynosi {bestNetwork.GetTotalError()}");
+            Console.WriteLine(Environment.NewLine + $"Sieć o indeksie {bestIndex} ma najlepsze ustawienia początkowe," +
+                $" a jej błąd MSE wynosi {bestNetwork.GetTotalError()}" + Environment.NewLine);
 
             float[][,] bestWeights = bestNetwork.GetWeights();
 
@@ -305,7 +306,7 @@ namespace NeuralNetwork
                 networks[i] = new Network(new int[] { neuronsInput, neuronsHidden, neuronsOutput });
                 datasets[i] = Tasuj(weatherDataLGN);
 
-                for (int k = 0; k < iterations; k++)
+                for (int k = 0; k < iterationsForStartupSettings; k++)
                 {
                     for (int j = 0; j < datasets[i].GetLength(0); j++)
                     {
@@ -318,13 +319,14 @@ namespace NeuralNetwork
                         });
                     }
 
-                    if (((float)k / iterations) * 100 > percent)
+                    if (((float)k / iterationsForStartupSettings) * 100 > percent)
                         percent++;
+
+                    Console.Write($"\rSieć {i + 1}/{networks.Length}\tTotal Error: {networks[i].GetTotalError()}   ");
 
                     //Po 3% pobiera TotalError i przechodzi do następnej sieci
                     if (percent >= 3)
                     {
-                        Console.Write($"\rSieć {i+1}/{networks.Length}\tTotal Error: {networks[i].GetTotalError()}   ");
                         percent = 0;
                         break;
                     }
@@ -372,13 +374,11 @@ namespace NeuralNetwork
                     });
                 }
 
+                Console.Write($"\r{percent}%   ");
+                Console.Write($"\r{percent}% \t Total Error: {network.GetTotalError()}   ");
 
-                if (((float)i / iterations) * 100 >= percent)
-                {
-                    Console.Write($"\r{percent}%   ");
-                    Console.Write($"\r{percent}% \t Total Error: {network.GetTotalError()}   ");
-                    percent = (int)(((float)i / iterations) * 100);
-                }
+                if (((float)i / iterations) * 100 > percent)
+                    percent++;
 
             }
         }
