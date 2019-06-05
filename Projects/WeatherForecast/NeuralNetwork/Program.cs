@@ -116,7 +116,7 @@ namespace NeuralNetwork
             Network network = new Network(new int[] { neuronsInput, neuronsHidden, neuronsOutput });
 
             #region Krok 1 - Uczenie sieci
-
+            string weightsAsString = "";
             rd.LoadData("..\\..\\..\\..\\..\\DatabaseSources\\Data\\LearningData.txt",
                 BusinessObject.DataTypes.Learning_data);
 
@@ -133,7 +133,6 @@ namespace NeuralNetwork
             WeatherDataNormalized[][] weatherDataLGNS = Shuffle(weatherDataLGN);
 
             #region Krok 1.5 - wybór wag i danych uczących
-
             //Wybieranie najlepszych wag dla punktu startowego
             const int numberOfNetworksToTest = 30;
             Network bestNetwork = null;
@@ -148,16 +147,16 @@ namespace NeuralNetwork
             float[][,] bestWeights = bestNetwork.GetWeights();
 
             //zapisuje wagi do pliku
-            string weightsAsString = GetWeightsAsString(bestWeights);
+            weightsAsString = GetWeightsAsString(bestWeights);
             File.WriteAllText("..\\..\\..\\..\\..\\DatabaseSources\\Data\\bestWeights.txt", weightsAsString);
-
-            #endregion
 
             network.SetWeights(bestWeights);
             weatherDataLGNS = bestDataset;
+            #endregion
+
             Console.WriteLine("Rozpoczynam naukę głównej sieci...");
             LearnNetwork(weatherDataLGNS, network);
-            //zapisuje wagi do pliku
+            //zapisuje wagi nauczone do pliku
             weightsAsString = GetWeightsAsString(network.GetWeights());
             File.WriteAllText("..\\..\\..\\..\\..\\DatabaseSources\\Data\\NeuralNetworkWeights.txt", weightsAsString);
 
@@ -174,7 +173,6 @@ namespace NeuralNetwork
             WeatherData[][] weatherDataT = rd.WeatherTestingGroupedDatas;
             WeatherData[][,] weatherDataTG = new WeatherData[weatherDataT.GetLength(0)][,];
             GroupData(weatherDataT, weatherDataTG);
-
             WeatherDataNormalized[][] weatherDataTN = new WeatherDataNormalized[weatherDataT.Length][];
             for (int i = 0; i < weatherDataTN.Length; i++)
                 weatherDataTN[i] = normalization.Normalize(weatherDataT[i], rd.Cities).ToArray();
@@ -275,7 +273,8 @@ namespace NeuralNetwork
                     Console.WriteLine(predictedWeatherData.ToString() + Environment.NewLine);
                     Console.WriteLine("Oczekiwane: ");
                     Console.WriteLine(expectedWeatherData.ToString() + Environment.NewLine);
-                    Console.Write("Wciśnij przycisk, by kontynować...");  Console.ReadKey();
+                    Console.WriteLine("Wciśnij przycisk, by kontynować..." + Environment.NewLine);
+                    Console.ReadKey();
                 }
             }
         }

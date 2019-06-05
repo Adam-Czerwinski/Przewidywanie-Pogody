@@ -105,6 +105,9 @@ namespace DataAccessLayer
                 Console.WriteLine("Error: " + e.Message + "\n");
             }
 
+
+            connection.Close();
+
             return cities;
         }
     }
