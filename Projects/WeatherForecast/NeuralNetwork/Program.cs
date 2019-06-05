@@ -141,6 +141,7 @@ namespace NeuralNetwork
 
             Console.WriteLine($"Wybieranie najlepszych ustawień początkowych spośród {numberOfNetworksToTest} losowych inicjalizacji...");
             int bestIndex = FindBestStartupSettings(numberOfNetworksToTest, ref weatherDataLGN, ref bestNetwork, ref bestDataset);
+
             Console.WriteLine(Environment.NewLine + $"Sieć o indeksie {bestIndex} ma najlepsze ustawienia początkowe," +
                 $" a jej błąd MSE wynosi {bestNetwork.GetTotalError()}" + Environment.NewLine);
 

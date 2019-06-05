@@ -16,7 +16,11 @@ namespace WeatherForecast
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            Model model = new Model();
+            IView view = new WeatherForecastForm();
+            Presenter presenter = new Presenter(view, model);
+            Application.Run((Form)view);
         }
     }
 }
