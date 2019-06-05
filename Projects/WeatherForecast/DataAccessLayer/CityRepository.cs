@@ -6,7 +6,7 @@ using MySql.Data.MySqlClient;
 
 namespace DataAccessLayer
 {
-    public class CityRepository
+    public class CityRepository 
     {
         private static MySqlConnection connection = DBConnection.Instance.Connection;
 
@@ -14,7 +14,7 @@ namespace DataAccessLayer
         /// Dodaj wiele miast do bazy danych
         /// </summary>
         /// <param name="cities">Lista miast</param>
-        public static void Save(IReadOnlyList<City> cities)
+        public static void Add(IReadOnlyList<City> cities)
         {
             string insertCommand;
 
@@ -46,7 +46,7 @@ namespace DataAccessLayer
         /// Dodaj jedno miasto do bazy danych
         /// </summary>
         /// <param name="city">miasto</param>
-        public static void Save(City city)
+        public static void Add(City city)
         {
             string insertCommand;
 
@@ -70,6 +70,42 @@ namespace DataAccessLayer
             
 
             connection.Close();
+        }
+
+        public static List<City> getAll()
+        {
+            string selectcommand = "SELECT `Id_cities`, `Name`, `Region`, `Is_station` FROM Cities;";
+            List<City> cities = new List<City>();
+
+            int idCity;
+            string name;
+            Regions region = Regions.C;
+            bool isStation = false;
+
+            connection.Open();
+            try
+            {
+                using (MySqlCommand command = new MySqlCommand(selectcommand, connection))
+                {
+                    MySqlDataReader dataReader = command.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        idCity = Convert.ToInt32(dataReader["Id_cities"]);
+                        name = dataReader["Name"].ToString();
+                        string regionName = dataReader["Region"].ToString();
+                        region = (Regions)Enum.Parse(typeof(Regions), regionName);
+                        isStation = (bool)dataReader["Is_station"];
+                        cities.Add(new City(idCity, name, region, isStation));
+                    }
+                    dataReader.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: " + e.Message + "\n");
+            }
+
+            return cities;
         }
     }
 }

@@ -35,6 +35,10 @@ namespace NeuralNetwork
             Cloudy = cloudy;
             Visibility = visibility;
         }
+
+        /// <summary>
+        /// Konstruktor dla warstwy wyjściowej
+        /// </summary>
         public WeatherDataNormalized(double[] windDirection, double temperature, double humidity, double windSpeed, double cloudy, double visibility)
         {
 

@@ -44,11 +44,11 @@
   <ItemGroup>
     <Compile Include="ActivationFunctionRepository.cs" />
     <Compile Include="CityRepository.cs" />
-    <Compile Include="Generation.cs" />
-    <Compile Include="LearningProcess.cs" />
+    <Compile Include="GenerationRepository.cs" />
+    <Compile Include="LearningProcessRepository.cs" />
     <Compile Include="WeatherDataRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Weight.cs" />
+    <Compile Include="WeightRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessObject\BusinessObject.csproj">

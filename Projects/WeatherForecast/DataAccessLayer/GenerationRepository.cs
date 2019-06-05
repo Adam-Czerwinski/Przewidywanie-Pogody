@@ -1,14 +1,10 @@
 ﻿using Database;
 using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace DataAccessLayer
 {
-    public class Generation
+    public class GenerationRepository
     {
         static MySqlConnection connection = DBConnection.Instance.Connection;
 
@@ -20,7 +16,7 @@ namespace DataAccessLayer
         /// <param name="neurons_out"></param>
         /// <param name="learning_rate"></param>
         /// <param name="id_activation_function"></param>
-        public static void AddGeneration( int neurons_in, int neurons_hidden, int neurons_out, double learning_rate, int id_activation_function)
+        public static void Add( int neurons_in, int neurons_hidden, int neurons_out, double learning_rate, int id_activation_function)
         {
             string ADD_GENERATION = "INSERT INTO `generations` VALUES ( null, " + 
                                             + neurons_in + ", " 
@@ -48,7 +44,7 @@ namespace DataAccessLayer
         /// <param name="neurons_out"></param>
         /// <param name="learning_rate"></param>
         /// <param name="name_activation_function"></param>
-        public static void AddGeneration(int neurons_in, int neurons_hidden, int neurons_out, double learning_rate, string name_activation_function)
+        public static void Add(int neurons_in, int neurons_hidden, int neurons_out, double learning_rate, string name_activation_function)
         {   
             string GET_ACTIVATION_FUNC = "SELECT " + "`id_activation_functions` FROM `activation_functions` WHERE name_activation_functions = '" 
                                      + name_activation_function + "'";

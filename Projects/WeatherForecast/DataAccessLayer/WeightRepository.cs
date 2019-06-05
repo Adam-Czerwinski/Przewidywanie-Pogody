@@ -1,14 +1,9 @@
 ﻿using Database;
 using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
-    public class Weight
+    public class WeightRepository
     {
         static MySqlConnection connection = DBConnection.Instance.Connection;
 
@@ -16,7 +11,7 @@ namespace DataAccessLayer
         /// Metoda dodająca wagi do nazy. Parametr podać najlepiej za pomocą funkcji Program.PobierzWagi(...)
         /// </summary>
         /// <param name="value"></param>
-        public static void AddWeight(string value)
+        public static void Add(string value)
         {
             string ADD_WEIGHT = "INSERT INTO `weight` VALUES ( null, '" + value + "')";
 

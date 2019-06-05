@@ -14,7 +14,7 @@ namespace DataAccessLayer
         /// Dodaj wiele miast do bazy danych
         /// </summary>
         /// <param name="datas"></param>
-        public static void Save(IReadOnlyList<WeatherData> datas)
+        public static void Add(IReadOnlyList<WeatherData> datas)
         {
             string insertCommand;
 
@@ -56,7 +56,7 @@ namespace DataAccessLayer
         /// Dodaj jedno miasto do bazy danych
         /// </summary>
         /// <param name="data"></param>
-        public static void Save(WeatherData data)
+        public static void Add(WeatherData data)
         {
             string insertCommand;
 

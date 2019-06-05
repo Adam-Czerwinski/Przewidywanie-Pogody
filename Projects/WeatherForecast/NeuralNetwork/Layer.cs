@@ -152,7 +152,7 @@ namespace NeuralNetwork
              *  Jest to pochodna funkcji MSE (błąd średniokwadratowy)
             */
             for (int i = 0; i < numberOfOuputs; i++)
-                error[i] = outputs[i] - expected[i];
+                error[i] = 2* (1.0f / expected.Length)*(outputs[i] - expected[i]);
 
             //Wyliczenie gammy (patrz załączone wzory)
             for (int i = 0; i < numberOfOuputs; i++)

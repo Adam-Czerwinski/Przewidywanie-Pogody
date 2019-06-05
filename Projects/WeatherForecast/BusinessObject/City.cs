@@ -1,7 +1,7 @@
 ﻿
 namespace BusinessObject
 {
-    public enum Regions { C, N, E, S, W }
+    public enum Regions { N,E,S,W,C }
     public class City
     {
         public int IdCity { get; }

@@ -1,14 +1,9 @@
 ﻿using Database;
 using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
-    public class LearningProcess
+    public class LearningProcessRepository
     {
 
         static MySqlConnection connection = DBConnection.Instance.Connection;
@@ -20,7 +15,7 @@ namespace DataAccessLayer
         /// <param name="epoch"></param>
         /// <param name="total_error"></param>
         /// <param name="is_learned"></param>
-        public static void AddLearningProcess(uint iteration, int epoch, double total_error, bool is_learned)
+        public static void Add(uint iteration, int epoch, double total_error, bool is_learned)
         {
             string ADD_LEARNING_PROCESS = "INSERT INTO `learning_process` VALUES ( null, "
                                           + Database.Database.GetLastIndex(TableName.generations) + ", "

@@ -19,17 +19,16 @@ namespace Database
 
         private DBConnection()
         {
-            MySqlConnectionStringBuilder conStrBuilder = new MySqlConnectionStringBuilder();
+            MySqlConnectionStringBuilder conStrBuilder = new MySqlConnectionStringBuilder
+            {
+                Server = "localhost",
 
-            conStrBuilder.Server = "localhost";
+                UserID = "root",
 
-            conStrBuilder.UserID = "root";
+                Password = "",
 
-            conStrBuilder.Password = "";
-
-            conStrBuilder.Database = "forecast_weather";
-
-            Console.WriteLine(conStrBuilder.ToString());
+                Database = "forecast_weather"
+            };
 
             Connection = new MySqlConnection(conStrBuilder.ToString());
         }

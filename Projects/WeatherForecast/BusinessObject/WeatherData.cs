@@ -16,6 +16,9 @@ namespace BusinessObject
         public int Visibility { get; }
         public DataTypes DataType { get; set; }
 
+        /// <summary>
+        /// konstruktor dla danych z bazy danych
+        /// </summary>
         public WeatherData(int id, int cityId, DateTime date, int hour,
             double temperature, int humidity, WindDirections windDirection, int windSpeed, int cloudy, int visibility, DataTypes dataType)
         {
@@ -93,6 +96,10 @@ namespace BusinessObject
 
             DataType = dataType;
         }
+        
+        /// <summary>
+        /// Konstruktor dla danych wyjściowych
+        /// </summary>
         public WeatherData(double temperature, int humidity, WindDirections windDirection,
             int windSpeed, int cloudy, int visibility)
         {
@@ -106,7 +113,7 @@ namespace BusinessObject
 
         public override string ToString()
         {
-            return $"Date: {Date}\n"
+            return $"Date: {Date.ToShortDateString()}\n"
                 + $"Hour: {Hour}\n"
                 + $"Temperature: {Temperature}\n"
                 + $"Humidity: {Humidity}\n"

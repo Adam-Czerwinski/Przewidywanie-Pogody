@@ -30,6 +30,7 @@ namespace Database
                 if (reader.Read())
                     id = int.Parse(reader.GetValue(0).ToString());
 
+                reader.Close();
                 connection.Close();
             }
 

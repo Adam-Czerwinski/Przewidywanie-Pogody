@@ -50,6 +50,7 @@
     <Compile Include="ActivationFunctions\SwishActivationFunction.cs" />
     <Compile Include="ActivationFunctions\TanHActivationFunction.cs" />
     <Compile Include="Denormalization.cs" />
+    <Compile Include="ForecastWeather.cs" />
     <Compile Include="Layer.cs" />
     <Compile Include="Network.cs" />
     <Compile Include="Normalization.cs" />

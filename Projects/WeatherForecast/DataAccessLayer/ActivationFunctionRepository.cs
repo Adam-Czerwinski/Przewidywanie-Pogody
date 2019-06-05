@@ -1,23 +1,19 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using Database;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace DataAccessLayer
 {
     public class ActivationFunctionRepository
     {
-
         private static MySqlConnection connection = DBConnection.Instance.Connection;
 
         /// <summary>
         /// Dodaj wiele funkcji aktywacyjnych do bazy danych
         /// </summary>
         /// <param name="activationFunctions"></param>
-        public static void Save(string[] activationFunctions)
+        public static void Add(string[] activationFunctions)
         {
             string insertCommand;
 
@@ -50,7 +46,7 @@ namespace DataAccessLayer
         /// Dodaj jedna funkcje aktywacyjna do bazy danych
         /// </summary>
         /// <param name="activationFunction"></param>
-        public static void Save(string activationFunction)
+        public static void Add(string activationFunction)
         {
             string insertCommand;
 
