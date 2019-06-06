@@ -39,5 +39,10 @@ namespace WeatherForecast
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
+        private void forecastButton_Click(object sender, EventArgs e)
+        {
+            ForecastUserControl.ClearAll();
+        }
     }
 }

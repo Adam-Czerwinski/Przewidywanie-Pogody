@@ -15,6 +15,19 @@ namespace WeatherForecast
         {
             this.view = view;
             this.model = model;
+
+            view.ForecastUserControl.ForecastAction += ForecastWeather;
+        }
+
+        private void ForecastWeather()
+        {
+            view.ForecastUserControl.ForecastData = model.ForecastData
+            (
+                view.ForecastUserControl.City, view.ForecastUserControl.RegionPL,
+                view.ForecastUserControl.Temperature, view.ForecastUserControl.Humidity,
+                view.ForecastUserControl.WindSpeed, view.ForecastUserControl.WindDirection,
+                view.ForecastUserControl.Cloudy, view.ForecastUserControl.Visibility
+            );
         }
 
     }

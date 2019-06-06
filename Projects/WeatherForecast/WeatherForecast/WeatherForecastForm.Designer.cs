@@ -85,6 +85,7 @@ namespace WeatherForecast
             // 
             // aboutButton
             // 
+            this.aboutButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.aboutButton.Location = new System.Drawing.Point(850, 5);
             this.aboutButton.Margin = new System.Windows.Forms.Padding(0);
             this.aboutButton.Name = "aboutButton";
@@ -95,6 +96,7 @@ namespace WeatherForecast
             // 
             // neuralNetButton
             // 
+            this.neuralNetButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.neuralNetButton.Location = new System.Drawing.Point(640, 5);
             this.neuralNetButton.Margin = new System.Windows.Forms.Padding(0);
             this.neuralNetButton.Name = "neuralNetButton";
@@ -105,6 +107,7 @@ namespace WeatherForecast
             // 
             // statisticButton
             // 
+            this.statisticButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.statisticButton.Location = new System.Drawing.Point(430, 5);
             this.statisticButton.Margin = new System.Windows.Forms.Padding(0);
             this.statisticButton.Name = "statisticButton";
@@ -115,6 +118,7 @@ namespace WeatherForecast
             // 
             // historyButton
             // 
+            this.historyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.historyButton.Location = new System.Drawing.Point(220, 5);
             this.historyButton.Margin = new System.Windows.Forms.Padding(0);
             this.historyButton.Name = "historyButton";
@@ -125,6 +129,7 @@ namespace WeatherForecast
             // 
             // forecastButton
             // 
+            this.forecastButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.forecastButton.Location = new System.Drawing.Point(10, 5);
             this.forecastButton.Margin = new System.Windows.Forms.Padding(0);
             this.forecastButton.Name = "forecastButton";
@@ -132,6 +137,7 @@ namespace WeatherForecast
             this.forecastButton.TabIndex = 0;
             this.forecastButton.Text = "Prognoza";
             this.forecastButton.UseVisualStyleBackColor = true;
+            this.forecastButton.Click += new System.EventHandler(this.forecastButton_Click);
             // 
             // aboutUserControl
             // 
@@ -175,13 +181,22 @@ namespace WeatherForecast
             // 
             // forecastUserControl
             // 
+            this.forecastUserControl.City = null;
+            this.forecastUserControl.Cloudy = 0;
+            this.forecastUserControl.ForecastData = null;
+            this.forecastUserControl.Humidity = 0;
             this.forecastUserControl.Location = new System.Drawing.Point(0, 50);
             this.forecastUserControl.Margin = new System.Windows.Forms.Padding(0);
             this.forecastUserControl.MaximumSize = new System.Drawing.Size(1200, 650);
             this.forecastUserControl.MinimumSize = new System.Drawing.Size(1200, 650);
             this.forecastUserControl.Name = "forecastUserControl";
+            this.forecastUserControl.RegionPL = null;
             this.forecastUserControl.Size = new System.Drawing.Size(1200, 650);
             this.forecastUserControl.TabIndex = 5;
+            this.forecastUserControl.Temperature = 0D;
+            this.forecastUserControl.Visibility = 0;
+            this.forecastUserControl.WindDirection = null;
+            this.forecastUserControl.WindSpeed = 0;
             // 
             // WeatherForecastForm
             // 

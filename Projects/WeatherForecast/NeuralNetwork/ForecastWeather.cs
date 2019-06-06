@@ -5,7 +5,7 @@ using System.IO;
 
 namespace NeuralNetwork
 {
-    class ForecastWeather
+    public class ForecastWeather
     {
         public Network network { get; set; }
 

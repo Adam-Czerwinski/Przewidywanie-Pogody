@@ -25,7 +25,7 @@ namespace Database
 
                 UserID = "root",
 
-                Password = "root",
+                Password = "",
 
                 Database = "forecast_weather"
             };
