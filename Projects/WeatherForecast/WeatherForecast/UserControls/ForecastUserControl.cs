@@ -27,7 +27,7 @@ namespace WeatherForecast.UserControls
 
         public string[,,] ForecastData { get; set; }
 
-        private string[] region = { "N", "E", "S", "W" };
+        private string[] region = { "N", "E", "S", "W", "C"};
         private string[] windDirection = { "C", "E", "N", "S", "W", "NE", "NW", "SE", "SW", "ENE", "ESE", "NNE", "NNW", "SSE", "SSW", "WNW", "WSW" };
         private Label[,,] weatherDataLabels;
 

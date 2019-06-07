@@ -37,11 +37,11 @@ namespace WeatherForecast
             this.statisticButton = new System.Windows.Forms.Button();
             this.historyButton = new System.Windows.Forms.Button();
             this.forecastButton = new System.Windows.Forms.Button();
-            this.aboutUserControl = new WeatherForecast.UserControls.AboutUserControl();
-            this.neuralNetUserControl = new WeatherForecast.UserControls.NeuralNetUserControl();
-            this.statisticUserControl = new WeatherForecast.UserControls.StatisticUserControl();
-            this.historyUserControl = new WeatherForecast.UserControls.HistoryUserControl();
             this.forecastUserControl = new WeatherForecast.UserControls.ForecastUserControl();
+            this.historyUserControl = new WeatherForecast.UserControls.HistoryUserControl();
+            this.statisticUserControl = new WeatherForecast.UserControls.StatisticUserControl();
+            this.neuralNetUserControl = new WeatherForecast.UserControls.NeuralNetUserControl();
+            this.aboutUserControl = new WeatherForecast.UserControls.AboutUserControl();
             this.menuPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -139,46 +139,6 @@ namespace WeatherForecast
             this.forecastButton.UseVisualStyleBackColor = true;
             this.forecastButton.Click += new System.EventHandler(this.forecastButton_Click);
             // 
-            // aboutUserControl
-            // 
-            this.aboutUserControl.Location = new System.Drawing.Point(0, 50);
-            this.aboutUserControl.Margin = new System.Windows.Forms.Padding(0);
-            this.aboutUserControl.MaximumSize = new System.Drawing.Size(1200, 650);
-            this.aboutUserControl.MinimumSize = new System.Drawing.Size(1200, 650);
-            this.aboutUserControl.Name = "aboutUserControl";
-            this.aboutUserControl.Size = new System.Drawing.Size(1200, 650);
-            this.aboutUserControl.TabIndex = 1;
-            // 
-            // neuralNetUserControl
-            // 
-            this.neuralNetUserControl.Location = new System.Drawing.Point(0, 50);
-            this.neuralNetUserControl.Margin = new System.Windows.Forms.Padding(0);
-            this.neuralNetUserControl.MaximumSize = new System.Drawing.Size(1200, 650);
-            this.neuralNetUserControl.MinimumSize = new System.Drawing.Size(1200, 650);
-            this.neuralNetUserControl.Name = "neuralNetUserControl";
-            this.neuralNetUserControl.Size = new System.Drawing.Size(1200, 650);
-            this.neuralNetUserControl.TabIndex = 2;
-            // 
-            // statisticUserControl
-            // 
-            this.statisticUserControl.Location = new System.Drawing.Point(0, 50);
-            this.statisticUserControl.Margin = new System.Windows.Forms.Padding(0);
-            this.statisticUserControl.MaximumSize = new System.Drawing.Size(1200, 650);
-            this.statisticUserControl.MinimumSize = new System.Drawing.Size(1200, 650);
-            this.statisticUserControl.Name = "statisticUserControl";
-            this.statisticUserControl.Size = new System.Drawing.Size(1200, 650);
-            this.statisticUserControl.TabIndex = 3;
-            // 
-            // historyUserControl
-            // 
-            this.historyUserControl.Location = new System.Drawing.Point(0, 50);
-            this.historyUserControl.Margin = new System.Windows.Forms.Padding(0);
-            this.historyUserControl.MaximumSize = new System.Drawing.Size(1200, 650);
-            this.historyUserControl.MinimumSize = new System.Drawing.Size(1200, 650);
-            this.historyUserControl.Name = "historyUserControl";
-            this.historyUserControl.Size = new System.Drawing.Size(1200, 650);
-            this.historyUserControl.TabIndex = 4;
-            // 
             // forecastUserControl
             // 
             this.forecastUserControl.City = null;
@@ -198,20 +158,59 @@ namespace WeatherForecast
             this.forecastUserControl.WindDirection = null;
             this.forecastUserControl.WindSpeed = 0;
             // 
+            // historyUserControl
+            // 
+            this.historyUserControl.Location = new System.Drawing.Point(0, 50);
+            this.historyUserControl.Margin = new System.Windows.Forms.Padding(0);
+            this.historyUserControl.MaximumSize = new System.Drawing.Size(1200, 650);
+            this.historyUserControl.MinimumSize = new System.Drawing.Size(1200, 650);
+            this.historyUserControl.Name = "historyUserControl";
+            this.historyUserControl.Size = new System.Drawing.Size(1200, 650);
+            this.historyUserControl.TabIndex = 4;
+            // 
+            // statisticUserControl
+            // 
+            this.statisticUserControl.Location = new System.Drawing.Point(0, 50);
+            this.statisticUserControl.Margin = new System.Windows.Forms.Padding(0);
+            this.statisticUserControl.MaximumSize = new System.Drawing.Size(1200, 650);
+            this.statisticUserControl.MinimumSize = new System.Drawing.Size(1200, 650);
+            this.statisticUserControl.Name = "statisticUserControl";
+            this.statisticUserControl.Size = new System.Drawing.Size(1200, 650);
+            this.statisticUserControl.TabIndex = 3;
+            // 
+            // neuralNetUserControl
+            // 
+            this.neuralNetUserControl.Location = new System.Drawing.Point(0, 50);
+            this.neuralNetUserControl.Margin = new System.Windows.Forms.Padding(0);
+            this.neuralNetUserControl.MaximumSize = new System.Drawing.Size(1200, 650);
+            this.neuralNetUserControl.MinimumSize = new System.Drawing.Size(1200, 650);
+            this.neuralNetUserControl.Name = "neuralNetUserControl";
+            this.neuralNetUserControl.Size = new System.Drawing.Size(1200, 650);
+            this.neuralNetUserControl.TabIndex = 2;
+            // 
+            // aboutUserControl
+            // 
+            this.aboutUserControl.Location = new System.Drawing.Point(0, 50);
+            this.aboutUserControl.Margin = new System.Windows.Forms.Padding(0);
+            this.aboutUserControl.MaximumSize = new System.Drawing.Size(1200, 650);
+            this.aboutUserControl.MinimumSize = new System.Drawing.Size(1200, 650);
+            this.aboutUserControl.Name = "aboutUserControl";
+            this.aboutUserControl.Size = new System.Drawing.Size(1200, 650);
+            this.aboutUserControl.TabIndex = 1;
+            // 
             // WeatherForecastForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 700);
+            this.ClientSize = new System.Drawing.Size(1194, 711);
             this.Controls.Add(this.forecastUserControl);
             this.Controls.Add(this.historyUserControl);
             this.Controls.Add(this.statisticUserControl);
             this.Controls.Add(this.neuralNetUserControl);
             this.Controls.Add(this.aboutUserControl);
             this.Controls.Add(this.menuPanel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MaximumSize = new System.Drawing.Size(1200, 700);
-            this.MinimumSize = new System.Drawing.Size(1200, 700);
+            this.MaximumSize = new System.Drawing.Size(1210, 750);
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "WeatherForecastForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Weather Forecast";

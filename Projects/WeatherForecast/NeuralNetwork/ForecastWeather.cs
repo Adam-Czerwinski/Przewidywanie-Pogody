@@ -157,6 +157,8 @@ namespace NeuralNetwork
                 ileRazyPrzewidywac = 9;
                 jakiDzienTablica = 1;
                 future[0][2] = weatherData;
+                
+                future[jakiDzienTablica] = new WeatherData[3];
             }
 
             WeatherData input = weatherData;
@@ -169,7 +171,7 @@ namespace NeuralNetwork
                     jakiDzienTablica++;
                     future[jakiDzienTablica] = new WeatherData[3];
                 }
-
+                
                 future[jakiDzienTablica][jakaGodzinaTablica] = ForecastNextWeather(input);
                 input = future[jakiDzienTablica][jakaGodzinaTablica];
             }
