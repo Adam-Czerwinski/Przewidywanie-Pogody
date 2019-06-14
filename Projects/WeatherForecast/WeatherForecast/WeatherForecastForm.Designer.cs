@@ -141,22 +141,13 @@ namespace WeatherForecast
             // 
             // forecastUserControl
             // 
-            this.forecastUserControl.City = null;
-            this.forecastUserControl.Cloudy = 0;
-            this.forecastUserControl.ForecastData = null;
-            this.forecastUserControl.Humidity = 0;
             this.forecastUserControl.Location = new System.Drawing.Point(0, 50);
             this.forecastUserControl.Margin = new System.Windows.Forms.Padding(0);
             this.forecastUserControl.MaximumSize = new System.Drawing.Size(1200, 650);
             this.forecastUserControl.MinimumSize = new System.Drawing.Size(1200, 650);
             this.forecastUserControl.Name = "forecastUserControl";
-            this.forecastUserControl.RegionPL = null;
             this.forecastUserControl.Size = new System.Drawing.Size(1200, 650);
             this.forecastUserControl.TabIndex = 5;
-            this.forecastUserControl.Temperature = 0D;
-            this.forecastUserControl.Visibility = 0;
-            this.forecastUserControl.WindDirection = null;
-            this.forecastUserControl.WindSpeed = 0;
             // 
             // historyUserControl
             // 
@@ -212,9 +203,7 @@ namespace WeatherForecast
             this.MaximumSize = new System.Drawing.Size(1210, 750);
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "WeatherForecastForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Weather Forecast";
-            this.TopMost = true;
             this.menuPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 

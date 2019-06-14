@@ -1,23 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeatherForecast.UserControls;
+using WeatherForecast.UserControls.UserControlInterfaces;
 
 namespace WeatherForecast
 {
     public partial class WeatherForecastForm : Form , IView
     {
-        public ForecastUserControl ForecastUserControl { get; }
-        public HistoryUserControl HistoryUserControl { get; }
-        public StatisticUserControl StatisticUserControl { get; }
-        public NeuralNetUserControl NeuralNetUserControl { get; }
-        public AboutUserControl AboutUserControl { get; }
+        public IForecastUserControl ForecastUserControl { get; }
+        public IHistoryUserControl HistoryUserControl { get; }
+        public IStatisticUserControl StatisticUserControl { get; }
+        public INeuralNetUserControl NeuralNetUserControl { get; }
+        public IAboutUserControl AboutUserControl { get; }
 
         public WeatherForecastForm()
         {
@@ -42,7 +36,7 @@ namespace WeatherForecast
 
         private void forecastButton_Click(object sender, EventArgs e)
         {
-            ForecastUserControl.ClearAll();
+
         }
     }
 }

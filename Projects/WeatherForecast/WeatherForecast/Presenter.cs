@@ -1,33 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using WeatherForecast.UserPresenters;
 
 namespace WeatherForecast
 {
     class Presenter
     {
-        private IView view;
-        private Model model;
+        private IView _view;
+        private Model _model;
+        private ForecastPresenter _forecastPresenter;
+        private HistoryPresenter _historyPresenter;
+        private StatisticPresenter _statisticPresenter;
+        private NeuralNetPresenter _neuralNetPresenter;
+        private AboutPresenter _aboutPresenter;
 
         public Presenter(IView view, Model model)
         {
-            this.view = view;
-            this.model = model;
+            _view = view;
+            _model = model;
 
-            view.ForecastUserControl.ForecastAction += ForecastWeather;
-        }
-
-        private void ForecastWeather()
-        {
-            view.ForecastUserControl.ForecastData = model.ForecastData
-            (
-                view.ForecastUserControl.City, view.ForecastUserControl.RegionPL,
-                view.ForecastUserControl.Temperature, view.ForecastUserControl.Humidity,
-                view.ForecastUserControl.WindSpeed, view.ForecastUserControl.WindDirection,
-                view.ForecastUserControl.Cloudy, view.ForecastUserControl.Visibility
-            );
+            _forecastPresenter = new ForecastPresenter(_view.ForecastUserControl, _model);
+            _historyPresenter = new HistoryPresenter(_view.HistoryUserControl, _model);
+            _statisticPresenter = new StatisticPresenter(_view.StatisticUserControl, _model);
+            _neuralNetPresenter = new NeuralNetPresenter(_view.NeuralNetUserControl, _model);
+            _aboutPresenter = new AboutPresenter(_view.AboutUserControl, _model);
         }
 
     }

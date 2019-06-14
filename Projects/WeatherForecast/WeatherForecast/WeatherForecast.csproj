@@ -122,6 +122,16 @@
     <Compile Include="UserControls\StatisticUserControl.Designer.cs">
       <DependentUpon>StatisticUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UserControlInterfaces\IAboutUserControl.cs" />
+    <Compile Include="UserControls\UserControlInterfaces\IForecastUserControl.cs" />
+    <Compile Include="UserControls\UserControlInterfaces\IHistoryUserControl.cs" />
+    <Compile Include="UserControls\UserControlInterfaces\INeuralNetUserControl.cs" />
+    <Compile Include="UserControls\UserControlInterfaces\IStatisticUserControl.cs" />
+    <Compile Include="UserPresenters\AboutPresenter.cs" />
+    <Compile Include="UserPresenters\ForecastPresenter.cs" />
+    <Compile Include="UserPresenters\HistoryPresenter.cs" />
+    <Compile Include="UserPresenters\NeuralNetPresenter.cs" />
+    <Compile Include="UserPresenters\StatisticPresenter.cs" />
     <Compile Include="WeatherForecastForm.cs">
       <SubType>Form</SubType>
     </Compile>

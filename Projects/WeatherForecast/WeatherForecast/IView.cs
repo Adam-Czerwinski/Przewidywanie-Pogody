@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WeatherForecast.UserControls;
+﻿using WeatherForecast.UserControls.UserControlInterfaces;
 
 namespace WeatherForecast
 {
     interface IView
     {
-        ForecastUserControl ForecastUserControl { get; }
-        HistoryUserControl HistoryUserControl { get; }
-        StatisticUserControl StatisticUserControl { get; }
-        NeuralNetUserControl NeuralNetUserControl { get; }
-        AboutUserControl AboutUserControl { get; }
+        IForecastUserControl ForecastUserControl { get; }
+        IHistoryUserControl HistoryUserControl { get; }
+        IStatisticUserControl StatisticUserControl { get; }
+        INeuralNetUserControl NeuralNetUserControl { get; }
+        IAboutUserControl AboutUserControl { get; }
     }
 }
