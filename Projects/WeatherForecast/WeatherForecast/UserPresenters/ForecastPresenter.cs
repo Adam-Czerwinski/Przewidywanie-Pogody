@@ -22,8 +22,6 @@ namespace WeatherForecast.UserPresenters
 
             WeatherData[][] weatherDatas = _model.ForecastData(_forecastUserControl.ForecastDataIn);
 
-            string[,,] forecastWeatherData = new string[4, 3, 6];
-
             int indexDay = 0;
             int indexHour = 0;
 
@@ -34,31 +32,30 @@ namespace WeatherForecast.UserPresenters
                 {
                     if (hour != null)
                     {
-                        forecastWeatherData[indexDay, indexHour, 0] = String.Format("{0:N1}", hour.Temperature);
-                        forecastWeatherData[indexDay, indexHour, 1] = hour.Humidity.ToString();
+                        _forecastUserControl[indexDay, indexHour, 0] = String.Format("{0:N1}", hour.Temperature);
+                        _forecastUserControl[indexDay, indexHour, 1] = hour.Humidity.ToString();
                         if (hour.WindSpeed > 0)
-                            forecastWeatherData[indexDay, indexHour, 2] = hour.WindSpeed.ToString();
+                            _forecastUserControl[indexDay, indexHour, 2] = hour.WindSpeed.ToString();
                         else
-                            forecastWeatherData[indexDay, indexHour, 2] = 0.ToString();
-                        forecastWeatherData[indexDay, indexHour, 3] = hour.WindDirection.ToString();
-                        forecastWeatherData[indexDay, indexHour, 4] = hour.Cloudy.ToString();
-                        forecastWeatherData[indexDay, indexHour, 5] = hour.Visibility.ToString();
+                            _forecastUserControl[indexDay, indexHour, 2] = 0.ToString();
+                        _forecastUserControl[indexDay, indexHour, 3] = hour.WindDirection.ToString();
+                        _forecastUserControl[indexDay, indexHour, 4] = hour.Cloudy.ToString();
+                        _forecastUserControl[indexDay, indexHour, 5] = hour.Visibility.ToString();
                     }
                     else
                     {
-                        forecastWeatherData[indexDay, indexHour, 0] = "-";
-                        forecastWeatherData[indexDay, indexHour, 1] = "-";
-                        forecastWeatherData[indexDay, indexHour, 2] = "-";
-                        forecastWeatherData[indexDay, indexHour, 3] = "-";
-                        forecastWeatherData[indexDay, indexHour, 4] = "-";
-                        forecastWeatherData[indexDay, indexHour, 5] = "-";
+                        _forecastUserControl[indexDay, indexHour, 0] = "-";
+                        _forecastUserControl[indexDay, indexHour, 1] = "-";
+                        _forecastUserControl[indexDay, indexHour, 2] = "-";
+                        _forecastUserControl[indexDay, indexHour, 3] = "-";
+                        _forecastUserControl[indexDay, indexHour, 4] = "-";
+                        _forecastUserControl[indexDay, indexHour, 5] = "-";
                     }
                     indexHour++;
                 }
                 indexDay++;
             }
 
-            _forecastUserControl.ForecastDataOut = forecastWeatherData;
         }
     }
 }

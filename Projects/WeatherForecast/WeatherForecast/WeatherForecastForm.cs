@@ -38,5 +38,25 @@ namespace WeatherForecast
         {
 
         }
+
+        private void historyButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void statisticButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void neuralNetButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void aboutButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

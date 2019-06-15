@@ -16,6 +16,8 @@ namespace WeatherForecast.UserControls
         public StatisticUserControl()
         {
             InitializeComponent();
+
+            this.BringToFront();
         }
     }
 }

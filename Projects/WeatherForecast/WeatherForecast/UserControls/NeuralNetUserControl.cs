@@ -16,6 +16,8 @@ namespace WeatherForecast.UserControls
         public NeuralNetUserControl()
         {
             InitializeComponent();
+
+            this.BringToFront();
         }
     }
 }

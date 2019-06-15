@@ -8,7 +8,7 @@ namespace WeatherForecast.UserControls.UserControlInterfaces
 {
     public interface IForecastUserControl
     {
-        string[,,] ForecastDataOut { set; }
+        string this[int indexer1, int indexer2, int indexer3] { set; }
         string[] ForecastDataIn { get; }
 
         event Action ForecastAction;

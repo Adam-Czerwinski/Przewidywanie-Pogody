@@ -7,34 +7,9 @@ namespace WeatherForecast.UserControls
 {
     public partial class ForecastUserControl : UserControl, IForecastUserControl
     {
-        public string[] ForecastDataIn { get;}
+        public string[] ForecastDataIn { get; }
 
-        public string[,,] ForecastDataOut {
-
-            set {
-
-                if (value != null)
-                {
-                    int i, j, k;
-                    for (i = 0; i < 4; i++)
-                    {
-                        for (j = 0; j < 3; j++)
-                        {
-                            for (k = 0; k < 6; k++)
-                            {
-                                if (value[i, j, k] != null)
-                                {
-                                    weatherDataLabels[i, j, k].Text = value[i, j, k];
-                                }
-                            }
-                            k = 0;
-                        }
-                        j = 0;
-                    }
-                }
-
-            }
-        }
+        public string this[int indexer1, int indexer2, int indexer3] { set{ weatherDataLabels[indexer1, indexer2, indexer3].Text = value; } }
 
         private string[] region = { "N", "E", "S", "W", "C"};
         private string[] windDirection = { "C", "E", "N", "S", "W", "NE", "NW", "SE", "SW", "ENE", "ESE", "NNE", "NNW", "SSE", "SSW", "WNW", "WSW" };
@@ -134,6 +109,8 @@ namespace WeatherForecast.UserControls
             weatherDataLabels[3, 2, 4] = f4h18CloudyLabel;
             weatherDataLabels[3, 2, 5] = f4h18VisibilityLabel;
             #endregion
+
+            this.BringToFront();
         }
 
         private void forecastInButton_Click(object sender, EventArgs e)

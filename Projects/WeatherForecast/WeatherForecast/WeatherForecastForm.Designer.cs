@@ -93,6 +93,7 @@ namespace WeatherForecast
             this.aboutButton.TabIndex = 4;
             this.aboutButton.Text = "O aplikacji";
             this.aboutButton.UseVisualStyleBackColor = true;
+            this.aboutButton.Click += new System.EventHandler(this.aboutButton_Click);
             // 
             // neuralNetButton
             // 
@@ -104,6 +105,7 @@ namespace WeatherForecast
             this.neuralNetButton.TabIndex = 3;
             this.neuralNetButton.Text = "Sieć neuronowa";
             this.neuralNetButton.UseVisualStyleBackColor = true;
+            this.neuralNetButton.Click += new System.EventHandler(this.neuralNetButton_Click);
             // 
             // statisticButton
             // 
@@ -115,6 +117,7 @@ namespace WeatherForecast
             this.statisticButton.TabIndex = 2;
             this.statisticButton.Text = "Statystyki ";
             this.statisticButton.UseVisualStyleBackColor = true;
+            this.statisticButton.Click += new System.EventHandler(this.statisticButton_Click);
             // 
             // historyButton
             // 
@@ -126,6 +129,7 @@ namespace WeatherForecast
             this.historyButton.TabIndex = 1;
             this.historyButton.Text = "Historia ";
             this.historyButton.UseVisualStyleBackColor = true;
+            this.historyButton.Click += new System.EventHandler(this.historyButton_Click);
             // 
             // forecastButton
             // 
