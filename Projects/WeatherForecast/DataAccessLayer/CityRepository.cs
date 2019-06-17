@@ -6,7 +6,7 @@ using MySql.Data.MySqlClient;
 
 namespace DataAccessLayer
 {
-    public class CityRepository 
+    public class CityRepository
     {
         private static MySqlConnection connection = DBConnection.Instance.Connection;
 
@@ -17,8 +17,16 @@ namespace DataAccessLayer
         public static void Add(IReadOnlyList<City> cities)
         {
             string insertCommand;
+            try
+            {
+                connection.Open();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Can't connect with database!");
+                return;
+            }
 
-            connection.Open();
 
             foreach (City c in cities)
             {
@@ -49,25 +57,23 @@ namespace DataAccessLayer
         public static void Add(City city)
         {
             string insertCommand;
+            try
+            {
+                connection.Open();
+                insertCommand = "INSERT INTO `cities` VALUES ( " + "null" + ", \"" + city.Name + "\", \"" + city.Region + "\", " + city.IsStation + " )";
 
-            connection.Open();
-
-                try
+                using (MySqlCommand commamnd = new MySqlCommand(insertCommand, connection))
                 {
-                    insertCommand = "INSERT INTO `cities` VALUES ( " + "null" + ", \"" + city.Name + "\", \"" + city.Region + "\", " + city.IsStation + " )";
-
-                    using (MySqlCommand commamnd = new MySqlCommand(insertCommand, connection))
-                    {
-                        commamnd.ExecuteReader();
-                        Console.WriteLine("Dodano: " + city);
-                    }
+                    commamnd.ExecuteReader();
+                    //Console.WriteLine("Dodano: " + city);
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Error: " + e.Message + "\n");
-                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: " + e.Message + "\n");
+            }
 
-            
+
 
             connection.Close();
         }
@@ -82,9 +88,9 @@ namespace DataAccessLayer
             Regions region = Regions.C;
             bool isStation = false;
 
-            connection.Open();
             try
             {
+                connection.Open();
                 using (MySqlCommand command = new MySqlCommand(selectcommand, connection))
                 {
                     MySqlDataReader dataReader = command.ExecuteReader();

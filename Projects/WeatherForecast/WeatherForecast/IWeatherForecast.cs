@@ -2,7 +2,7 @@
 
 namespace WeatherForecast
 {
-    interface IView
+    interface IWeatherForecast
     {
         IForecastUserControl ForecastUserControl { get; }
         IHistoryUserControl HistoryUserControl { get; }

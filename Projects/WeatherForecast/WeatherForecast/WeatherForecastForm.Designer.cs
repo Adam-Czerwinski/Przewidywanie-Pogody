@@ -29,204 +29,115 @@ namespace WeatherForecast
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuPanel = new System.Windows.Forms.Panel();
-            this.mimimizeButton = new System.Windows.Forms.Button();
-            this.exitButton = new System.Windows.Forms.Button();
-            this.aboutButton = new System.Windows.Forms.Button();
-            this.neuralNetButton = new System.Windows.Forms.Button();
-            this.statisticButton = new System.Windows.Forms.Button();
-            this.historyButton = new System.Windows.Forms.Button();
-            this.forecastButton = new System.Windows.Forms.Button();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabControl = new System.Windows.Forms.TabControl();
             this.forecastUserControl = new WeatherForecast.UserControls.ForecastUserControl();
-            this.historyUserControl = new WeatherForecast.UserControls.HistoryUserControl();
-            this.statisticUserControl = new WeatherForecast.UserControls.StatisticUserControl();
-            this.neuralNetUserControl = new WeatherForecast.UserControls.NeuralNetUserControl();
-            this.aboutUserControl = new WeatherForecast.UserControls.AboutUserControl();
-            this.menuPanel.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabControl.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuPanel
+            // tabPage5
             // 
-            this.menuPanel.Controls.Add(this.mimimizeButton);
-            this.menuPanel.Controls.Add(this.exitButton);
-            this.menuPanel.Controls.Add(this.aboutButton);
-            this.menuPanel.Controls.Add(this.neuralNetButton);
-            this.menuPanel.Controls.Add(this.statisticButton);
-            this.menuPanel.Controls.Add(this.historyButton);
-            this.menuPanel.Controls.Add(this.forecastButton);
-            this.menuPanel.Location = new System.Drawing.Point(0, 0);
-            this.menuPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.menuPanel.Name = "menuPanel";
-            this.menuPanel.Size = new System.Drawing.Size(1200, 50);
-            this.menuPanel.TabIndex = 0;
+            this.tabPage5.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(1158, 617);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "O aplikacji";
             // 
-            // mimimizeButton
+            // tabPage4
             // 
-            this.mimimizeButton.Location = new System.Drawing.Point(1100, 5);
-            this.mimimizeButton.Margin = new System.Windows.Forms.Padding(0);
-            this.mimimizeButton.Name = "mimimizeButton";
-            this.mimimizeButton.Size = new System.Drawing.Size(40, 40);
-            this.mimimizeButton.TabIndex = 6;
-            this.mimimizeButton.Text = "_";
-            this.mimimizeButton.UseVisualStyleBackColor = true;
-            this.mimimizeButton.Click += new System.EventHandler(this.mimimizeButton_Click);
+            this.tabPage4.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(1158, 617);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Sieć neuronowa";
             // 
-            // exitButton
+            // tabPage3
             // 
-            this.exitButton.BackColor = System.Drawing.Color.Firebrick;
-            this.exitButton.Location = new System.Drawing.Point(1150, 5);
-            this.exitButton.Margin = new System.Windows.Forms.Padding(0);
-            this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(40, 40);
-            this.exitButton.TabIndex = 5;
-            this.exitButton.Text = "X";
-            this.exitButton.UseVisualStyleBackColor = false;
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            this.tabPage3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1158, 617);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Statystyki";
             // 
-            // aboutButton
+            // tabPage2
             // 
-            this.aboutButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.aboutButton.Location = new System.Drawing.Point(850, 5);
-            this.aboutButton.Margin = new System.Windows.Forms.Padding(0);
-            this.aboutButton.Name = "aboutButton";
-            this.aboutButton.Size = new System.Drawing.Size(200, 40);
-            this.aboutButton.TabIndex = 4;
-            this.aboutButton.Text = "O aplikacji";
-            this.aboutButton.UseVisualStyleBackColor = true;
-            this.aboutButton.Click += new System.EventHandler(this.aboutButton_Click);
+            this.tabPage2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1158, 617);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Historia";
             // 
-            // neuralNetButton
+            // tabPage1
             // 
-            this.neuralNetButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.neuralNetButton.Location = new System.Drawing.Point(640, 5);
-            this.neuralNetButton.Margin = new System.Windows.Forms.Padding(0);
-            this.neuralNetButton.Name = "neuralNetButton";
-            this.neuralNetButton.Size = new System.Drawing.Size(200, 40);
-            this.neuralNetButton.TabIndex = 3;
-            this.neuralNetButton.Text = "Sieć neuronowa";
-            this.neuralNetButton.UseVisualStyleBackColor = true;
-            this.neuralNetButton.Click += new System.EventHandler(this.neuralNetButton_Click);
+            this.tabPage1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tabPage1.Controls.Add(this.forecastUserControl);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(0);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(1158, 617);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Prognoza";
             // 
-            // statisticButton
+            // tabControl
             // 
-            this.statisticButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.statisticButton.Location = new System.Drawing.Point(430, 5);
-            this.statisticButton.Margin = new System.Windows.Forms.Padding(0);
-            this.statisticButton.Name = "statisticButton";
-            this.statisticButton.Size = new System.Drawing.Size(200, 40);
-            this.statisticButton.TabIndex = 2;
-            this.statisticButton.Text = "Statystyki ";
-            this.statisticButton.UseVisualStyleBackColor = true;
-            this.statisticButton.Click += new System.EventHandler(this.statisticButton_Click);
-            // 
-            // historyButton
-            // 
-            this.historyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.historyButton.Location = new System.Drawing.Point(220, 5);
-            this.historyButton.Margin = new System.Windows.Forms.Padding(0);
-            this.historyButton.Name = "historyButton";
-            this.historyButton.Size = new System.Drawing.Size(200, 40);
-            this.historyButton.TabIndex = 1;
-            this.historyButton.Text = "Historia ";
-            this.historyButton.UseVisualStyleBackColor = true;
-            this.historyButton.Click += new System.EventHandler(this.historyButton_Click);
-            // 
-            // forecastButton
-            // 
-            this.forecastButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.forecastButton.Location = new System.Drawing.Point(10, 5);
-            this.forecastButton.Margin = new System.Windows.Forms.Padding(0);
-            this.forecastButton.Name = "forecastButton";
-            this.forecastButton.Size = new System.Drawing.Size(200, 40);
-            this.forecastButton.TabIndex = 0;
-            this.forecastButton.Text = "Prognoza";
-            this.forecastButton.UseVisualStyleBackColor = true;
-            this.forecastButton.Click += new System.EventHandler(this.forecastButton_Click);
+            this.tabControl.Controls.Add(this.tabPage1);
+            this.tabControl.Controls.Add(this.tabPage2);
+            this.tabControl.Controls.Add(this.tabPage3);
+            this.tabControl.Controls.Add(this.tabPage4);
+            this.tabControl.Controls.Add(this.tabPage5);
+            this.tabControl.Location = new System.Drawing.Point(9, 9);
+            this.tabControl.Margin = new System.Windows.Forms.Padding(0);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(1166, 643);
+            this.tabControl.TabIndex = 1;
             // 
             // forecastUserControl
             // 
-            this.forecastUserControl.Location = new System.Drawing.Point(0, 50);
+            this.forecastUserControl.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.forecastUserControl.Location = new System.Drawing.Point(4, 4);
             this.forecastUserControl.Margin = new System.Windows.Forms.Padding(0);
-            this.forecastUserControl.MaximumSize = new System.Drawing.Size(1200, 650);
-            this.forecastUserControl.MinimumSize = new System.Drawing.Size(1200, 650);
             this.forecastUserControl.Name = "forecastUserControl";
-            this.forecastUserControl.Size = new System.Drawing.Size(1200, 650);
-            this.forecastUserControl.TabIndex = 5;
-            // 
-            // historyUserControl
-            // 
-            this.historyUserControl.Location = new System.Drawing.Point(0, 50);
-            this.historyUserControl.Margin = new System.Windows.Forms.Padding(0);
-            this.historyUserControl.MaximumSize = new System.Drawing.Size(1200, 650);
-            this.historyUserControl.MinimumSize = new System.Drawing.Size(1200, 650);
-            this.historyUserControl.Name = "historyUserControl";
-            this.historyUserControl.Size = new System.Drawing.Size(1200, 650);
-            this.historyUserControl.TabIndex = 4;
-            // 
-            // statisticUserControl
-            // 
-            this.statisticUserControl.Location = new System.Drawing.Point(0, 50);
-            this.statisticUserControl.Margin = new System.Windows.Forms.Padding(0);
-            this.statisticUserControl.MaximumSize = new System.Drawing.Size(1200, 650);
-            this.statisticUserControl.MinimumSize = new System.Drawing.Size(1200, 650);
-            this.statisticUserControl.Name = "statisticUserControl";
-            this.statisticUserControl.Size = new System.Drawing.Size(1200, 650);
-            this.statisticUserControl.TabIndex = 3;
-            // 
-            // neuralNetUserControl
-            // 
-            this.neuralNetUserControl.Location = new System.Drawing.Point(0, 50);
-            this.neuralNetUserControl.Margin = new System.Windows.Forms.Padding(0);
-            this.neuralNetUserControl.MaximumSize = new System.Drawing.Size(1200, 650);
-            this.neuralNetUserControl.MinimumSize = new System.Drawing.Size(1200, 650);
-            this.neuralNetUserControl.Name = "neuralNetUserControl";
-            this.neuralNetUserControl.Size = new System.Drawing.Size(1200, 650);
-            this.neuralNetUserControl.TabIndex = 2;
-            // 
-            // aboutUserControl
-            // 
-            this.aboutUserControl.Location = new System.Drawing.Point(0, 50);
-            this.aboutUserControl.Margin = new System.Windows.Forms.Padding(0);
-            this.aboutUserControl.MaximumSize = new System.Drawing.Size(1200, 650);
-            this.aboutUserControl.MinimumSize = new System.Drawing.Size(1200, 650);
-            this.aboutUserControl.Name = "aboutUserControl";
-            this.aboutUserControl.Size = new System.Drawing.Size(1200, 650);
-            this.aboutUserControl.TabIndex = 1;
+            this.forecastUserControl.Size = new System.Drawing.Size(1150, 620);
+            this.forecastUserControl.TabIndex = 0;
             // 
             // WeatherForecastForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1194, 711);
-            this.Controls.Add(this.forecastUserControl);
-            this.Controls.Add(this.historyUserControl);
-            this.Controls.Add(this.statisticUserControl);
-            this.Controls.Add(this.neuralNetUserControl);
-            this.Controls.Add(this.aboutUserControl);
-            this.Controls.Add(this.menuPanel);
-            this.MaximumSize = new System.Drawing.Size(1210, 750);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1184, 661);
+            this.Controls.Add(this.tabControl);
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "WeatherForecastForm";
             this.Text = "Weather Forecast";
-            this.menuPanel.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel menuPanel;
-        private System.Windows.Forms.Button exitButton;
-        private System.Windows.Forms.Button aboutButton;
-        private System.Windows.Forms.Button neuralNetButton;
-        private System.Windows.Forms.Button statisticButton;
-        private System.Windows.Forms.Button historyButton;
-        private System.Windows.Forms.Button forecastButton;
-        private System.Windows.Forms.Button mimimizeButton;
-        private AboutUserControl aboutUserControl;
-        private NeuralNetUserControl neuralNetUserControl;
-        private StatisticUserControl statisticUserControl;
-        private HistoryUserControl historyUserControl;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabControl tabControl;
         private ForecastUserControl forecastUserControl;
     }
 }

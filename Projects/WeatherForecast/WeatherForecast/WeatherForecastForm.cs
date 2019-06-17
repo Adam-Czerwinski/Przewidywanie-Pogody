@@ -1,11 +1,9 @@
-﻿using System;
-using System.Windows.Forms;
-using WeatherForecast.UserControls;
+﻿using System.Windows.Forms;
 using WeatherForecast.UserControls.UserControlInterfaces;
 
 namespace WeatherForecast
 {
-    public partial class WeatherForecastForm : Form , IView
+    public partial class WeatherForecastForm : Form , IWeatherForecast
     {
         public IForecastUserControl ForecastUserControl { get; }
         public IHistoryUserControl HistoryUserControl { get; }
@@ -18,45 +16,11 @@ namespace WeatherForecast
             InitializeComponent();
 
             ForecastUserControl = forecastUserControl;
-            HistoryUserControl = historyUserControl;
-            StatisticUserControl = statisticUserControl;
-            NeuralNetUserControl = neuralNetUserControl;
-            AboutUserControl = aboutUserControl;
+            //HistoryUserControl = historyUserControl;
+            //StatisticUserControl = statisticUserControl;
+            //NeuralNetUserControl = neuralNetUserControl;
+            //AboutUserControl = aboutUserControl;
         }
 
-        private void exitButton_Click(object sender, EventArgs e)
-        {
-            Form.ActiveForm.Close();
-        }
-
-        private void mimimizeButton_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void forecastButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void historyButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void statisticButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void neuralNetButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void aboutButton_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

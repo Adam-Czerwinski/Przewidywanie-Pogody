@@ -7,14 +7,27 @@ namespace WeatherForecast.UserControls
 {
     public partial class ForecastUserControl : UserControl, IForecastUserControl
     {
+        /// <summary>
+        /// Dane wprowadzone przez użytkownika
+        /// </summary>
         public string[] ForecastDataIn { get; }
 
-        public string this[int indexer1, int indexer2, int indexer3] { set{ weatherDataLabels[indexer1, indexer2, indexer3].Text = value; } }
+        /// <summary>
+        /// Kontener dla labelek. Odnosimy się poprzez indeks
+        /// </summary>
+        public ForecastData ForecastData { get; }
 
-        private string[] region = { "N", "E", "S", "W", "C"};
+        /// <summary>
+        /// Składowe pomocnicze
+        /// CZY SĄ POTRZEBNE SKORO MAMY ENUMY?
+        /// </summary>
+        /// 
+        private string[] region = { "N", "E", "S", "W", "C" };
         private string[] windDirection = { "C", "E", "N", "S", "W", "NE", "NW", "SE", "SW", "ENE", "ESE", "NNE", "NNW", "SSE", "SSW", "WNW", "WSW" };
-        private Label[,,] weatherDataLabels;
 
+        /// <summary>
+        /// Akcja wywołana po naciśnięciu przycisku przewidywania pogody
+        /// </summary>
         public event Action ForecastAction;
 
         public ForecastUserControl()
@@ -34,7 +47,7 @@ namespace WeatherForecast.UserControls
 
             ForecastDataIn = new string[8];
 
-            weatherDataLabels = new Label[4, 3, 6];
+            var weatherDataLabels = new Label[4, 3, 6];
             #region Adding weather data labels to weatherDataLabes
             weatherDataLabels[0, 0, 0] = f1h6TemperatureLabel;
             weatherDataLabels[0, 0, 1] = f1h6HumidityLabel;
@@ -110,7 +123,8 @@ namespace WeatherForecast.UserControls
             weatherDataLabels[3, 2, 5] = f4h18VisibilityLabel;
             #endregion
 
-            this.BringToFront();
+            ForecastData = new ForecastData(weatherDataLabels);
+
         }
 
         private void forecastInButton_Click(object sender, EventArgs e)
@@ -118,18 +132,10 @@ namespace WeatherForecast.UserControls
             bool isValid = true;
 
             #region Data validation
-            if (cityTextBox.Text == "")
-            {
+
+            if (cityTextBox.Text == "" || regionCBox.Text == "" || windDirectionCBox.Text == "")
                 isValid = false;
-            }
-            if (regionCBox.Text == "")
-            {
-                isValid = false;
-            }
-            if (windDirectionCBox.Text == "")
-            {
-                isValid = false;
-            }
+
             #endregion
 
             if (isValid)
@@ -145,32 +151,38 @@ namespace WeatherForecast.UserControls
                 ForecastDataIn[7] = visibilityBar.Value.ToString();
                 #endregion
 
-                if (ForecastAction != null)
-                    ForecastAction.Invoke();
-
-                #region Map attribut
-                gMap.Zoom = 6;
-                switch (ForecastDataIn[1])
-                {
-                    case "N":
-                        gMap.Position = new GMap.NET.PointLatLng(53.5, 19);
-                        break;
-                    case "E":
-                        gMap.Position = new GMap.NET.PointLatLng(52, 21);
-                        break;
-                    case "S":
-                        gMap.Position = new GMap.NET.PointLatLng(50.5, 19);
-                        break;
-                    case "W":
-                        gMap.Position = new GMap.NET.PointLatLng(52, 17);
-                        break;
-                    default:
-                        gMap.Position = new GMap.NET.PointLatLng(52, 19);
-                        break;
-                        #endregion
-                }
+                ForecastAction?.Invoke();
             }
+        }
 
+        /// <summary>
+        /// Wywołuje się wtedy kiedy zmieni się wartość combo boxa
+        /// </summary>
+        private void regionCBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedRegion = ((ComboBox)sender).SelectedItem;
+
+            #region Map attribut
+            gMap.Zoom = 6;
+            switch (selectedRegion)
+            {
+                case "N":
+                    gMap.Position = new GMap.NET.PointLatLng(53.5, 19);
+                    break;
+                case "E":
+                    gMap.Position = new GMap.NET.PointLatLng(52, 21);
+                    break;
+                case "S":
+                    gMap.Position = new GMap.NET.PointLatLng(50.5, 19);
+                    break;
+                case "W":
+                    gMap.Position = new GMap.NET.PointLatLng(52, 17);
+                    break;
+                default:
+                    gMap.Position = new GMap.NET.PointLatLng(52, 19);
+                    break;
+                    #endregion
+            }
         }
 
     }

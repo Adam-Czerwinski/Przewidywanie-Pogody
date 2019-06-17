@@ -2,9 +2,9 @@
 
 namespace WeatherForecast
 {
-    class Presenter
+    class WeatherForecastPresenter
     {
-        private IView _view;
+        private IWeatherForecast _view;
         private Model _model;
         private ForecastPresenter _forecastPresenter;
         private HistoryPresenter _historyPresenter;
@@ -12,7 +12,7 @@ namespace WeatherForecast
         private NeuralNetPresenter _neuralNetPresenter;
         private AboutPresenter _aboutPresenter;
 
-        public Presenter(IView view, Model model)
+        public WeatherForecastPresenter(IWeatherForecast view, Model model)
         {
             _view = view;
             _model = model;
