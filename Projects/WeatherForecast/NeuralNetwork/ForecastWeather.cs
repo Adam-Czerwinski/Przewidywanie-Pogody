@@ -256,6 +256,9 @@ namespace NeuralNetwork
 
             predictedWeatherData.Date = new DateTime(rok, miesiac, dzien);
 
+            // Dodawanie przewidzianych danych do bazy 
+            WeatherDataRepository.Add(predictedWeatherData);
+
             return predictedWeatherData;
         }
     }

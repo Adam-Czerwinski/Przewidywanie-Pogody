@@ -34,8 +34,10 @@ namespace WeatherForecast
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabControl = new System.Windows.Forms.TabControl();
             this.forecastUserControl = new WeatherForecast.UserControls.ForecastUserControl();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.historyUserControl1 = new WeatherForecast.UserControls.HistoryUserControl();
+            this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.SuspendLayout();
@@ -73,6 +75,7 @@ namespace WeatherForecast
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tabPage2.Controls.Add(this.historyUserControl1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -91,6 +94,15 @@ namespace WeatherForecast
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Prognoza";
             // 
+            // forecastUserControl
+            // 
+            this.forecastUserControl.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.forecastUserControl.Location = new System.Drawing.Point(4, 4);
+            this.forecastUserControl.Margin = new System.Windows.Forms.Padding(0);
+            this.forecastUserControl.Name = "forecastUserControl";
+            this.forecastUserControl.Size = new System.Drawing.Size(1150, 620);
+            this.forecastUserControl.TabIndex = 0;
+            // 
             // tabControl
             // 
             this.tabControl.Controls.Add(this.tabPage1);
@@ -105,14 +117,15 @@ namespace WeatherForecast
             this.tabControl.Size = new System.Drawing.Size(1166, 643);
             this.tabControl.TabIndex = 1;
             // 
-            // forecastUserControl
+            // historyUserControl1
             // 
-            this.forecastUserControl.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.forecastUserControl.Location = new System.Drawing.Point(4, 4);
-            this.forecastUserControl.Margin = new System.Windows.Forms.Padding(0);
-            this.forecastUserControl.Name = "forecastUserControl";
-            this.forecastUserControl.Size = new System.Drawing.Size(1150, 620);
-            this.forecastUserControl.TabIndex = 0;
+            this.historyUserControl1.Location = new System.Drawing.Point(3, 0);
+            this.historyUserControl1.Margin = new System.Windows.Forms.Padding(0);
+            this.historyUserControl1.MaximumSize = new System.Drawing.Size(1150, 620);
+            this.historyUserControl1.MinimumSize = new System.Drawing.Size(1150, 620);
+            this.historyUserControl1.Name = "historyUserControl1";
+            this.historyUserControl1.Size = new System.Drawing.Size(1150, 620);
+            this.historyUserControl1.TabIndex = 0;
             // 
             // WeatherForecastForm
             // 
@@ -124,6 +137,7 @@ namespace WeatherForecast
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "WeatherForecastForm";
             this.Text = "Weather Forecast";
+            this.tabPage2.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -139,6 +153,7 @@ namespace WeatherForecast
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabControl tabControl;
         private ForecastUserControl forecastUserControl;
+        private HistoryUserControl historyUserControl1;
     }
 }
 

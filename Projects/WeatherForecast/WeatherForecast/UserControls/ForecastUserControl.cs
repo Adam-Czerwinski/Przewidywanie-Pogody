@@ -19,7 +19,6 @@ namespace WeatherForecast.UserControls
 
         /// <summary>
         /// Składowe pomocnicze
-        /// CZY SĄ POTRZEBNE SKORO MAMY ENUMY?
         /// </summary>
         /// 
         private string[] region = { "N", "E", "S", "W", "C" };

@@ -54,7 +54,7 @@ namespace DataAccessLayer
         /// Dodaj jedno miasto do bazy danych
         /// </summary>
         /// <param name="city">miasto</param>
-        public static void Add(City city)
+        private static void Add(City city)
         {
             string insertCommand;
             try
@@ -73,9 +73,45 @@ namespace DataAccessLayer
                 Console.WriteLine("Error: " + e.Message + "\n");
             }
 
-
-
             connection.Close();
+        }
+
+        /// <summary>
+        /// Zwraca id miasta w bazie. Jeśli w bazie nie ma jeszcze danego miasta to je dodaje i zwraca jego id.
+        /// </summary>
+        /// <param name="city"></param>
+        /// <returns></returns>
+        public static int GetIdCity(City city)
+        {
+            MySqlConnection connection = DBConnection.Instance.Connection;
+
+            string GET_USER = "select id_cities from cities where name = '" + city.Name + "' and region = '" + city.Region + "';";
+
+            int id = -1;
+
+            try
+            {
+                using (MySqlCommand comm = new MySqlCommand(GET_USER, connection))
+                {
+                    connection.Open();
+
+                    MySqlDataReader reader = comm.ExecuteReader();
+                    if (reader.Read())
+                        id = int.Parse(reader.GetValue(0).ToString());
+
+                    reader.Close();
+                    connection.Close();
+
+                    if (id == -1)
+                    {
+                        Add(city);
+                        id = GetIdCity(city);
+                    }
+
+                    return id;
+                }
+            }
+            catch (Exception) { return id; }
         }
 
         public static List<City> getAll()
@@ -85,8 +121,8 @@ namespace DataAccessLayer
 
             int idCity;
             string name;
-            Regions region = Regions.C;
-            bool isStation = false;
+            Regions region;
+            bool isStation;
 
             try
             {

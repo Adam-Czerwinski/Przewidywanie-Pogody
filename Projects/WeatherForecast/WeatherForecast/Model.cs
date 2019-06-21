@@ -25,11 +25,16 @@ namespace WeatherForecast
             try
             {
                 City city = new City(CityRepository.getAll().Last().IdCity + 1, forecastDataIn[0], (Regions)Enum.Parse(typeof(Regions), forecastDataIn[1]), false);
-                CityRepository.Add(city);
 
-                return new WeatherData(1, city.IdCity, DateTime.Now, GetHour(), double.Parse(forecastDataIn[2]), int.Parse(forecastDataIn[3]),
+                // Podczas tworzenia obiektu data, do bazy jest dodawane miasto (jeśli nie istnieje) 
+                WeatherData data = new WeatherData(1, CityRepository.GetIdCity(city), DateTime.Now, GetHour(), double.Parse(forecastDataIn[2]), int.Parse(forecastDataIn[3]),
                          (WindDirections)Enum.Parse(typeof(WindDirections), forecastDataIn[4]), int.Parse(forecastDataIn[5]), int.Parse(forecastDataIn[6]),
                          int.Parse(forecastDataIn[7]), DataTypes.User_input_data);
+
+                // Dodawanie user input do bazy
+                WeatherDataRepository.Add(data);
+
+                return data;
             }
             catch (Exception ex)
             {
