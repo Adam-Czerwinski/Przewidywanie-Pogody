@@ -97,6 +97,7 @@
     <Compile Include="UserControls\AboutUserControl.Designer.cs">
       <DependentUpon>AboutUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ForecastData.cs" />
     <Compile Include="UserControls\ForecastUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -109,7 +110,7 @@
     <Compile Include="UserControls\HistoryUserControl.Designer.cs">
       <DependentUpon>HistoryUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="IView.cs" />
+    <Compile Include="IWeatherForecast.cs" />
     <Compile Include="UserControls\NeuralNetUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -122,6 +123,16 @@
     <Compile Include="UserControls\StatisticUserControl.Designer.cs">
       <DependentUpon>StatisticUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Interfaces\IAboutUserControl.cs" />
+    <Compile Include="UserControls\Interfaces\IForecastUserControl.cs" />
+    <Compile Include="UserControls\Interfaces\IHistoryUserControl.cs" />
+    <Compile Include="UserControls\Interfaces\INeuralNetUserControl.cs" />
+    <Compile Include="UserControls\Interfaces\IStatisticUserControl.cs" />
+    <Compile Include="Presenters\AboutPresenter.cs" />
+    <Compile Include="Presenters\ForecastPresenter.cs" />
+    <Compile Include="Presenters\HistoryPresenter.cs" />
+    <Compile Include="Presenters\NeuralNetPresenter.cs" />
+    <Compile Include="Presenters\StatisticPresenter.cs" />
     <Compile Include="WeatherForecastForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,7 +140,7 @@
       <DependentUpon>WeatherForecastForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Model.cs" />
-    <Compile Include="Presenter.cs" />
+    <Compile Include="WeatherForecastPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="UserControls\AboutUserControl.resx">

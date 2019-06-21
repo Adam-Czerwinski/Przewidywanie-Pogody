@@ -1,36 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using GMap.NET.MapProviders;
+using WeatherForecast.UserControls.UserControlInterfaces;
 
 namespace WeatherForecast.UserControls
 {
-    public partial class ForecastUserControl : UserControl
+    public partial class ForecastUserControl : UserControl, IForecastUserControl
     {
+        /// <summary>
+        /// Dane wprowadzone przez użytkownika
+        /// </summary>
+        public string[] ForecastDataIn { get; }
 
-        #region Input data properties
-        public string City { get; set; }
-        public string RegionPL { get; set; }
-        public double Temperature { get; set; }
-        public int Humidity { get; set; }
-        public int WindSpeed { get; set; }
-        public string WindDirection { get; set; }
-        public int Cloudy { get; set; }
-        public int Visibility { get; set; }
-        #endregion
+        /// <summary>
+        /// Kontener dla labelek. Odnosimy się poprzez indeks
+        /// </summary>
+        public ForecastData ForecastData { get; }
 
-        public string[,,] ForecastData { get; set; }
-
-        private string[] region = { "N", "E", "S", "W" };
+        /// <summary>
+        /// Składowe pomocnicze
+        /// </summary>
+        /// 
+        private string[] region = { "N", "E", "S", "W", "C" };
         private string[] windDirection = { "C", "E", "N", "S", "W", "NE", "NW", "SE", "SW", "ENE", "ESE", "NNE", "NNW", "SSE", "SSW", "WNW", "WSW" };
-        private Label[,,] weatherDataLabels;
 
+        /// <summary>
+        /// Akcja wywołana po naciśnięciu przycisku przewidywania pogody
+        /// </summary>
         public event Action ForecastAction;
 
         public ForecastUserControl()
@@ -48,7 +44,9 @@ namespace WeatherForecast.UserControls
             regionCBox.Items.AddRange(region);
             windDirectionCBox.Items.AddRange(windDirection);
 
-            weatherDataLabels = new Label[4, 3, 6];
+            ForecastDataIn = new string[8];
+
+            var weatherDataLabels = new Label[4, 3, 6];
             #region Adding weather data labels to weatherDataLabes
             weatherDataLabels[0, 0, 0] = f1h6TemperatureLabel;
             weatherDataLabels[0, 0, 1] = f1h6HumidityLabel;
@@ -123,6 +121,9 @@ namespace WeatherForecast.UserControls
             weatherDataLabels[3, 2, 4] = f4h18CloudyLabel;
             weatherDataLabels[3, 2, 5] = f4h18VisibilityLabel;
             #endregion
+
+            ForecastData = new ForecastData(weatherDataLabels);
+
         }
 
         private void forecastInButton_Click(object sender, EventArgs e)
@@ -130,114 +131,57 @@ namespace WeatherForecast.UserControls
             bool isValid = true;
 
             #region Data validation
-            if (cityTextBox.Text == "")
-            {
+
+            if (cityTextBox.Text == "" || regionCBox.Text == "" || windDirectionCBox.Text == "")
                 isValid = false;
-            }
-            if (regionCBox.Text == "")
-            {
-                isValid = false;
-            }
-            if (windDirectionCBox.Text == "")
-            {
-                isValid = false;
-            }
+
             #endregion
 
             if (isValid)
             {
                 #region Attributing input data to properties
-                City = cityTextBox.Text;
-                RegionPL = regionCBox.Text;
-                Temperature = (double)temperatureNUpDown.Value;
-                Humidity = humidityBar.Value;
-                WindSpeed = (int)windSpeedNUpDown.Value;
-                WindDirection = windDirectionCBox.Text;
-                Cloudy = cloudyBar.Value;
-                Visibility = visibilityBar.Value;
+                ForecastDataIn[0] = cityTextBox.Text;
+                ForecastDataIn[1] = regionCBox.Text;
+                ForecastDataIn[2] = temperatureNUpDown.Value.ToString();
+                ForecastDataIn[3] = humidityBar.Value.ToString();
+                ForecastDataIn[4] = windDirectionCBox.Text;
+                ForecastDataIn[5] = windSpeedNUpDown.Value.ToString();
+                ForecastDataIn[6] = cloudyBar.Value.ToString();
+                ForecastDataIn[7] = visibilityBar.Value.ToString();
                 #endregion
 
-                if (ForecastAction != null)
-                    ForecastAction.Invoke();
-
-                ShowWeather();
-
-                gMap.Zoom = 6;
-                switch (RegionPL)
-                {
-                    case "N":
-                        gMap.Position = new GMap.NET.PointLatLng(53.5, 19);
-                        break;
-                    case "E":
-                        gMap.Position = new GMap.NET.PointLatLng(52, 21);
-                        break;
-                    case "S":
-                        gMap.Position = new GMap.NET.PointLatLng(52, 17);
-                        break;
-                    case "W":
-                        gMap.Position = new GMap.NET.PointLatLng(50.5, 19);
-                        break;
-                    default:
-                        gMap.Position = new GMap.NET.PointLatLng(52, 19);
-                        break;
-                }
-            }
-
-        }
-
-        private void ShowWeather()
-        {
-            int i, j, k;
-            for (i = 0; i < 4; i++)
-            {
-                for (j = 0; j < 3; j++)
-                {
-                    for (k = 0; k < 6; k++)
-                    {
-                        if (ForecastData[i, j, k] != null)
-                        {
-                            weatherDataLabels[i, j, k].Text = ForecastData[i, j, k];
-                        }
-                    }
-                    k = 0;
-                }
-                j = 0;
+                ForecastAction?.Invoke();
             }
         }
 
-        public void ClearAll()
+        /// <summary>
+        /// Wywołuje się wtedy kiedy zmieni się wartość combo boxa
+        /// </summary>
+        private void regionCBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Output
-            int i, j, k;
-            for (i = 0; i < 4; i++)
+            var selectedRegion = ((ComboBox)sender).SelectedItem;
+
+            #region Map attribut
+            gMap.Zoom = 6;
+            switch (selectedRegion)
             {
-                for (j = 0; j < 3; j++)
-                {
-                    for (k = 0; k < 6; k++)
-                    {
-                        if (ForecastData[i, j, k] != null)
-                        {
-                            weatherDataLabels[i, j, k].Text = "-";
-                        }
-                    }
-                    k = 0;
-                }
-                j = 0;
+                case "N":
+                    gMap.Position = new GMap.NET.PointLatLng(53.5, 19);
+                    break;
+                case "E":
+                    gMap.Position = new GMap.NET.PointLatLng(52, 21);
+                    break;
+                case "S":
+                    gMap.Position = new GMap.NET.PointLatLng(50.5, 19);
+                    break;
+                case "W":
+                    gMap.Position = new GMap.NET.PointLatLng(52, 17);
+                    break;
+                default:
+                    gMap.Position = new GMap.NET.PointLatLng(52, 19);
+                    break;
+                    #endregion
             }
-
-            // Input
-            cityTextBox.Text = "";
-            regionCBox.Text = "";
-            temperatureNUpDown.Value = 0;
-            humidityBar.Value = 0;
-            windSpeedNUpDown.Value = 0;
-            windDirectionCBox.Text = "";
-            cloudyBar.Value = 0;
-            visibilityBar.Value = 0;
-
-            //GMap
-            gMap.Position = new GMap.NET.PointLatLng(52, 19);
-            gMap.Zoom = 5;
         }
 
     }

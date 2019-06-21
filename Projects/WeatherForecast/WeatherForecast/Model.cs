@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NeuralNetwork;
 using BusinessObject;
 using DataAccessLayer;
@@ -18,64 +15,55 @@ namespace WeatherForecast
             forecast.SetupNetwork();
         }
 
-
-        public string[,,] ForecastData
-        (
-            string cityName, string region, double temperature, int humidity,
-            int windSpeed, string windDirection, int cloudy, int visibility
-        )
+        /// <summary>
+        /// Tworzy instancję WeatherData i jąz wraca
+        /// </summary>
+        /// <param name="forecastDataIn">Wprowadzone dane użytkownika</param>
+        /// <returns>nowa instancja WeatherData</returns>
+        public WeatherData CreateWeatherData(string[] forecastDataIn)
         {
-            City city = new City(CityRepository.getAll().Last().IdCity + 1, cityName, (Regions)Enum.Parse(typeof(Regions), region), false);
-            CityRepository.Add(city);
-
-            WeatherData[][] weatherDatas;
-
-            weatherDatas = forecast.ForecastNextThreeDays(new WeatherData(1, city.IdCity, DateTime.Now, GetHour(), temperature, humidity,
-                (WindDirections)Enum.Parse(typeof(WindDirections), windDirection), windSpeed, cloudy, visibility, DataTypes.User_input_data));
-
-            string[,,] forecastWeatherData = new string[4, 3, 6];
-
-            int indexDay = 0;
-            int indexHour = 0;
-
-            foreach(WeatherData[] day in weatherDatas)
+            try
             {
-                indexHour = 0;
-                foreach(WeatherData hour in day)
-                {
-                    forecastWeatherData[indexDay, indexHour, 0] = String.Format("{0:N1}", hour.Temperature);
-                    forecastWeatherData[indexDay, indexHour, 1] = hour.Humidity.ToString();
-                    if (hour.WindSpeed > 0)
-                        forecastWeatherData[indexDay, indexHour, 2] = hour.WindSpeed.ToString();
-                    else
-                        forecastWeatherData[indexDay, indexHour, 2] = 0.ToString();
-                    forecastWeatherData[indexDay, indexHour, 3] = hour.WindDirection.ToString();
-                    forecastWeatherData[indexDay, indexHour, 4] = hour.Cloudy.ToString();
-                    forecastWeatherData[indexDay, indexHour, 5] = hour.Visibility.ToString();
-                    indexHour++;
-                }
-                indexDay++;
-            }
+                City city = new City(CityRepository.getAll().Last().IdCity + 1, forecastDataIn[0], (Regions)Enum.Parse(typeof(Regions), forecastDataIn[1]), false);
 
-            return forecastWeatherData;
+                // Podczas tworzenia obiektu data, do bazy jest dodawane miasto (jeśli nie istnieje) 
+                WeatherData data = new WeatherData(1, CityRepository.GetIdCity(city), DateTime.Now, GetHour(), double.Parse(forecastDataIn[2]), int.Parse(forecastDataIn[3]),
+                         (WindDirections)Enum.Parse(typeof(WindDirections), forecastDataIn[4]), int.Parse(forecastDataIn[5]), int.Parse(forecastDataIn[6]),
+                         int.Parse(forecastDataIn[7]), DataTypes.User_input_data);
+
+                // Dodawanie user input do bazy
+                WeatherDataRepository.Add(data);
+
+                return data;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
         }
 
+        #region Forecast
+        public WeatherData[][] ForecastData(WeatherData wd)
+        {
+            return forecast.ForecastNextThreeDays(wd);
+        }
+
+        /// <summary>
+        /// Zwraca godzinę zaokrąglając do góry
+        /// </summary>
+        /// <returns></returns>
         private int GetHour()
         {
             int hour = DateTime.Now.Hour;
 
             if (hour <= 6)
-            {
                 return 6;
-            }
             else if (hour <= 12)
-            {
                 return 12;
-            }
             else
-            {
                 return 18;
-            }
         }
+        #endregion
     }
 }

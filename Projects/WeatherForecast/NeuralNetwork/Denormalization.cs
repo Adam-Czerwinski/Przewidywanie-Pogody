@@ -58,8 +58,8 @@ namespace NeuralNetwork
 
                 temperature = DenormalizeTemperature(weatherDataNormalizeds, min, max, i);
                 humidity = DenormalizeHumidity(weatherDataNormalizeds, min, max, i);
-                windDirection = DenormalizeWindDirection(weatherDataNormalizeds, wd, windDirection, i);
                 windSpeed = DenormalizeWindSpeed(weatherDataNormalizeds, min, max, i);
+                windDirection = DenormalizeWindDirection(weatherDataNormalizeds, wd, windSpeed, windDirection, i);
                 cloudy = DenormalizeCloudy(weatherDataNormalizeds, min, max, i);
                 visibility = DenormalizeVisibility(weatherDataNormalizeds, min, max, i);
 
@@ -96,12 +96,12 @@ namespace NeuralNetwork
             return weatherDataNormalizeds[i].Temperature * (max[0] - min[0]) + min[0];
         }
 
-        private WindDirections DenormalizeWindDirection(IReadOnlyList<WeatherDataNormalized> weatherDataNormalizeds, List<double[]> wd, /*double[] wdNNE, double[] wdN, double[] wdNE, double[] wdENE, double[] wdE, double[] wdESE, double[] wdSE, double[] wdSSE, double[] wdS, double[] wdSSW, double[] wdSW, double[] wdWSW, double[] wdW, double[] wdWNW, double[] wdNW, double[] wdNNW, double[] wdC,*/ WindDirections windDirection, int i)
+        private WindDirections DenormalizeWindDirection(IReadOnlyList<WeatherDataNormalized> weatherDataNormalizeds, List<double[]> wd, int windSpeed,/*double[] wdNNE, double[] wdN, double[] wdNE, double[] wdENE, double[] wdE, double[] wdESE, double[] wdSE, double[] wdSSE, double[] wdS, double[] wdSSW, double[] wdSW, double[] wdWSW, double[] wdW, double[] wdWNW, double[] wdNW, double[] wdNNW, double[] wdC,*/ WindDirections windDirection, int i)
         {
 
             double error = 0;
             double minerror = 10.0d;
-            int index = 0;
+            int index = 1;
 
             for (int j = 0; j < wd.Count; j++)
             {
@@ -120,8 +120,6 @@ namespace NeuralNetwork
 
             }
 
-            if (index == 0)
-                windDirection = WindDirections.C;
             if (index == 1)
                 windDirection = WindDirections.N;
             if (index == 2)
@@ -154,6 +152,10 @@ namespace NeuralNetwork
                 windDirection = WindDirections.NW;
             if (index == 16)
                 windDirection = WindDirections.NNW;
+
+            // C to wartość która powinna występować tylko w przypadku braku wiatru - w tym celu do parametrów funkcji DenormalizedDirections dodałem wind speed
+            if (windSpeed == 0)
+                windDirection = WindDirections.C;
 
             return windDirection;
         }

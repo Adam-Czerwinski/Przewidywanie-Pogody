@@ -11,7 +11,7 @@ namespace DataAccessLayer
         private static MySqlConnection connection = DBConnection.Instance.Connection;
 
         /// <summary>
-        /// Dodaj wiele miast do bazy danych
+        /// Dodaj wiele data do bazy danych
         /// </summary>
         /// <param name="datas"></param>
         public static void Add(IReadOnlyList<WeatherData> datas)
@@ -53,7 +53,7 @@ namespace DataAccessLayer
         }
 
         /// <summary>
-        /// Dodaj jedno miasto do bazy danych
+        /// Dodaj jedno data do bazy danych
         /// </summary>
         /// <param name="data"></param>
         public static void Add(WeatherData data)

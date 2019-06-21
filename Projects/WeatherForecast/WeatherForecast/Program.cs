@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WeatherForecast
@@ -18,8 +15,8 @@ namespace WeatherForecast
             Application.SetCompatibleTextRenderingDefault(false);
 
             Model model = new Model();
-            IView view = new WeatherForecastForm();
-            Presenter presenter = new Presenter(view, model);
+            IWeatherForecast view = new WeatherForecastForm();
+            WeatherForecastPresenter presenter = new WeatherForecastPresenter(view, model);
             Application.Run((Form)view);
         }
     }
