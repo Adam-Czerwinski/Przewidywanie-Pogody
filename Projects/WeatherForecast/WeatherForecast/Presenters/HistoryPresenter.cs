@@ -11,6 +11,14 @@ namespace WeatherForecast.UserPresenters
         {
             _historyUserControl = historyUserControl;
             _model = model;
+
+            _historyUserControl.Load += Load;
+        }
+
+        private void Load()
+        {
+            _historyUserControl.forecastDataIn = _model.LoadData();
+
         }
     }
 }

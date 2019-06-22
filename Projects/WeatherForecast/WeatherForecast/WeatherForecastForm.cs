@@ -16,7 +16,7 @@ namespace WeatherForecast
             InitializeComponent();
 
             ForecastUserControl = forecastUserControl;
-            //HistoryUserControl = historyUserControl;
+            HistoryUserControl = historyUserControl1;
             //StatisticUserControl = statisticUserControl;
             //NeuralNetUserControl = neuralNetUserControl;
             //AboutUserControl = aboutUserControl;

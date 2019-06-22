@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NeuralNetwork;
 using BusinessObject;
 using DataAccessLayer;
+using Database;
+using MySql.Data.MySqlClient;
 
 namespace WeatherForecast
 {
@@ -63,6 +66,43 @@ namespace WeatherForecast
                 return 12;
             else
                 return 18;
+        }
+        #endregion
+        #region History
+        public string[][] LoadData()
+        {
+            MySqlConnection connection = DBConnection.Instance.Connection;
+            string GET_DATA = "select id_weather_data, cities.name, date_, hour_, temperature, humidity,  wind_direction, wind_speed, cludy, visibility" +
+                " from weather_data inner join cities on city = id_cities " +
+                "where data_type = 'user_input_data'; ";
+          
+          
+            List<string[]> userDatas = new List<string[]>();
+            string[] uData = new string[10];
+            try
+            {
+                using (MySqlCommand comm = new MySqlCommand(GET_DATA, connection))
+                {
+                    connection.Open();
+                    MySqlDataReader reader = comm.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int i = 0; i < 10; i++)
+                        {
+                            string el = uData[i];
+                            uData[i] = reader.GetValue(i).ToString();
+                        }
+                        userDatas.Add(new string[10]{uData[0], uData[1],
+                            uData[2], uData[3], uData[4], uData[5],
+                            uData[6], uData[7], uData[8], uData[9]});
+                    }
+                    reader.Close();
+                    connection.Close();
+                    return userDatas.ToArray();
+                }
+
+            }
+            catch (Exception) { return userDatas.ToArray(); }
         }
         #endregion
     }
