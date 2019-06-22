@@ -15,6 +15,7 @@ namespace NeuralNetwork
         public const float LearningRate = 0.05f;
         //Funkcja aktywacji najlepiej
         public static ActivationFunctionClient ActivactionFunction = new ActivationFunctionClient(new TanHActivationFunction());
+        public static string ActivationFunctionName = "TanH";
         //ilość iteracji dla sieci
         private const int iterations = 150;
         private const int iterationsForStartupSettings = 30;
@@ -161,7 +162,7 @@ namespace NeuralNetwork
             File.WriteAllText("..\\..\\..\\..\\..\\DatabaseSources\\Data\\NeuralNetworkWeights.txt", weightsAsString);
 
             //zapisuje ustawienia sieci do pliku
-            string networkSettings = neuronsInput.ToString() + " " + neuronsHidden.ToString() + " " + neuronsOutput.ToString(); 
+            string networkSettings = neuronsInput.ToString() + " " + neuronsHidden.ToString() + " " + neuronsOutput.ToString();
             File.WriteAllText("..\\..\\..\\..\\..\\DatabaseSources\\Data\\NeuralNetworkSettings.txt", networkSettings);
             #endregion
 
@@ -374,6 +375,11 @@ namespace NeuralNetwork
         /// <param name="network">Sieć która uczy</param>
         private static void LearnNetwork(WeatherDataNormalized[][] weatherDataLearning, Network network)
         {
+
+            //Jednorazowy zapis do bazy danych dot. ustawień sieci neuronowych
+            GenerationRepository.Add(neuronsInput, neuronsHidden, neuronsOutput, LearningRate, ActivationFunctionName);
+
+
             int percent = 0;
             for (int i = 0; i < iterations; i++)
             {
@@ -394,7 +400,20 @@ namespace NeuralNetwork
                 if (((float)i / iterations) * 100 > percent)
                     percent++;
 
+                //Zapisywanie do bazy danych co 10%
+                if (((float)i / iterations) * 100 > percent * 10)
+                {
+                    //zapisywanie wag do bazy
+                    string weightsAsString = GetWeightsAsString(network.GetWeights());
+                    WeightRepository.Add(weightsAsString);
+
+                    //zapisywanie postępu nauki
+                    LearningProcessRepository.Add(i, network.GetTotalError(), false);
+                }
             }
+
+            //ostatnie zapisanie do bazy zeby bylo ze nauczona (skonczona jej nauka)
+            LearningProcessRepository.Add(iterations, network.GetTotalError(), true);
         }
 
     }

@@ -15,12 +15,11 @@ namespace DataAccessLayer
         /// <param name="epoch"></param>
         /// <param name="total_error"></param>
         /// <param name="is_learned"></param>
-        public static void Add(uint iteration, int epoch, double total_error, bool is_learned)
+        public static void Add(int epoch, double total_error, bool is_learned)
         {
             string ADD_LEARNING_PROCESS = "INSERT INTO `learning_process` VALUES ( null, "
                                           + Database.Database.GetLastIndex(TableName.generations) + ", "
                                           + Database.Database.GetLastIndex(TableName.weight) + ", "
-                                          + iteration + ", "
                                           + epoch + ", "
                                           + total_error.ToString().Replace(',', '.') + ", "
                                           + is_learned + ")";
