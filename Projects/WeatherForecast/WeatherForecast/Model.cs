@@ -93,7 +93,7 @@ namespace WeatherForecast
                             uData[i] = reader.GetValue(i).ToString();
                         }
                         userDatas.Add(new string[10]{uData[0], uData[1],
-                            uData[2], uData[3], uData[4], uData[5],
+                            uData[2].Remove(10), uData[3].Remove(2), uData[4], uData[5],
                             uData[6], uData[7], uData[8], uData[9]});
                     }
                     reader.Close();
@@ -103,6 +103,13 @@ namespace WeatherForecast
 
             }
             catch (Exception) { return userDatas.ToArray(); }
+        }
+        #endregion
+
+        #region Statistic
+        public string[][][] GetStatistic(StatisticType type, string year = "", string month = "")
+        {
+            return StatisticRepository.Get(type, year, month);
         }
         #endregion
     }

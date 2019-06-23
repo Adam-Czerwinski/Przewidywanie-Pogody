@@ -12,7 +12,7 @@ namespace WeatherForecast.UserPresenters
             _historyUserControl = historyUserControl;
             _model = model;
 
-            _historyUserControl.Load += Load;
+            _historyUserControl.Load_ += Load;
         }
 
         private void Load()

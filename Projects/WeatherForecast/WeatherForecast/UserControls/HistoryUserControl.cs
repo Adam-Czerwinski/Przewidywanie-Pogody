@@ -24,7 +24,7 @@ namespace WeatherForecast.UserControls
             }
         }
 
-        public event Action Load;
+        public event Action Load_;
        
 
         public HistoryUserControl()
@@ -33,9 +33,9 @@ namespace WeatherForecast.UserControls
             
         }
 
-        private void LoadButton_Click(object sender, EventArgs e)
+        private void HistoryUserControl_Load(object sender, EventArgs e)
         {
-            Load?.Invoke();
+            Load_?.Invoke();
         }
     }
 }

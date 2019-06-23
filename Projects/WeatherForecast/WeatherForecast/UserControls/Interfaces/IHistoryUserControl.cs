@@ -6,7 +6,7 @@ namespace WeatherForecast.UserControls.UserControlInterfaces
     {
         string[][] forecastDataIn { set; }
 
-        event Action Load;
+        event Action Load_;
 
     }
 }

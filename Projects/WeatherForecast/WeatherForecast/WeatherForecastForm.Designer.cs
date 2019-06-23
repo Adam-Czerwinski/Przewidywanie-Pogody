@@ -33,10 +33,12 @@ namespace WeatherForecast
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.historyUserControl1 = new WeatherForecast.UserControls.HistoryUserControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.forecastUserControl = new WeatherForecast.UserControls.ForecastUserControl();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.historyUserControl1 = new WeatherForecast.UserControls.HistoryUserControl();
+            this.statisticUserControl1 = new WeatherForecast.UserControls.StatisticUserControl();
+            this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -65,6 +67,7 @@ namespace WeatherForecast
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tabPage3.Controls.Add(this.statisticUserControl1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -82,6 +85,16 @@ namespace WeatherForecast
             this.tabPage2.Size = new System.Drawing.Size(1158, 617);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Historia";
+            // 
+            // historyUserControl1
+            // 
+            this.historyUserControl1.Location = new System.Drawing.Point(3, 0);
+            this.historyUserControl1.Margin = new System.Windows.Forms.Padding(0);
+            this.historyUserControl1.MaximumSize = new System.Drawing.Size(1150, 620);
+            this.historyUserControl1.MinimumSize = new System.Drawing.Size(1150, 620);
+            this.historyUserControl1.Name = "historyUserControl1";
+            this.historyUserControl1.Size = new System.Drawing.Size(1150, 620);
+            this.historyUserControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
@@ -117,15 +130,13 @@ namespace WeatherForecast
             this.tabControl.Size = new System.Drawing.Size(1166, 643);
             this.tabControl.TabIndex = 1;
             // 
-            // historyUserControl1
+            // statisticUserControl1
             // 
-            this.historyUserControl1.Location = new System.Drawing.Point(3, 0);
-            this.historyUserControl1.Margin = new System.Windows.Forms.Padding(0);
-            this.historyUserControl1.MaximumSize = new System.Drawing.Size(1150, 620);
-            this.historyUserControl1.MinimumSize = new System.Drawing.Size(1150, 620);
-            this.historyUserControl1.Name = "historyUserControl1";
-            this.historyUserControl1.Size = new System.Drawing.Size(1150, 620);
-            this.historyUserControl1.TabIndex = 0;
+            this.statisticUserControl1.Location = new System.Drawing.Point(3, 0);
+            this.statisticUserControl1.Margin = new System.Windows.Forms.Padding(0);
+            this.statisticUserControl1.Name = "statisticUserControl1";
+            this.statisticUserControl1.Size = new System.Drawing.Size(1150, 620);
+            this.statisticUserControl1.TabIndex = 0;
             // 
             // WeatherForecastForm
             // 
@@ -137,6 +148,7 @@ namespace WeatherForecast
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "WeatherForecastForm";
             this.Text = "Weather Forecast";
+            this.tabPage3.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
@@ -154,6 +166,7 @@ namespace WeatherForecast
         private System.Windows.Forms.TabControl tabControl;
         private ForecastUserControl forecastUserControl;
         private HistoryUserControl historyUserControl1;
+        private StatisticUserControl statisticUserControl1;
     }
 }
 

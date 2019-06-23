@@ -17,7 +17,7 @@ namespace WeatherForecast
 
             ForecastUserControl = forecastUserControl;
             HistoryUserControl = historyUserControl1;
-            //StatisticUserControl = statisticUserControl;
+            StatisticUserControl = statisticUserControl1;
             //NeuralNetUserControl = neuralNetUserControl;
             //AboutUserControl = aboutUserControl;
         }

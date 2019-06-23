@@ -86,7 +86,6 @@ create table learning_process
 		foreign key(generation) references generations(id_generations),
 	weight int unsigned not null,
 		foreign key(weight) references weight(id_weight),
-	iteration int unsigned not null,
 	epoch int not null,
 	total_error double not null,
 	is_learned boolean not null

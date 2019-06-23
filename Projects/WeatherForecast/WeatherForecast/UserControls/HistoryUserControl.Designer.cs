@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.LoadButton = new System.Windows.Forms.Button();
             this.ColumnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,6 +39,7 @@
             this.ColumnWindDirection = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCloudy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnVisibility = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,26 +61,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1144, 587);
             this.dataGridView1.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(506, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(144, 42);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Historia";
-            // 
-            // LoadButton
-            // 
-            this.LoadButton.Location = new System.Drawing.Point(678, 9);
-            this.LoadButton.Name = "LoadButton";
-            this.LoadButton.Size = new System.Drawing.Size(118, 39);
-            this.LoadButton.TabIndex = 4;
-            this.LoadButton.Text = "Wczytaj dane";
-            this.LoadButton.UseVisualStyleBackColor = true;
-            this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
             // 
             // ColumnID
             // 
@@ -116,13 +95,13 @@
             // 
             // ColumnWindSpeed
             // 
-            this.ColumnWindSpeed.HeaderText = "Prędkość wiatru";
+            this.ColumnWindSpeed.HeaderText = "Kierunek wiatru";
             this.ColumnWindSpeed.Name = "ColumnWindSpeed";
             this.ColumnWindSpeed.Width = 140;
             // 
             // ColumnWindDirection
             // 
-            this.ColumnWindDirection.HeaderText = "Kierunek wiatru";
+            this.ColumnWindDirection.HeaderText = "Prędkość wiatru";
             this.ColumnWindDirection.Name = "ColumnWindDirection";
             this.ColumnWindDirection.Width = 140;
             // 
@@ -138,11 +117,20 @@
             this.ColumnVisibility.Name = "ColumnVisibility";
             this.ColumnVisibility.Width = 150;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(506, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(144, 42);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Historia";
+            // 
             // HistoryUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.LoadButton);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(0);
@@ -150,6 +138,7 @@
             this.MinimumSize = new System.Drawing.Size(1150, 620);
             this.Name = "HistoryUserControl";
             this.Size = new System.Drawing.Size(1150, 620);
+            this.Load += new System.EventHandler(this.HistoryUserControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -160,7 +149,6 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button LoadButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCity;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDate;
