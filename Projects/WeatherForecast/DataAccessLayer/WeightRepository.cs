@@ -19,7 +19,7 @@ namespace DataAccessLayer
             {
                 connection.Open();
 
-                MySqlDataReader reader = comm.ExecuteReader();
+                comm.ExecuteNonQuery();
 
                 connection.Close();
             }

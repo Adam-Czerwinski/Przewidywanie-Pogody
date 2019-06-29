@@ -36,7 +36,7 @@ namespace DataAccessLayer
 
                     using (MySqlCommand commamnd = new MySqlCommand(insertCommand, connection))
                     {
-                        commamnd.ExecuteReader();
+                        commamnd.ExecuteNonQuery();
                         //Console.WriteLine("Dodano: " + c.ToString());
                     }
                 }
@@ -64,7 +64,7 @@ namespace DataAccessLayer
 
                 using (MySqlCommand commamnd = new MySqlCommand(insertCommand, connection))
                 {
-                    commamnd.ExecuteReader();
+                    commamnd.ExecuteNonQuery();
                     //Console.WriteLine("Dodano: " + city);
                 }
             }

@@ -398,17 +398,19 @@ namespace NeuralNetwork
                 Console.Write($"\r{percent}% \t Total Error: {network.GetTotalError()}   ");
 
                 if (((float)i / iterations) * 100 > percent)
+                {
                     percent++;
 
-                //Zapisywanie do bazy danych co 10%
-                if (((float)i / iterations) * 100 > percent * 10)
-                {
-                    //zapisywanie wag do bazy
-                    string weightsAsString = GetWeightsAsString(network.GetWeights());
-                    WeightRepository.Add(weightsAsString);
+                    //Zapisywanie do bazy danych co 10%
+                    if (percent%10==0 || percent == 1)
+                    {
+                        //zapisywanie wag do bazy
+                        string weightsAsString = GetWeightsAsString(network.GetWeights());
+                        WeightRepository.Add(weightsAsString);
 
-                    //zapisywanie postępu nauki
-                    LearningProcessRepository.Add(i, network.GetTotalError(), false);
+                        //zapisywanie postępu nauki
+                        LearningProcessRepository.Add(i, network.GetTotalError(), false);
+                    }
                 }
             }
 

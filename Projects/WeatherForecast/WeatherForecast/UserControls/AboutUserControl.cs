@@ -11,5 +11,10 @@ namespace WeatherForecast.UserControls
 
             this.BringToFront();
         }
+
+        private void AboutUserControl_Load(object sender, System.EventArgs e)
+        {
+            richTextBox1.SelectedRtf = Properties.Resources.About;
+        }
     }
 }
