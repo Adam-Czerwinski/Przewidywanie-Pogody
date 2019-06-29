@@ -11,6 +11,13 @@ namespace WeatherForecast.UserPresenters
         {
             _aboutUserControl = aboutUserControl;
             _model = model;
+
+            _aboutUserControl.Load_ += Load;
+        }
+
+        private void Load()
+        {
+            _aboutUserControl.Path_ = _model.GetAboutSource();
         }
     }
 }

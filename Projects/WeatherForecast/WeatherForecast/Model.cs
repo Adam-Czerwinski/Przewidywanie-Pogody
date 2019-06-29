@@ -6,6 +6,7 @@ using BusinessObject;
 using DataAccessLayer;
 using Database;
 using MySql.Data.MySqlClient;
+using System.IO;
 
 namespace WeatherForecast
 {
@@ -110,6 +111,25 @@ namespace WeatherForecast
         public string[][][] GetStatistic(StatisticType type, string year = "", string month = "")
         {
             return StatisticRepository.Get(type, year, month);
+        }
+        #endregion
+
+        #region NN
+        public string GetDescNNSource()
+        {
+            byte[] da = Properties.Resources.Dokumentacja_SSI_3;
+
+            string tempName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName() + ".pdf");
+            File.WriteAllBytes(tempName, da);
+
+            return tempName;
+        }
+        #endregion
+
+        #region About
+        public string GetAboutSource()
+        {
+            return Properties.Resources.About;
         }
         #endregion
     }
