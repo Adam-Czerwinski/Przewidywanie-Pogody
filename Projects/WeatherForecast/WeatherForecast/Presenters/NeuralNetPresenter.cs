@@ -11,6 +11,13 @@ namespace WeatherForecast.UserPresenters
         {
             _neuralNetUserControl = neuralNetUserControl;
             _model = model;
+
+            _neuralNetUserControl.Load_ += Load_;
+        }
+
+        private void Load_()
+        {
+            _neuralNetUserControl.Path_ = _model.GetDescNNSource();
         }
     }
 }
