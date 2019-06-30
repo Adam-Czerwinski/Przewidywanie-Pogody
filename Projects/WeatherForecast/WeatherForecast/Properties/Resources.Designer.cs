@@ -75,9 +75,9 @@ namespace WeatherForecast.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Dokumentacja_SSI_3 {
+        internal static byte[] siec {
             get {
-                object obj = ResourceManager.GetObject("Dokumentacja_SSI_3", resourceCulture);
+                object obj = ResourceManager.GetObject("siec", resourceCulture);
                 return ((byte[])(obj));
             }
         }

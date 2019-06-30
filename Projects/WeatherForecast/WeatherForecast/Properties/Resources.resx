@@ -121,7 +121,7 @@
   <data name="About" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\About.rtf;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1250</value>
   </data>
-  <data name="Dokumentacja_SSI_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Dokumentacja_SSI-3.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="siec" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\siec.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

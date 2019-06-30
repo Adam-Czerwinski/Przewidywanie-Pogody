@@ -40,6 +40,7 @@
             this.ColumnCloudy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnVisibility = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
+            this.refreshButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -127,10 +128,21 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Historia";
             // 
+            // refreshButton
+            // 
+            this.refreshButton.Location = new System.Drawing.Point(884, 9);
+            this.refreshButton.Name = "refreshButton";
+            this.refreshButton.Size = new System.Drawing.Size(100, 35);
+            this.refreshButton.TabIndex = 4;
+            this.refreshButton.Text = "Odśwież";
+            this.refreshButton.UseVisualStyleBackColor = true;
+            this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
+            // 
             // HistoryUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(0);
@@ -159,5 +171,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnWindDirection;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCloudy;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnVisibility;
+        private System.Windows.Forms.Button refreshButton;
     }
 }

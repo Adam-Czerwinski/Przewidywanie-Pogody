@@ -200,6 +200,7 @@
     </Compile>
     <None Include="Resources\About.rtf" />
     <None Include="Resources\Dokumentacja_SSI-3.pdf" />
+    <None Include="Resources\siec.pdf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

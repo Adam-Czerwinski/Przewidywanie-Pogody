@@ -117,7 +117,7 @@ namespace WeatherForecast
         #region NN
         public string GetDescNNSource()
         {
-            byte[] da = Properties.Resources.Dokumentacja_SSI_3;
+            byte[] da = Properties.Resources.siec;
 
             string tempName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName() + ".pdf");
             File.WriteAllBytes(tempName, da);

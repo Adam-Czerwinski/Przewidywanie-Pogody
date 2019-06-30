@@ -37,5 +37,10 @@ namespace WeatherForecast.UserControls
         {
             Load_?.Invoke();
         }
+
+        private void refreshButton_Click(object sender, EventArgs e)
+        {
+            Load_?.Invoke();
+        }
     }
 }
